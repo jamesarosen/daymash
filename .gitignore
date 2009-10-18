@@ -1,0 +1,9 @@
+log/*.log
+db/*.sqlite3
+config/database.yml
+public/javascripts/cache/
+public/stylesheets/cache/
+test/fixtures
+tmp
+.DS_Store
+*/.DS_Store
