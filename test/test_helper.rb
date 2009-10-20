@@ -1,6 +1,15 @@
 ENV["RAILS_ENV"] = "test"
+
+require 'rubygems'
+gem 'jferris-mocha'
+$:.unshift File.expand_path(File.dirname(__FILE__) + '/../lib')
+
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
+
+require 'mocha'
+require 'shoulda'
+require 'factory_girl'
 
 class ActiveSupport::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
