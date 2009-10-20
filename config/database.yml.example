@@ -1,0 +1,25 @@
+sqlite3: &SQLITE
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *SQLITE
+  database: db/development.sqlite3
+
+test:
+  <<: *SQLITE
+  database: db/test.sqlite3
+
+mysql: &MYSQL
+  adapter: mysql
+  encoding: utf8
+  username: less_scheduling
+  password: 
+  socket: /tmp/mysql.sock
+
+staging:
+  <<: *MYSQL
+
+production:
+  <<: *MYSQL
