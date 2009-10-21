@@ -3,12 +3,13 @@ require 'test_helper'
 class SignUpTest < ActionController::IntegrationTest
   
   include AuthenticationMacros
-  
-  setup :activate_authlogic
 
   context 'a signed-out visitor' do
     
-    setup { sign_out! }
+    setup do
+      visit '/'
+      sign_out!
+    end
     
     should 'be able to register' do
       visit '/'

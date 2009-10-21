@@ -1,5 +1,11 @@
 %ul{ :id => 'navbar' }
-  %li{ :class => 'sign_up' }
-    = link_to t('navigation.sign_up'), new_user_path, :title => t('navigation.sign_up')
-  %li{ :class => 'sign_in' }
-    = link_to t('navigation.sign_in'), new_user_session_path, :title => t('navigation.sign_in')
+  - if signed_in?
+    %li{ :class => 'current_user' }
+      = t('navigation.signed_in_as', :current_user => current_user)
+    %li{ :class => 'sign_out' }
+      = link_to t('navigation.sign_out'), sign_out_path, :title => t('navigation.sign_out')
+  - else
+    %li{ :class => 'sign_up' }
+      = link_to t('navigation.sign_up'), new_user_path, :title => t('navigation.sign_up')
+    %li{ :class => 'sign_in' }
+      = link_to t('navigation.sign_in'), new_user_session_path, :title => t('navigation.sign_in')

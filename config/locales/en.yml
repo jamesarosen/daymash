@@ -11,6 +11,8 @@ en:
   navigation:
     sign_in: "Sign In"
     sign_up: "Sign Up"
+    sign_out: "Sign Out"
+    signed_in_as: "Signed in as {{current_user}}"
     
   welcome:
     header: "Welcome!"

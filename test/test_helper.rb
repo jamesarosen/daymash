@@ -11,7 +11,6 @@ require 'mocha'
 require 'shoulda'
 require 'factory_girl'
 require 'webrat'
-require 'authlogic/test_case'
 
 class ActiveSupport::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
