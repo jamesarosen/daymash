@@ -7,5 +7,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users,
                 :only => [:new, :create]
+                
+  map.resources :user_sessions,
+                :only => [:new, :create]
 
 end

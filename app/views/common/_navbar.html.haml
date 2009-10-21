@@ -2,5 +2,4 @@
   %li{ :class => 'sign_up' }
     = link_to t('navigation.sign_up'), new_user_path, :title => t('navigation.sign_up')
   %li{ :class => 'sign_in' }
-    %a{ :href => '#', :title => t('navigation.sign_in') }
-      = t('navigation.sign_in')
+    = link_to t('navigation.sign_in'), new_user_session_path, :title => t('navigation.sign_in')

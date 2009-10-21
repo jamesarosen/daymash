@@ -19,6 +19,9 @@ en:
     new_user:
       legend: "Sign Up"
       submit: "Let's Get Schedulin'"
+    new_user_session:
+      legend: "Sign In"
+      submit: "I'm Pumped. Schedulify me!"
       
   footer:
     authors: "Less Scheduling was created by {{james}} and the fine folks at {{less_everything}}."

@@ -1,0 +1,9 @@
+- semantic_form_for @user_session do |form|
+  %fieldset
+    %legend= t('form.new_user_session.legend')
+    - form.inputs do
+      = form.input :username
+      = form.input :password
+  %fieldset
+    %div
+      = form.submit t('form.new_user_session.submit')
