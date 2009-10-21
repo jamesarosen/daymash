@@ -24,3 +24,5 @@ config.gem 'jferris-mocha', :source => 'http://gems.github.com',
                             
 config.gem 'redgreen', :lib => 'redgreen',
                        :version => '1.2.2'
+
+config.gem 'webrat', :version => '0.4.4'

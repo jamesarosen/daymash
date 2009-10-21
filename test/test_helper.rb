@@ -10,6 +10,8 @@ require 'test_help'
 require 'mocha'
 require 'shoulda'
 require 'factory_girl'
+require 'webrat'
+require 'authlogic/test_case'
 
 class ActiveSupport::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
@@ -44,4 +46,8 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+end
+
+Webrat.configure do |config|
+  config.mode = :rails
 end

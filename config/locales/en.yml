@@ -2,11 +2,24 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  activerecord:
+    attributes:
+      user:
+        display_name: "What you'd like us to call you. Say, 'Ishmael'"
+        password_confirmation: "Password once again, with feeling"
+        
   navigation:
     sign_in: "Sign In"
     sign_up: "Sign Up"
+    
   welcome:
     header: "Welcome!"
+    
+  form:
+    new_user:
+      legend: "Sign Up"
+      submit: "Let's Get Schedulin'"
+      
   footer:
     authors: "Less Scheduling was created by {{james}} and the fine folks at {{less_everything}}."
     james_blog_title: "James A Rosen's Blog"
