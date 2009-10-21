@@ -1,0 +1,40 @@
+/* TYPOGRAPHY */
+body  {
+	font-size: 12px;
+	font-family: Arial, "Helvetica Neue", Geneva, sans-serif;
+	line-height: 160%;
+}
+
+#navbar { font-size: 1.5em; }
+#footer { font-size: 1.25em; }
+
+h1 { font-size: 2em; font-weight: bold; }
+h2 { font-size: 1.8em; font-weight: bold; }
+h3 { font-size: 1.5em; }
+h4 { font-size: 1.25em; }
+h5 { font-size: 1.225em; }
+
+a       { text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/*
+  COLORS
+  
+  light green: #91b24f
+  dark blue:   #083c71
+  medium blue: #035d92
+  light blue:  #68b8e7
+  grey:        #dddddd
+*/
+
+html, body { background-color: #035d92; color: #dddddd; }
+#navbar { background-color: #083c71; }
+#navbar a { color: #68b8e7; }
+#main a, #footer a { color: #a1c658; }
+
+
+/* LAYOUT */
+#navbar { display: block; text-align: right; padding: 1em; }
+#navbar li { display: inline; padding: 1em; }
+#main { padding: 2em; }
+#footer { clear:both; text-align: center; }
