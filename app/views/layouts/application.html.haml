@@ -11,8 +11,5 @@
       = yield
     #footer
       %p
-        Less Scheduling was created by 
-        = link_to 'James Rosen', 'http://jamesarosen.com', :title => "James Rosen's blog"
-        and the fine folks at
-        = link_to('Less Everything', 'http://lesseverything.com', :title => 'Less Everything') + '.'
-        = link_to('Report a bug', 'http://github.com/gcnovus/less_scheduling/issues', :title => 'Less Scheduling Issues on GitHub') + '.'
+        = t('footer.authors', :james => link_to('James Rosen', 'http://jamesarosen.com', :title => t('footer.james_blog_title')), :less_everything => link_to('Less Everything', 'http://lesseverything.com', :title => t('footer.less_everything_title')))
+        = link_to(t('footer.bug'), 'http://github.com/gcnovus/less_scheduling/issues', :title => t('footer.bug_title')) + '.'
