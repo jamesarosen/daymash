@@ -1,15 +1,11 @@
 module AuthenticationMacros
   
   def sign_out!
-    sign_in_as nil
+    delete sign_out_path
   end
   
-  def sign_in_as(user)
-    if user.blank?
-      UserSession.find.tap { |s| s.destroy if s.present? }
-    else
-      UserSession.create(user)
-    end
+  def sign_in_as(user, password = 'password')
+    post new_user_session_path :principal => user.username, :password => password
   end
   
 end
