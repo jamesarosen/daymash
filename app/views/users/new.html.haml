@@ -1,6 +1,6 @@
 - semantic_form_for @user do |form|
   %fieldset
-    %legend= t('form.new_user.legend')
+    %legend= t('.form.legend')
     - form.inputs do
       = form.input :username
       = form.input :email
@@ -9,4 +9,4 @@
       = form.input :password_confirmation
   %fieldset
     %div
-      = form.submit t('form.new_user.submit')
+      = form.submit t('.form.submit')
