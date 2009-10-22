@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   def require_signed_in
     return true if signed_in?
     flash[:failure] = "Sorry, signed-in users only."
-    render :nothing => true, :status => 401
+    render_optional_error_file 401
     false
   end
   
