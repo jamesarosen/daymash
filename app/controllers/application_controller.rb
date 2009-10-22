@@ -29,4 +29,11 @@ class ApplicationController < ActionController::Base
     @current_user_session ||= UserSession.find
   end
   
+  def require_signed_in
+    return true if signed_in?
+    flash[:failure] = "Sorry, signed-in users only."
+    render :nothing => true, :status => 401
+    false
+  end
+  
 end

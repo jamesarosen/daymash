@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   
+  append_before_filter :require_signed_in, :only => [:edit, :update]
+  
   def new
     @user ||= User.new
   end
