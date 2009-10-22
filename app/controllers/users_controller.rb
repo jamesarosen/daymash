@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  append_before_filter :require_signed_in, :only => [:edit, :update]
+  append_before_filter :require_signed_in, :except => [:new, :create]
   
   def new
     @user ||= User.new
