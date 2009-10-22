@@ -42,9 +42,7 @@ class SignUpTest < ActionController::IntegrationTest
       sign_in_as @user
     end
     
-    # TODO: figure out why Webrat sessions are
-    #       dying between requests here
-    should_eventually 'be able to sign out' do
+    should 'be able to sign out' do
       visit '/'
       click_link 'Sign Out'
       assert_select '#navbar', /Sign In/
