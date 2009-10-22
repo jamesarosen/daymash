@@ -21,10 +21,15 @@ en:
     sign_out: Sign Out
     signed_in_as: Signed in as {{current_user}}
     edit_profile: Edit Profile
+    my_calendars: My Calendars
     
   welcome:
     header: Welcome!
-    
+  
+  calendars:
+    index:
+      title: "My Calendars"
+      
   users:
     new:
       form:

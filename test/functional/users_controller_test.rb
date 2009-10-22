@@ -3,8 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
 
   def setup
-    @clarence = Factory(:user, :display_name => 'Clarence Biggs')
-    @laila    = Factory(:user, :display_name => 'Laila Z. Ziggy')
+    @laila = Factory(:user, :display_name => 'Laila Z. Ziggy')
   end
 
   context 'a signed-out visitor trying to edit a profile' do

@@ -6,7 +6,9 @@ ActionController::Routing::Routes.draw do |map|
            :conditions => { :method => :get }
 
   map.resources :users,
-                :only => [:new, :create, :edit, :update]
+                :only => [:new, :create, :edit, :update] do |user|
+    user.resources :calendars, :only => [:index]
+  end
                 
   map.sign_out  '/sessions/sign_out', :controller => 'user_sessions', :action => 'destroy', :conditions => { :method => :get }
   map.resources :user_sessions,
