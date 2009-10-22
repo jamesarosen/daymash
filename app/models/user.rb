@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   
   acts_as_authentic
+  has_many :calendars
   
   def self.find_by_username_or_email(username_or_email)
     self.find(:first, :conditions => [

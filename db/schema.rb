@@ -9,7 +9,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091021133008) do
+ActiveRecord::Schema.define(:version => 20091022230040) do
+
+  create_table "calendars", :force => true do |t|
+    t.string   "uri"
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "calendars", ["uri"], :name => "index_calendars_on_uri"
+  add_index "calendars", ["user_id", "title"], :name => "index_calendars_on_user_id_and_title"
+  add_index "calendars", ["user_id", "uri"], :name => "index_calendars_on_user_id_and_uri", :unique => true
+  add_index "calendars", ["user_id"], :name => "index_calendars_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "username",          :limit => 256, :null => false

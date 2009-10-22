@@ -38,6 +38,8 @@ form .inline-errors { color: red; }
 #main { padding: 2em; }
 #footer { clear:both; text-align: center; }
 
+.calendar { padding-left: 20px; }
+
 h1, h2, h3, h4, h5, h6, legend { padding-top: 1em; padding-bottom: 1em; }
 
 form fieldset + fieldset, form li + li { margin-top: 1.5em; }
@@ -47,3 +49,10 @@ form label, form input, form select, form textarea {
 }
 form label { margin-bottom: 0.25em; }
 form .inline-errors, form .inline-hints { margin-top: 0.25em; }
+
+/* images, icons, backgrounds */
+.calendar {
+  background-image: url("/images/silk/calendar.png");
+  background-repeat: no-repeat;
+  background-position: 0 center;
+}

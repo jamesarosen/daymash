@@ -23,3 +23,9 @@ Factory.define :user do |user|
   user.password 'password'
   user.password_confirmation { |u| u.password }
 end
+
+Factory.define :calendar do |calendar|
+  calendar.title 'Quidditch Schedule'
+  calendar.uri   'http://sports.yahoo.com/quidditch/flyers.ics'
+  calendar.association :user, :factory => :user
+end
