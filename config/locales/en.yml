@@ -30,6 +30,10 @@ en:
       form:
         legend: Sign Up
         submit: Let's Get Schedulin'
+    edit:
+      form:
+        legend: Edit Profile
+        submit: Make It So
   
   user_sessions:
     new:
