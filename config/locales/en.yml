@@ -5,29 +5,36 @@ en:
   activerecord:
     attributes:
       user:
-        display_name: "What you'd like us to call you. Say, 'Ishmael'"
-        password_confirmation: "Password once again, with feeling"
+        display_name: What you'd like us to call you. Say, 'Ishmael'
+        password_confirmation: Password once again, with feeling
+        
+  authlogic:
+    models:
+      user_session: Session
+    attributes:
+      user_session:
+        principal: Username or Email Address
         
   navigation:
-    sign_in: "Sign In"
-    sign_up: "Sign Up"
-    sign_out: "Sign Out"
-    signed_in_as: "Signed in as {{current_user}}"
+    sign_in: Sign In
+    sign_up: Sign Up
+    sign_out: Sign Out
+    signed_in_as: Signed in as {{current_user}}
     
   welcome:
-    header: "Welcome!"
+    header: Welcome!
     
   form:
     new_user:
-      legend: "Sign Up"
-      submit: "Let's Get Schedulin'"
+      legend: Sign Up
+      submit: Let's Get Schedulin'
     new_user_session:
-      legend: "Sign In"
-      submit: "I'm Pumped. Schedulify me!"
+      legend: Sign In
+      submit: I'm Pumped. Schedulify me!
       
   footer:
-    authors: "Less Scheduling was created by {{james}} and the fine folks at {{less_everything}}."
-    james_blog_title: "James A Rosen's Blog"
-    less_everything_title: "Less Everything"
-    bug: "Report a bug"
-    bug_title: "Less Scheduling Issues on GitHub"
+    authors: Less Scheduling was created by {{james}} and the fine folks at {{less_everything}}.
+    james_blog_title: James A Rosen's Blog
+    less_everything_title: Less Everything
+    bug: Report a bug
+    bug_title: Less Scheduling Issues on GitHub
