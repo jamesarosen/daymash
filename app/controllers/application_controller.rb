@@ -11,20 +11,22 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user, :signed_in?
   
-  protected
+  hide_action :current_user, :signed_in?
+  
+  def current_user
+    @current_user ||= begin
+      current_user_session && current_user_session.record
+    end
+  end
   
   def signed_in?
     current_user.present?
   end
   
+  protected
+  
   def current_user_session
     @current_user_session ||= UserSession.find
-  end
-    
-  def current_user
-    @current_user ||= begin
-      current_user_session && current_user_session.record
-    end
   end
   
 end
