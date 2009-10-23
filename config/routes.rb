@@ -6,7 +6,8 @@ ActionController::Routing::Routes.draw do |map|
            :conditions => { :method => :get }
 
   map.resources :users,
-                :only => [:new, :create, :edit, :update] do |user|
+                :only => [:new, :create, :edit, :update],
+                :member => { :busy => :get } do |user|
     user.resources :calendars, :only => [:index, :new, :create]
   end
                 

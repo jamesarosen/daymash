@@ -13,4 +13,14 @@ class User < ActiveRecord::Base
     display_name.present? ? display_name : username
   end
   
+  def aggregate_freebusy_calendar
+    FreeBusyAggregate.new(*calendars_as_ri_cal_calendars).aggregate
+  end
+  
+  protected
+  
+  def calendars_as_ri_cal_calendars  
+    IcalRetriever.new.fetch_and_parse_all(self.calendars)
+  end
+  
 end

@@ -2,6 +2,9 @@
   - if signed_in?
     %li{ :class => 'current_user' }
       = t('navigation.signed_in_as', :current_user => current_user)
+    - if current_user.calendars.any?
+      %li{ :class => 'aggregate' }
+        = link_to t('navigation.aggregate'), busy_user_path(current_user, :format => :ics), :title => t('navigation.aggregate')
     %li{ :class => 'my_calendars' }
       = link_to t('navigation.my_calendars'), user_calendars_path(:user_id => :current), :title => t('navigation.my_calendars')
     %li{ :class => 'edit_profile' }

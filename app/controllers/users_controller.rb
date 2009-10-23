@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  append_before_filter :require_signed_in, :except => [:new, :create]
+  append_before_filter :require_signed_in, :except => [:new, :create, :busy]
   
   def new
     @user ||= User.new
@@ -28,6 +28,11 @@ class UsersController < ApplicationController
     else
       render :action => 'edit'
     end
+  end
+  
+  def busy
+    calendar = User.find(params[:id]).aggregate_freebusy_calendar
+    render :text => calendar.to_s, :content_type => Mime::ICS
   end
   
 end
