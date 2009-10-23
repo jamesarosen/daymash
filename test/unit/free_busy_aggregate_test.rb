@@ -2,7 +2,7 @@ require 'test_helper'
 
 class FreeBusyAggregateTest < ActiveSupport::TestCase
   
-  context 'aggregating a single calendar with a single event' do
+  context 'aggregating a single RiCal Calendar with a single event' do
     
     setup do
       @calendar = RiCal.Calendar do |cal|
@@ -42,7 +42,7 @@ class FreeBusyAggregateTest < ActiveSupport::TestCase
     
   end
   
-  context 'aggregating several calendars, each with a single event' do
+  context 'aggregating several RiCal calendars, each with a single event' do
     
     setup do
       @parties = RiCal.Calendar do |cal|
