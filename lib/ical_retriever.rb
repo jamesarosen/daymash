@@ -9,6 +9,18 @@ class IcalRetriever
     end
   end
   
+  def fetch_and_parse(calendar)
+    RiCal.parse_string(fetch(calendar))
+  end
+  
+  def fetch_and_parse_all(calendars)
+    calendars.inject([]) do |sum, calendar|
+      sum += fetch_and_parse(calendar)
+    end
+  end
+  
+  protected
+  
   def fetch(calendar)
     uri = URI.parse(calendar.uri)
     res = @retriever.start(uri.host) do |http|
@@ -17,10 +29,6 @@ class IcalRetriever
       res = http.request req
     end
     res.body
-  end
-  
-  def fetch_all(calendars)
-    calendars.map { |calendar| self.fetch(calendar) }
   end
   
 end

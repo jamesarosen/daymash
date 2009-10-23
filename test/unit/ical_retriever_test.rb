@@ -13,11 +13,17 @@ class IcalRetrieverTest < ActiveSupport::TestCase
       @parties = Factory(:calendar, :title => 'Parties')
       @parties_ics = ics_fixture(:parties)
       FakeWeb.register_uri(:get, @parties.uri, :body => @parties_ics)
-      @retrieved_ics = IcalRetriever.new.fetch(@parties)
+      @retrieved_calendars = IcalRetriever.new.fetch_and_parse(@parties)
+    end
+    
+    should 'return a RiCal Calendar' do
+      assert_equal RiCal::Component::Calendar, @retrieved_calendars.first.class
     end
     
     should "fetch the proper iCal content" do
-      assert_equal @parties_ics, @retrieved_ics
+      events = @retrieved_calendars.map(&:events).flatten
+      assert events.find { |e| e.summary == "Lester's Mustache Bash" }.present?
+      assert events.find { |e| e.summary == "Block Party" }.present?
     end
     
   end
@@ -32,11 +38,20 @@ class IcalRetrieverTest < ActiveSupport::TestCase
       @yoga_ics     = ics_fixture(:yoga)
       FakeWeb.register_uri(:get, @parties.uri, :body => @parties_ics)
       FakeWeb.register_uri(:get, @yoga.uri,    :body => @yoga_ics)
-      @retrieved_ics = IcalRetriever.new.fetch_all(@user.calendars)
+      @retrieved_calendars = IcalRetriever.new.fetch_and_parse_all(@user.calendars)
+    end
+    
+    should 'return RiCal Calendars' do
+      @retrieved_calendars.each do |cal|
+        assert_equal RiCal::Component::Calendar, cal.class
+      end
     end
     
     should 'fetch the proper iCal content' do
-      assert_equal [@parties_ics, @yoga_ics], @retrieved_ics
+      events = @retrieved_calendars.map(&:events).flatten
+      assert events.find { |e| e.summary == "Lester's Mustache Bash" }.present?
+      assert events.find { |e| e.summary == "Block Party" }.present?
+      assert_equal 2, events.select { |e| e.summary == "Yoga" }.size
     end
     
   end
