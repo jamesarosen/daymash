@@ -28,6 +28,9 @@ Rails::Initializer.run do |config|
   config.gem 'justinfrench-formtastic', :lib => 'formtastic',
                                         :source => 'http://gems.github.com',
                                         :version => '0.2.1'
+                                        
+  config.gem 'ri_cal', :source => 'http://gemcutter.org',
+                       :version => '0.8.5'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
