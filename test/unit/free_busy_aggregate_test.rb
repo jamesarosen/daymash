@@ -17,24 +17,19 @@ class FreeBusyAggregateTest < ActiveSupport::TestCase
       @aggregate = FreeBusyAggregate.new(@calendar).aggregate
     end
     
-    should 'yield an aggregate calendar with no events' do
-      assert_equal 0, @aggregate.events.size
+    should 'yield an aggregate calendar with one event' do
+      assert_equal 1, @aggregate.events.size
     end
     
-    should 'yield an aggregate calendar with a single free-busy block containing a signle free-busy entry' do
-      assert_equal 1, @aggregate.freebusys.size
-      assert_equal 1, @aggregate.freebusys.first.freebusy.size
-    end
-    
-    should 'yield an aggregate with a matching free-busy entry' do
+    should 'yield an aggregate with a matching event entry' do
       event    = @calendar.events.first
-      freebusy = @aggregate.freebusys.first.freebusy.first
+      freebusy = @aggregate.events.first
       assert_equal event.start_time,  freebusy.dtstart
       assert_equal event.finish_time, freebusy.dtend
     end
     
     should 'not reveal the details of the original event' do
-      event    = @calendar.events.first
+      event = @calendar.events.first
       assert !(@aggregate.to_s.include?(event.summary))
       assert !(@aggregate.to_s.include?(event.description))
       assert !(@aggregate.to_s.include?(event.location))
@@ -48,6 +43,7 @@ class FreeBusyAggregateTest < ActiveSupport::TestCase
       @parties = RiCal.Calendar do |cal|
         cal.event do |evt|
           evt.summary     = "Vishal's Birthday Party"
+          evt.description = "Petting zoo FTW!"
           evt.dtstart     = 5.days.from_now
           evt.dtend       = (5.days + 5.hours).from_now
           evt.location    = "Vishal's House"
@@ -56,6 +52,7 @@ class FreeBusyAggregateTest < ActiveSupport::TestCase
       @dates = RiCal.Calendar do |cal|
         cal.event do |evt|
           evt.summary     = "Dinner with Sue"
+          evt.description = "Reminder: Sue loves caramel"
           evt.dtstart     = 6.days.from_now
           evt.dtend       = (6.days + 3.hours).from_now
           evt.location    = "Three Monkey Island"
@@ -64,23 +61,28 @@ class FreeBusyAggregateTest < ActiveSupport::TestCase
       @aggregate = FreeBusyAggregate.new(@parties, @dates).aggregate
     end
     
-    should 'yield a calendar with no events' do
-      assert_equal 0, @aggregate.events.size
+    should 'yield a calendar with two events' do
+      assert_equal 2, @aggregate.events.size
     end
     
-    should 'yield a calendar with one free-busy block containing two free-busy entries' do
-      assert_equal 1, @aggregate.freebusys.size
-      assert_equal 2, @aggregate.freebusys.first.freebusy.size
-    end
-    
-    should 'yield matching free-busy entries' do
-      freebusy_entries = @aggregate.freebusys.first.freebusy
+    should 'yield matching events' do
+      freebusy_entries = @aggregate.events
       (@parties.events + @dates.events).each do |event|
         assert(freebusy_entries.find do |fb|
           fb.dtstart.to_datetime == event.dtstart.to_datetime &&
           fb.dtend.to_datetime   == event.dtend.to_datetime
-        end.present?, "Could not find #{event.summary} as a FREEBUSY.")
+        end.present?, "Could not find #{event.summary} in the aggregate feed.")
       end
+    end
+    
+    should 'not reveal the details of the original events' do
+      aggregate = @aggregate.to_s
+      assert !(aggregate.include?(@parties.events.first.summary))
+      assert !(aggregate.include?(@parties.events.first.description))
+      assert !(aggregate.include?(@parties.events.first.location))
+      assert !(aggregate.include?(@dates.events.first.summary))
+      assert !(aggregate.include?(@dates.events.first.description))
+      assert !(aggregate.include?(@dates.events.first.location))
     end
     
   end

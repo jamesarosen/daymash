@@ -10,14 +10,14 @@ class FreeBusyAggregate
   
   def aggregate
     ::RiCal.Calendar do |cal|
-      cal.freebusy do |fb_block|
-        fb_block.dtstart = Time.now
-        fb_block.dtend   = Time.now + 2.months
-        occurrences.each do |occurrence|
-          fb_block.add_freebusy(occurrence.start_time..occurrence.finish_time)
+      occurrences.each do |occurrence|
+        cal.event do |event|
+          event.summary = 'Busy'
+          event.dtstart = occurrence.dtstart
+          event.dtend   = occurrence.dtend
         end
       end
-    end
+    end 
   end
   
   protected
