@@ -23,7 +23,7 @@ class IcalRetriever
   
   def fetch(calendar)
     uri = URI.parse(calendar.uri)
-    res = @retriever.start(uri.host) do |http|
+    res = @retriever.start(uri.host, uri.port) do |http|
       req = Net::HTTP::Get.new(uri.path)
       req.basic_auth uri.user, uri.password if uri.user.present?
       res = http.request req
