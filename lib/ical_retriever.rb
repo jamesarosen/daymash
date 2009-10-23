@@ -19,4 +19,8 @@ class IcalRetriever
     res.body
   end
   
+  def fetch_all(calendars)
+    calendars.map { |calendar| self.fetch(calendar) }
+  end
+  
 end
