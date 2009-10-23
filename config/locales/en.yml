@@ -7,6 +7,8 @@ en:
       user:
         display_name: What you'd like us to call you. Say, 'Ishmael'
         password_confirmation: Password once again, with feeling
+      calendar:
+        uri: URL
         
   authlogic:
     models:
@@ -28,8 +30,13 @@ en:
   
   calendars:
     index:
-      title: "My Calendars"
-      
+      title: My Calendars
+      add_calendar: Add Calendar
+    new:
+      form:
+        legend: Add Calendar
+        submit: Feed Me
+        
   users:
     new:
       form:

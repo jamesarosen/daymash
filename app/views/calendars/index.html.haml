@@ -1,5 +1,7 @@
 %h2= t '.title'
 %ol{:class => 'calendars'}
+  %li{:class => 'add calendar'}
+    = link_to t('.add_calendar'), new_user_calendar_path(:user_id => :current)
   - @user.calendars.each do |calendar|
     %li{:class => 'calendar'}
       = link_to calendar.title, calendar.uri

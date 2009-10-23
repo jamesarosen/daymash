@@ -23,6 +23,18 @@ class ManageCalendarsTest < ActionController::IntegrationTest
       end
     end
     
+    should 'be able to add a calendar' do
+      visit '/'
+      click_link 'My Calendars'
+      click_link 'Add Calendar'
+      fill_in 'URL', :with => 'http://cupcakeheaven.com/events.ics'
+      fill_in 'Title', :with => 'Cupcake Heaven Events'
+      click_button 'Feed Me'
+      assert_select '#main' do
+        assert_select 'a[href=http://cupcakeheaven.com/events.ics]', 'Cupcake Heaven Events'
+      end
+    end
+    
   end
   
 end
