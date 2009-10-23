@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FreeBusyAggregateTest < Test::Unit::TestCase
+class FreeBusyAggregateTest < ActiveSupport::TestCase
   
   context 'aggregating a single calendar with a single event' do
     

@@ -27,5 +27,5 @@ end
 Factory.define :calendar do |calendar|
   calendar.title 'Quidditch Schedule'
   calendar.uri   'http://sports.yahoo.com/quidditch/flyers.ics'
-  calendar.association :user, :factory => :user
+  calendar.user  { |_| User.first || Factory(:user) }
 end

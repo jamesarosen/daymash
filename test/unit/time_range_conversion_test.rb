@@ -1,7 +1,7 @@
 require 'test_helper'
 require 'ri_cal/core_extensions/range'
 
-class TimeRangeConversionTest < Test::Unit::TestCase
+class TimeRangeConversionTest < ActiveSupport::TestCase
   
   context 'a Range of two Times in UTC' do
     
