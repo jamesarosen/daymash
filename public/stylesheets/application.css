@@ -45,9 +45,18 @@ h1, h2, h3, h4, h5, h6, legend { color: #dddddd; }
 form .inline-errors { color: red; }
 
 /* LAYOUT */
-#navbar { display: block; text-align: right; padding: 1em; }
+#navbar {
+  border-bottom: 2px solid #042464;
+  display: block;
+  text-align: right;
+  padding: 1em;
+  text-shadow: 1px 1px 2px #000;
+}
 #navbar li { display: inline; padding: 1em; }
-#main { padding: 2em; }
+#main {
+  border-top: 2px solid #1066a0;
+  padding: 2em;
+}
 #footer {
   clear:both;
   padding-top: 1em;
@@ -57,7 +66,11 @@ form .inline-errors { color: red; }
 
 .calendar { padding-left: 20px; }
 
-h1, h2, h3, h4, h5, h6, legend { padding-top: 1em; padding-bottom: 1em; }
+h1, h2, h3, h4, h5, h6, legend {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  text-shadow: 1px 1px 2px #000;
+}
 
 form fieldset + fieldset, form li + li { margin-top: 1.5em; }
 form div.fieldWithErrors + div.fieldWithErrors { margin-top: 0; }
