@@ -14,7 +14,8 @@ class UsersControllerTest < ActionController::TestCase
   end
   
   context 'a signed-out visitor trying to update a profile' do
-    setup { put :update, :id => @laila.to_param, :user => { :useranme => 'hacked' } }
+    setup { put :update, :id => @laila.to_param, :user => { :username => 'hacked' } }
+    should_not_change("the user's username") { @laila.reload.username }
     should_respond_with :unauthorized
   end
   
@@ -40,6 +41,24 @@ class UsersControllerTest < ActionController::TestCase
     
     should "look up the User's freebusy aggregate" do
       assert_received(@laila, :aggregate_freebusy_calendar)
+    end
+    
+  end
+  
+  context 'a signed-in user' do
+    
+    setup { @controller.stubs(:current_user).returns(@laila) }
+  
+    context "trying to edit her profile" do
+      setup { get :edit, :id => @laila.to_param }
+      should_respond_with :success
+      should_render_template :edit
+    end
+    
+    context "trying to update her profile" do
+      setup { post :update, :id => @laila.to_param, :user => { :username => 'zigz' } }
+      should_redirect_to('home') { root_path }
+      should_change("the username", :to => 'zigz') { @laila.reload.username }
     end
     
   end
