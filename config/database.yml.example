@@ -14,12 +14,14 @@ test:
 mysql: &MYSQL
   adapter: mysql
   encoding: utf8
-  username: less_scheduling
+  username: deploy
   password: 
   socket: /tmp/mysql.sock
 
 staging:
   <<: *MYSQL
+  database: daymash_staging
 
 production:
   <<: *MYSQL
+  database: daymash_staging
