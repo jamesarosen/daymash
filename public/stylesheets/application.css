@@ -61,6 +61,7 @@ header nav li, header nav > span { display: inline; padding: 1em; }
 }
 footer {
   clear:both;
+  display: block;
   padding-top: 1em;
   padding-bottom: 1em;
   text-align: center;
