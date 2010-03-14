@@ -2,7 +2,7 @@
 
 %html
   %head
-    %title Less Scheduling
+    %title DayMash
     = stylesheet_link_tag 'reset', 'application', :cache => false
     = javascript_include_tag 'jquery-1.3.2.min', 'application', :cache => false
   %body
@@ -11,5 +11,5 @@
       = yield
     #footer
       %p
-        = t('footer.authors', :james => link_to('James Rosen', 'http://jamesarosen.com', :title => t('footer.james_blog_title')), :less_everything => link_to('Less Everything', 'http://lesseverything.com', :title => t('footer.less_everything_title')))
-        = link_to(t('footer.bug'), 'http://github.com/gcnovus/less_scheduling/issues', :title => t('footer.bug_title')) + '.'
+        = t('footer.authors', :james => link_to('James Rosen', 'http://jamesarosen.com', :title => t('footer.james_blog_title')))
+        = link_to(t('footer.bug'), 'http://github.com/jamesarosen/daymash/issues', :title => t('footer.bug_title')) + '.'

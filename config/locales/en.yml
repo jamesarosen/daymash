@@ -55,8 +55,7 @@ en:
         submit: I'm Pumped. Schedulify me!
       
   footer:
-    authors: Less Scheduling was created by {{james}} and the fine folks at {{less_everything}}.
-    james_blog_title: James A Rosen's Blog
-    less_everything_title: Less Everything
+    authors: DayMash was created by {{james}}.
+    james_blog_title: James A. Rosen's Blog
     bug: Report a bug
-    bug_title: Less Scheduling Issues on GitHub
+    bug_title: DayMash Issues on GitHub
