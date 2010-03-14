@@ -19,17 +19,17 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
-  config.gem 'haml', :source => 'http://gemcutter.org',
+  config.gem 'haml', :source => 'http://rubygems.org',
                      :version => '2.2.9'
 
-  config.gem 'authlogic', :source => 'http://gemcutter.org',
+  config.gem 'authlogic', :source => 'http://rubygems.org',
                           :version => '2.1.2'
 
-  config.gem 'justinfrench-formtastic', :lib => 'formtastic',
-                                        :source => 'http://gems.github.com',
-                                        :version => '0.2.1'
+  config.gem 'formtastic', :lib => 'formtastic',
+                           :source => 'http://rubygems.org',
+                           :version => '0.9.7'
                                         
-  config.gem 'ri_cal', :source => 'http://gemcutter.org',
+  config.gem 'ri_cal', :source => 'http://rubygems.org',
                        :version => '0.8.5'
 
   # Only load the plugins named here, in the order given (default is alphabetical).

@@ -10,21 +10,9 @@ config.action_controller.allow_forgery_protection    = false
 
 config.action_mailer.delivery_method = :test
 
-config.gem "thoughtbot-shoulda", :lib => "shoulda",
-                                 :source => "http://gems.github.com",
-                                 :version => "2.10.2"
-                                 
-config.gem "thoughtbot-factory_girl", :lib => "factory_girl",
-                                      :source => "http://gems.github.com", 
-                                      :version => "1.2.1"
-                                      
-config.gem 'jferris-mocha', :source => 'http://gems.github.com',
-                            :lib => 'mocha',
-                            :version => '>= 0.9.7'
-                            
-config.gem 'redgreen', :lib => 'redgreen',
-                       :version => '1.2.2'
-
-config.gem 'webrat', :version => '0.4.4'
-
-config.gem 'fakeweb', :version => '1.2.5'
+config.gem 'shoulda',       :version => '~> 2.10.3',  :source => 'http://rubygems.org/'
+config.gem 'factory_girl',  :version => '~> 1.2.3',   :source => 'http://rubygems.org/'
+config.gem 'mocha',         :version => '~> 0.9.8',   :source => 'http://rubygems.org/'
+config.gem 'redgreen',      :version => '~> 1.2.2',   :source => 'http://rubygems.org/'
+config.gem 'webrat',        :version => '~> 0.7.0',   :source => 'http://rubygems.org/'
+config.gem 'fakeweb',       :version => '~> 1.2.8',   :source => 'http://rubygems.org/'
