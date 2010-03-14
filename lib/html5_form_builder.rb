@@ -1,6 +1,5 @@
 class HTML5FormBuilder < Formtastic::SemanticFormBuilder
   
-  
   def number_field(method, options = {})
     ::ActionView::Helpers::InstanceTag.new(object_name, method, @template, options.delete(:object)).to_input_field_tag('number', options)
   end

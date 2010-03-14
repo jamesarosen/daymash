@@ -42,8 +42,25 @@ html, body { background-color: #035d92; color: #dddddd; }
 h1, h2, h3, h4, h5, h6, legend { color: #dddddd; }
 header { background-color: #083c71; }
 header a { color: #68b8e7; }
-#main a, footer a { color: #a1c658; }
+#main a, footer a { color: #91b24f; }
 form .inline-errors { color: red; }
+form input, form select, form textarea {
+  background-color: #dddddd;
+  border-color: #083c71;
+  background: -moz-linear-gradient(top, #ddd, #777 0px, #ddd 3px);
+  background: -webkit-gradient(linear, left top, left 3, from(#777), to(#ddd));
+  box-shadow:         rgba(0, 0, 0, 0.1) 4px 4px 4px;
+  -moz-box-shadow:    rgba(0, 0, 0, 0.1) 4px 4px 4px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 4px 4px 4px;
+}
+form input:focus, form select:focus, form textarea:focus {
+  border-color: #91b24f;
+  background: -moz-linear-gradient(top, #ddd, #555 0px, #ddd 5px);
+  background: -webkit-gradient(linear, left top, left 3, from(#555), to(#ddd));
+  box-shadow:         rgba(0, 0, 0, 0.3) 4px 4px 4px;
+  -moz-box-shadow:    rgba(0, 0, 0, 0.3) 4px 4px 4px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 4px;
+}
 
 /* LAYOUT */
 header {
@@ -78,6 +95,15 @@ form fieldset + fieldset, form li + li { margin-top: 1.5em; }
 form div.fieldWithErrors + div.fieldWithErrors { margin-top: 0; }
 form label, form input, form select, form textarea {
   display: block;
+}
+form input, form select, form textarea {
+  border-width: 2px;
+  border-style: solid;
+  outline: none;
+  border-radius: 12px;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  padding: 6px;
 }
 form label { margin-bottom: 0.25em; }
 form .inline-errors, form .inline-hints { margin-top: 0.25em; }
