@@ -1,18 +1,5 @@
-%ul{ :id => 'navbar' }
+%header
   - if signed_in?
-    %li{ :class => 'current_user' }
+    %span{ :class => 'current_user' }
       = t('navigation.signed_in_as', :current_user => current_user)
-    - if current_user.calendars.any?
-      %li{ :class => 'aggregate' }
-        = link_to t('navigation.aggregate'), busy_user_path(current_user, :format => :ics), :title => t('navigation.aggregate')
-    %li{ :class => 'my_calendars' }
-      = link_to t('navigation.my_calendars'), user_calendars_path(:user_id => :current), :title => t('navigation.my_calendars')
-    %li{ :class => 'edit_profile' }
-      = link_to t('navigation.edit_profile'), edit_user_path(:current), :title => t('navigation.edit_profile')
-    %li{ :class => 'sign_out' }
-      = link_to t('navigation.sign_out'), sign_out_path, :title => t('navigation.sign_out')
-  - else
-    %li{ :class => 'sign_up' }
-      = link_to t('navigation.sign_up'), new_user_path, :title => t('navigation.sign_up')
-    %li{ :class => 'sign_in' }
-      = link_to t('navigation.sign_in'), new_user_session_path, :title => t('navigation.sign_in')
+  = site_nav_bar

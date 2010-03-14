@@ -21,7 +21,7 @@ class SignUpTest < ActionController::IntegrationTest
       fill_in 'Username or Email Address', :with => @user.username
       fill_in 'Password', :with => 'umlaut'
       click_button "I'm Pumped. Schedulify me!"
-      assert_select '#navbar', /Signed in as/
+      assert_select 'header', /Signed in as/
     end
     
     should 'be able to sign in with an email address and password' do
@@ -30,7 +30,7 @@ class SignUpTest < ActionController::IntegrationTest
       fill_in 'Username or Email Address', :with => @user.email
       fill_in 'Password', :with => 'umlaut'
       click_button "I'm Pumped. Schedulify me!"
-      assert_select '#navbar', /Signed in as/
+      assert_select 'header', /Signed in as/
     end
     
   end
@@ -45,7 +45,7 @@ class SignUpTest < ActionController::IntegrationTest
     should 'be able to sign out' do
       visit '/'
       click_link 'Sign Out'
-      assert_select '#navbar', /Sign In/
+      assert_select 'header', /Sign In/
     end
     
   end

@@ -12,9 +12,9 @@ body  {
 	line-height: 160%;
 }
 
-#navbar, #main, #footer { font-size: 1.5em; }
+header, #main, footer { font-size: 1.5em; }
 
-#navbar, h1, h2, h3, h4, h5, h6, legend {
+nav, h1, h2, h3, h4, h5, h6, legend {
   font-family: Museo, Sylfaen, Cambria, "Times New Roman", serif;
   text-shadow: 1px 1px 1px #000;
 }
@@ -40,25 +40,26 @@ a:hover { text-decoration: underline; }
 
 html, body { background-color: #035d92; color: #dddddd; }
 h1, h2, h3, h4, h5, h6, legend { color: #dddddd; }
-#navbar { background-color: #083c71; }
-#navbar a { color: #68b8e7; }
-#main a, #footer a { color: #a1c658; }
+header { background-color: #083c71; }
+header a { color: #68b8e7; }
+#main a, footer a { color: #a1c658; }
 form .inline-errors { color: red; }
 
 /* LAYOUT */
-#navbar {
+header {
   border-top: 1px solid #042464;
   border-bottom: 1px solid #042464;
   display: block;
   text-align: right;
   padding: 1em;
 }
-#navbar li { display: inline; padding: 1em; }
+header nav ul { display: inline; }
+header nav li, header nav > span { display: inline; padding: 1em; }
 #main {
   border-top: 1px solid #1066a0;
   padding: 2em;
 }
-#footer {
+footer {
   clear:both;
   padding-top: 1em;
   padding-bottom: 1em;
