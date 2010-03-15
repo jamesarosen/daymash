@@ -23,9 +23,6 @@ Rails::Initializer.run do |config|
   config.gem 'haml', :source => 'http://rubygems.org',
                      :version => '~> 2.2.9'
 
-  config.gem 'authlogic', :source => 'http://rubygems.org',
-                          :version => '~> 2.1.2'
-
   config.gem 'formtastic', :lib => 'formtastic',
                            :source => 'http://rubygems.org',
                            :version => '~> 0.9.7'

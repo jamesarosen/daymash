@@ -53,12 +53,12 @@ ActionController::TestCase.class_eval do
   end
 end
 
-ActionController::IntegrationTest.class_eval do
-  def setup
-    reset!
-  end
-end
-
-Webrat.configure do |config|
-  config.mode = :rails
-end
+# ActionController::IntegrationTest.class_eval do
+#   def setup
+#     reset!
+#   end
+# end
+# 
+# Webrat.configure do |config|
+#   config.mode = :rails
+# end

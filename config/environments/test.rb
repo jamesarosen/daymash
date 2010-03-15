@@ -14,5 +14,4 @@ config.gem 'shoulda',       :version => '~> 2.10.3',  :source => 'http://rubygem
 config.gem 'factory_girl',  :version => '~> 1.2.3',   :source => 'http://rubygems.org/'
 config.gem 'mocha',         :version => '~> 0.9.8',   :source => 'http://rubygems.org/'
 config.gem 'redgreen',      :version => '~> 1.2.2',   :source => 'http://rubygems.org/'
-config.gem 'webrat',        :version => '~> 0.7.0',   :source => 'http://rubygems.org/'
 config.gem 'fakeweb',       :version => '~> 1.2.8',   :source => 'http://rubygems.org/'
