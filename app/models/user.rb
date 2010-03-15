@@ -19,6 +19,15 @@ class User < ActiveRecord::Base
     FreeBusyAggregate.new(*calendars_as_ri_cal_calendars).aggregate
   end
   
+  # Same as +update+, but won't overwrite non-blank values.
+  #
+  # @param [Hash] attrs new values
+  def update_without_overwriting(attrs)
+    attrs.each do |k,v|
+      write_attribute(k,v) if read_attribute(k).blank?
+    end
+  end
+  
   protected
   
   def calendars_as_ri_cal_calendars  

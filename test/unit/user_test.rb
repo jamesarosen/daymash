@@ -29,6 +29,32 @@ class UserTest < ActiveSupport::TestCase
       assert_equal 'http://me.example.com', @user.credentials.first.identifier
     end
   end
+  
+  context 'updating a User with new information from RPX' do
+    setup do
+      Credential.delete_all
+      User.delete_all
+      @user = Factory(:user, :display_name => nil, :email => 'old.email@example.org')
+      credential = @user.credentials.first
+      Credential.expects(:find_by_provider_and_identifier).with(credential.provider, credential.identifier).returns(credential)
+      User.find_or_initialize_with_rpx({
+        :provider => credential.provider,
+        :identifier => credential.identifier,
+        :display_name => 'Bob',
+        :email => 'new.email@example.org'
+      })
+    end
+    should 'not create a new User or Credential' do
+      assert_equal [@user], User.all
+      assert_equal [@user.credentials.first], Credential.all
+    end
+    should "import previously blank information" do
+      assert_equal 'Bob', @user.reload.display_name
+    end
+    should 'not overwrite existing information' do
+      assert_equal 'old.email@example.org', @user.reload.email
+    end
+  end
 
   context 'a User' do
     subject { @user }

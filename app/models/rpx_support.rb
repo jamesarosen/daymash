@@ -1,7 +1,7 @@
 module RpxSupport
   
   PARSE_RPX_DATA = lambda { |data|
-    data = data.with_indifferent_access
+    data = data['profile'].with_indifferent_access
     {
       :provider     => data[:providerName],
       :identifier   => data[:identifier],
@@ -19,7 +19,8 @@ module RpxSupport
     credential = Credential.find_by_provider_and_identifier(provider, identifier)
     user =  if credential
               credential.user.tap do |u|
-                u.update!(data)
+                u.update_without_overwriting(data)
+                u.save
               end
             else
               self.new(data) do |u|
