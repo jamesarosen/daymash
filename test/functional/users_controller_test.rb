@@ -14,8 +14,8 @@ class UsersControllerTest < ActionController::TestCase
   end
   
   context 'a signed-out visitor trying to update a profile' do
-    setup { put :update, :id => @laila.to_param, :user => { :username => 'hacked' } }
-    should_not_change("the user's username") { @laila.reload.username }
+    setup { put :update, :id => @laila.to_param, :user => { :display_name => 'hacked' } }
+    should_not_change("the user's display name") { @laila.reload.display_name }
     should_respond_with :unauthorized
   end
   
@@ -56,9 +56,9 @@ class UsersControllerTest < ActionController::TestCase
     end
     
     context "trying to update her profile" do
-      setup { post :update, :id => @laila.to_param, :user => { :username => 'zigz' } }
+      setup { post :update, :id => @laila.to_param, :user => { :display_name => 'zigz' } }
       should_redirect_to('home') { root_path }
-      should_change("the username", :to => 'zigz') { @laila.reload.username }
+      should_change("the display name", :to => 'zigz') { @laila.reload.display_name }
     end
     
   end

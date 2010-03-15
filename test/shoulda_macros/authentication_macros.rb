@@ -6,13 +6,23 @@ module AuthenticationMacros
     click_link 'Sign Out'
   end
   
-  def sign_in_as(user, password = 'password')
+  def sign_in_as(user, provider = :any)
     visit '/'
     return if controller.signed_in?
-    click_link 'Sign In'
-    fill_in 'user_session_principal', :with => user.username
-    fill_in 'user_session_password',  :with => password
-    click_button 'user_session_submit'
+    if provider == :any
+      if user.credentials.any?
+        controller.current_user = user
+      else
+        raise "#{user} does not have any Credentials"
+      end
+    else
+      if user.has_credential_from?(provider)
+        controller.current_user = user
+      else
+        raise "#{user} does not have a Credential from #{provider}"
+      end
+    end
+    user
   end
   
 end

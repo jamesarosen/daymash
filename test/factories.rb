@@ -23,6 +23,7 @@ end
 Factory.define :user do |user|
   user.display_name { |_| Factory.next(:name) }
   user.email        { |_| Factory.next(:email) }
+  user.after_create { |u| Factory(:credential, :user => u) }
 end
 
 Factory.define :credential do |c|

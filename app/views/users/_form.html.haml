@@ -2,11 +2,8 @@
   %fieldset
     %legend= legend
     - form.inputs do
-      = form.input :username
       = form.input :email, :as => 'email'
       = form.input :display_name, :required => false
-      = form.input :password
-      = form.input :password_confirmation
   %fieldset
     %div
       = form.submit submit

@@ -47,6 +47,18 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 end
 
+ActionController::TestCase.class_eval do
+  def setup
+    @controller.session ||= HashWithIndifferentAccess.new
+  end
+end
+
+ActionController::IntegrationTest.class_eval do
+  def setup
+    reset!
+  end
+end
+
 Webrat.configure do |config|
   config.mode = :rails
 end

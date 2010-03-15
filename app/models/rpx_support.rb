@@ -1,7 +1,7 @@
 module RpxSupport
   
   PARSE_RPX_DATA = lambda { |data|
-    data = data['profile'].with_indifferent_access
+    data = (data['profile'] || {}).with_indifferent_access
     {
       :provider     => data[:providerName],
       :identifier   => data[:identifier],

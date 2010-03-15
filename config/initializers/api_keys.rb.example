@@ -6,6 +6,6 @@ API_KEYS = {
   :rpx => 'DayMash RPXNow API Key'
 }
 
-if Rack.const_defined?(:Rpx) && Rack::Rpx.const_defined?(:OPTIONS)
-  Rack::Rpx::OPTIONS[:api_key] = API_KEYS[:rpx]
+if defined?(:RPXNow)
+  RPXNow.api_key = API_KEYS[:rpx]
 end

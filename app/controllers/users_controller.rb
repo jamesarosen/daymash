@@ -2,20 +2,6 @@ class UsersController < ApplicationController
   
   append_before_filter :require_signed_in, :except => [:new, :create, :busy]
   
-  def new
-    @user ||= User.new
-  end
-  
-  def create
-    @user ||= User.new(params[:user])
-    if @user.save
-      UserSession.create(@user)
-      redirect_to root_path
-    else
-      render :action => 'new'
-    end
-  end
-  
   def edit
     @user = current_user
   end
