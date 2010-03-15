@@ -9,8 +9,16 @@ class Credential < ActiveRecord::Base
   
   def self.find_by_provider_and_identifier(provider, identifier)
     return nil if provider.blank? or identifier.blank?
-    find(:first, :conditions => { :provider => provider.to_s.downcase,
-                                  :identifier => identifier.to_s.downcase })
+    find(:first, :conditions => { :provider => normalize(provider),
+                                  :identifier => normalize(identifier) })
+  end
+  
+  # Normalizes (currently, to_s.downcase, though that is not specified)
+  # the given provider or identifier.
+  #
+  # @param [Sting, Symbol] provider_or_identifier
+  def self.normalize(provider_or_identifier)
+    provider_or_identifier.to_s.downcase
   end
   
   def to_s
@@ -24,8 +32,8 @@ class Credential < ActiveRecord::Base
   protected
   
   def normalize_provider_and_identifier
-    self.provider   &&= provider.downcase
-    self.identifier &&= identifier.downcase
+    self.provider   &&= self.class.normalize(provider)
+    self.identifier &&= self.class.normalize(identifier)
   end
   
 end

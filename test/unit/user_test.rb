@@ -7,10 +7,10 @@ class UserTest < ActiveSupport::TestCase
       Credential.delete_all
       User.delete_all
       @user = User.find_or_initialize_with_rpx({
-        :providerName => 'OpenID',
+        :provider => 'OpenID',
         :identifier => 'http://me.example.com',
-        :verifiedEmail => 'me@example.com',
-        :displayName => 'ME!'
+        :email => 'me@example.com',
+        :display_name => 'ME!'
       })
     end
     should 'create a new valid user' do
@@ -51,6 +51,17 @@ class UserTest < ActiveSupport::TestCase
     setup { @user = Factory(:user, :email => 'fred@example.org', :display_name => nil) }
     should 'use the OpenID URL for :to_s' do
       assert_equal 'fred@example.org', @user.to_s
+    end
+  end
+  
+  context 'with Credentials' do
+    setup do
+      @user = Factory(:user)
+      Factory(:credential, :user => @user, :provider => 'Twitter')
+    end
+    should 'know whether it has a Credential from a given provider' do
+      assert  @user.has_credential_from?(:twitter)
+      assert !@user.has_credential_from?(:golf_channel)
     end
   end
     

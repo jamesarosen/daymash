@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   has_many :credentials
   has_many :calendars
   
+  def has_credential_from?(provider)
+    credentials.any? { |c| c.provider == Credential.normalize(provider) }
+  end
+  
   def to_s
     display_name.present? ? display_name : email
   end
