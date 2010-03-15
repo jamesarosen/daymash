@@ -1,0 +1,9 @@
+<VirtualHost *:80>
+  ServerName daymash.local
+  DocumentRoot "/Users/me/projects/ruby/daymash/public"
+  RailsEnv development
+  <Directory "/Users/me/projects/ruby/daymash/public">
+    Order allow,deny
+    Allow from all
+  </Directory>
+</VirtualHost>
