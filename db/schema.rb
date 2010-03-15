@@ -12,9 +12,9 @@
 ActiveRecord::Schema.define(:version => 20091022230040) do
 
   create_table "calendars", :force => true do |t|
-    t.string   "uri"
-    t.string   "title"
-    t.integer  "user_id"
+    t.string   "uri",        :limit => 256, :null => false
+    t.string   "title",      :limit => 256, :null => false
+    t.integer  "user_id",                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -24,19 +24,24 @@ ActiveRecord::Schema.define(:version => 20091022230040) do
   add_index "calendars", ["user_id", "uri"], :name => "index_calendars_on_user_id_and_uri", :unique => true
   add_index "calendars", ["user_id"], :name => "index_calendars_on_user_id"
 
+  create_table "credentials", :force => true do |t|
+    t.string  "provider",   :limit => 64,  :null => false
+    t.string  "identifier", :limit => 256, :null => false
+    t.integer "user_id",                   :null => false
+  end
+
+  add_index "credentials", ["identifier", "provider", "user_id"], :name => "index_credentials_on_identifier_and_provider_and_user_id", :unique => true
+  add_index "credentials", ["user_id"], :name => "index_credentials_on_user_id"
+
   create_table "users", :force => true do |t|
-    t.string   "username",          :limit => 256, :null => false
     t.string   "email",             :limit => 256, :null => false
     t.string   "display_name",      :limit => 256
-    t.string   "crypted_password",  :limit => 256
-    t.string   "password_salt",     :limit => 64
     t.string   "persistence_token", :limit => 256
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
-  add_index "users", ["username"], :name => "index_users_on_username"
 
 end

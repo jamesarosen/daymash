@@ -1,16 +1,14 @@
 class User < ActiveRecord::Base
   
-  acts_as_authentic
+  extend  RpxSupport
+  
+  validates_presence_of   :email
+  validates_format_of     :email,      :with => /^.*@.+\..+$/
+  has_many :credentials
   has_many :calendars
   
-  def self.find_by_username_or_email(username_or_email)
-    self.find(:first, :conditions => [
-      "username = ? OR email = ?", username_or_email, username_or_email
-    ])
-  end
-  
   def to_s
-    display_name.present? ? display_name : username
+    display_name.present? ? display_name : email
   end
   
   def aggregate_freebusy_calendar
