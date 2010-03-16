@@ -8,3 +8,6 @@
   
   %dt= t('activerecord.attributes.user.email')
   %dd= @user.email
+
+%h3= t('.credentials_header')
+= credentials_list(@user)

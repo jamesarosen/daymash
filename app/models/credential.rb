@@ -13,12 +13,13 @@ class Credential < ActiveRecord::Base
                                   :identifier => normalize(identifier) })
   end
   
-  # Normalizes (currently, to_s.downcase, though that is not specified)
+  # Normalizes (currently, just to_s, though that is not specified)
   # the given provider or identifier.
   #
   # @param [Sting, Symbol] provider_or_identifier
+  # @return [String] the normalized provider or identifier
   def self.normalize(provider_or_identifier)
-    provider_or_identifier.to_s.downcase
+    provider_or_identifier.to_s
   end
   
   def to_s

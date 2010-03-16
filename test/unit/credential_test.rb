@@ -7,8 +7,8 @@ class CredentialTest < ActiveSupport::TestCase
       @user = Factory(:user)
       @credential = Factory(:credential, :user => @user)
     end
-    should 'find Credentials by provider and identifier case-insensitively' do
-      assert_equal @credential, Credential.find_by_provider_and_identifier(@credential.provider.upcase, @credential.identifier.capitalize)
+    should 'find Credentials by provider and identifier' do
+      assert_equal @credential, Credential.find_by_provider_and_identifier(@credential.provider, @credential.identifier)
     end
   end
 

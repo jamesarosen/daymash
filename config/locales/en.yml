@@ -11,13 +11,6 @@ en:
       calendar:
         uri: URL
         
-  authlogic:
-    models:
-      user_session: Session
-    attributes:
-      user_session:
-        principal: Username or Email Address
-        
   navbar:
     site:
       sign_in: Sign In
@@ -48,6 +41,7 @@ en:
     show:
       title: My Profile
       edit: Edit
+      credentials_header: You can sign in via
     edit:
       form:
         legend: Edit Profile

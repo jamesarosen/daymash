@@ -1,6 +1,15 @@
-Given /^I am signed in as ([^\"]+)$/ do |name|
+Given /^I am signed in as ([^\"]+)(?: via (.+))?$/ do |name, possibly_a_provider|
   user = User.find_by_display_name(name) || Factory(:user, :display_name => name)
+  if possibly_a_provider
+    Given "#{name} has registered a credential from #{possibly_a_provider}"
+  end
   sign_in_as user
+end
+
+Given /^User ([^\"]+) has registered a credential from ([^\"]+)$/ do |name, provider|
+  if user.has_credential_from?(provider)
+    Factory(:credential, :user => user, :provider => provider)
+  end
 end
 
 Given /^I am (?:(?:not signed in)|(?:signed out))$/ do

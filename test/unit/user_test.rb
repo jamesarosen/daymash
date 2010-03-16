@@ -25,7 +25,7 @@ class UserTest < ActiveSupport::TestCase
     end
     should 'create a Credential' do
       assert @user.credentials.any?
-      assert_equal 'openid', @user.credentials.first.provider
+      assert_equal 'OpenID', @user.credentials.first.provider
       assert_equal 'http://me.example.com', @user.credentials.first.identifier
     end
   end
@@ -86,8 +86,8 @@ class UserTest < ActiveSupport::TestCase
       Factory(:credential, :user => @user, :provider => 'Twitter')
     end
     should 'know whether it has a Credential from a given provider' do
-      assert  @user.has_credential_from?(:twitter)
-      assert !@user.has_credential_from?(:golf_channel)
+      assert  @user.has_credential_from?('Twitter')
+      assert !@user.has_credential_from?('GolfChannel')
     end
   end
     
