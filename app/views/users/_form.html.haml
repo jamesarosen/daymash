@@ -7,3 +7,5 @@
   %fieldset
     %div
       = form.submit submit
+      - unless user.new_record?
+        = link_to t('.cancel'), user_path(:current)

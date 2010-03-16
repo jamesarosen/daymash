@@ -1,0 +1,10 @@
+%h2= t('.title')
+
+= link_to(t('.edit'), edit_user_path(@user))
+
+%dl
+  %dt= t('activerecord.attributes.user.display_name')
+  %dd= @user.display_name
+  
+  %dt= t('activerecord.attributes.user.email')
+  %dd= @user.email

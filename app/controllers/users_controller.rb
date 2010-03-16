@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   
   append_before_filter :require_signed_in, :except => [:new, :create, :busy]
   
+  def show
+    @user = current_user
+  end
+  
   def edit
     @user = current_user
   end

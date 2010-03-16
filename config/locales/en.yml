@@ -7,6 +7,7 @@ en:
       user:
         display_name: What you'd like us to call you. Say, 'Ishmael'
         password_confirmation: Password once again, with feeling
+        email: Email Address
       calendar:
         uri: URL
         
@@ -17,14 +18,15 @@ en:
       user_session:
         principal: Username or Email Address
         
-  navigation:
-    sign_in: Sign In
-    sign_up: Sign Up
-    sign_out: Sign Out
-    signed_in_as: Signed in as {{current_user}}
-    edit_profile: Edit Profile
-    my_calendars: My Calendars
-    aggregate: My Aggregate
+  navbar:
+    site:
+      sign_in: Sign In
+      sign_up: Sign Up
+      sign_out: Sign Out
+      signed_in_as: Signed in as {{current_user}}
+      my_profile: My Profile
+      my_calendars: My Calendars
+      aggregate: My Aggregate
     
   welcome:
     header: Welcome!
@@ -43,10 +45,15 @@ en:
       form:
         legend: Sign Up
         submit: Let's Get Schedulin'
+    show:
+      title: My Profile
+      edit: Edit
     edit:
       form:
         legend: Edit Profile
         submit: Make It So
+    form:
+      cancel: Cancel
   
   user_sessions:
     new:

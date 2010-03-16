@@ -8,7 +8,7 @@ module ApplicationHelper
           nb.nav_item :aggregate, busy_user_path(current_user, :format => :ics)
         end
         nb.nav_item :my_calendars, user_calendars_path(:user_id => :current)
-        nb.nav_item :edit_profile, edit_user_path(:current)
+        nb.nav_item :my_profile, user_path(:current)
         nb.nav_item :sign_out
       else
         nb.nav_item :sign_up, rpx_url
