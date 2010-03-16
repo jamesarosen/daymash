@@ -3,7 +3,12 @@ API_KEYS = {
     :consumer_key     => 'DayMash Twitter Consumer Key',
     :consumer_secret  => 'DayMash Twitter Consumer Secret'
   },
-  :rpx => 'DayMash RPXNow API Key'
+  :rpx => 'DayMash RPXNow API Key',
+  :facebook => {
+    :application_id   => '400227291479',
+    :api_key =>          'f1fe0789a300f7edaeb2234f3bccc2de',
+    :secret           => 'DayMash Facebook Secret',
+  }
 }
 
 if defined?(:RPXNow)
