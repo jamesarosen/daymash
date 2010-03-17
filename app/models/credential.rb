@@ -1,5 +1,6 @@
 class Credential < ActiveRecord::Base
   
+  acts_as_archive
   belongs_to :user
   
   validates_presence_of   :user, :provider, :identifier
@@ -30,6 +31,10 @@ class Credential < ActiveRecord::Base
     "#{id}-#{provider}"
   end
   
+  def last_credential_for_user?
+    self.user.credentials.none? { |c| c != self }
+  end
+  
   protected
   
   def normalize_provider_and_identifier
@@ -37,4 +42,24 @@ class Credential < ActiveRecord::Base
     self.identifier &&= self.class.normalize(identifier)
   end
   
+end
+
+Credential::Archive.class_eval do
+  
+  # Finds a deleted Credential for the given user with the given ID.
+  #
+  # @param [User] user
+  # @param [Fixnum] id
+  # @return [Credential::Archive] a deleted credential
+  # @raise [ActiveRecord::RecordNotFound] if user has no such deleted credential
+  def self.find_by_user_and_id!(user, id)
+    returning(find_by_user_id_and_id(user, id)) do |c|
+      raise ActiveRecord::RecordNotFound.new("User ##{user_id} has no deleted credential ##{id}") unless c
+    end
+  end
+  
+  def restore
+    Credential.restore_all(['id = ?', id])
+    Credential.find(id)
+  end
 end

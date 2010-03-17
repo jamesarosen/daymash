@@ -17,9 +17,12 @@ class CreateUsers < ActiveRecord::Migration
     end
     add_index :credentials, :user_id
     add_index :credentials, [:identifier, :provider, :user_id], :unique => true
+    
+    ActsAsArchive.update Credential
   end
 
   def self.down
+    drop_table :archived_credentials
     drop_table :credentials
     drop_table :users
   end

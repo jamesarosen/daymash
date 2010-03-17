@@ -11,6 +11,14 @@
 
 ActiveRecord::Schema.define(:version => 20091022230040) do
 
+  create_table "archived_credentials", :id => false, :force => true do |t|
+    t.integer  "id"
+    t.string   "provider",   :limit => 64
+    t.string   "identifier", :limit => 256
+    t.integer  "user_id"
+    t.datetime "deleted_at"
+  end
+
   create_table "calendars", :force => true do |t|
     t.string   "uri",        :limit => 256, :null => false
     t.string   "title",      :limit => 256, :null => false

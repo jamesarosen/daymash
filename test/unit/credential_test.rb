@@ -25,5 +25,20 @@ class CredentialTest < ActiveSupport::TestCase
     should_validate_presence_of :identifier
     should_allow_values_for :identifier, 'http://twitter.com/me', 'https://me.myopenid.com'
   end
+  
+  context 'a deleted Credential' do
+    setup do
+      @user = Factory(:user)
+      @credential = @user.credentials.first
+      assert @credential.present?
+      @credential.destroy
+      assert @user.credentials(true).empty?
+    end
+    should "be un-deletable" do
+      Credential::Archive.find_by_user_and_id!(@user, @credential.id).restore
+      assert_equal 1, @user.credentials(true).size
+    end
+  end
     
 end
+
