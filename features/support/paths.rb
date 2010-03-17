@@ -12,6 +12,8 @@ module NavigationHelpers
       '/'
     when /my calendars/
       '/users/current/calendars'
+    when /my (?:profile|account)/
+      '/users/current'
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

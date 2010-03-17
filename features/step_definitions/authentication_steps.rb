@@ -1,13 +1,14 @@
-Given /^I am signed in as ([^\"]+)(?: via (.+))?$/ do |name, possibly_a_provider|
-  user = User.find_by_display_name(name) || Factory(:user, :display_name => name)
+Given /^I am signed in as (.+)(?: via (.+))?$/ do |name, possibly_a_provider|
+  user = user_from_name(name)
   if possibly_a_provider
     Given "#{name} has registered a credential from #{possibly_a_provider}"
   end
   sign_in_as user
 end
 
-Given /^User ([^\"]+) has registered a credential from ([^\"]+)$/ do |name, provider|
-  if user.has_credential_from?(provider)
+Given /^(.+) has registered a credential from ([^\"]+)$/ do |name, provider|
+  user = user_from_name(name)
+  unless user.has_credential_from?(provider)
     Factory(:credential, :user => user, :provider => provider)
   end
 end
@@ -21,6 +22,10 @@ Then "I should be sent to the RPX server" do
 end
 
 module AuthenticationHelpers
+  
+  def user_from_name(name)
+    User.find_by_display_name(name) || Factory(:user, :display_name => name)
+  end
   
   def sign_in_as user
     return if @current_user == user

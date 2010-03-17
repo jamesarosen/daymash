@@ -1,6 +1,14 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def inline_button_to(path, method, button_text)
+    form_tag(path, :method => method, :class => :inline) +
+      content_tag(:button, :type => 'submit', :name => 'submit') do
+        content_tag(:span, button_text)
+      end +
+      '</form>'
+  end
+  
   def site_nav_bar
     nav_bar(:site) do |nb|
       if signed_in?

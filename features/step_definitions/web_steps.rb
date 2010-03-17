@@ -23,6 +23,12 @@ When /^(?:|I )press "([^\"]*)"$/ do |button|
   click_button(button)
 end
 
+When /^(?:|I )press "([^\"]*)" within "([^\"]*)"$/ do |button, parent|
+  within(parent) do
+    click_button(button)
+  end
+end
+
 When /^(?:|I )follow "([^\"]*)"$/ do |link|
   click_link(link)
 end

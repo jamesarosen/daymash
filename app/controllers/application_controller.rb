@@ -4,8 +4,9 @@
 class ApplicationController < ActionController::Base
   
   include Authentication
+  include AdvancedFlash::ControllerSupport
   
-  helper :all # include all helpers, all the time
+  helper :all, AdvancedFlash::Helper # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log

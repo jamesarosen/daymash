@@ -25,8 +25,8 @@ h3 { font-size: 1.5em; }
 h4 { font-size: 1.25em; }
 h5, li.calendar { font-size: 1.225em; }
 
-a       { text-decoration: none; }
-a:hover { text-decoration: underline; }
+a       { text-decoration: none; border-bottom: 1px dotted;}
+a:hover { border-bottom-style: solid; }
 
 dl          { margin-top: 1em; }
 dl dt       { font-size: 1.225em; }
@@ -104,7 +104,7 @@ form label, form input, form select, form textarea {
   display: block;
 }
 
-form input[type="submit"], form input.submit {
+form input[type="submit"], form input.submit, form button {
   display: inline;
   margin: 0 2em;
   cursor: pointer;
@@ -123,6 +123,18 @@ form input, form select, form textarea {
 form label { margin-bottom: 0.25em; }
 
 form .inline-errors, form .inline-hints { margin-top: 0.25em; }
+
+form.inline { display: inline; }
+form.inline button {
+  background: inherit;
+  border: none;
+  color: #91b24f;
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+form.inline button span       { border-bottom: 1px dotted; }
+form.inline button:hover span { border-bottom-style: solid; }
 
 /* images, icons, backgrounds */
 li.calendar {

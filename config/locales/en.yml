@@ -3,6 +3,8 @@
 
 en:
   activerecord:
+    errors:
+      cannot_destroy_last_credential: "You cannot remove your only credentail"
     attributes:
       user:
         display_name: What you'd like us to call you. Say, 'Ishmael'
@@ -46,17 +48,19 @@ en:
       form:
         legend: Edit Profile
         submit: Make It So
-    form:
-      cancel: Cancel
   
-  user_sessions:
-    new:
-      form:
-        legend: Sign In
-        submit: I'm Pumped. Schedulify me!
+  credentials:
+    deleted: "Deleted {{provider}} credential. {{undo_link}}"
+    undeleted: "Restored {{provider}} credential."
+    cannot_delete_last: "Cannot delete last credential. You wouldn't be able to sign in!"
       
   footer:
     authors: DayMash was created by {{james}}.
     james_blog_title: James A. Rosen's Blog
     bug: Report a bug
     bug_title: DayMash Issues on GitHub
+  
+  common:
+    cancel: cancel
+    delete: delete
+    undo: Undo
