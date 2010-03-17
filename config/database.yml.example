@@ -1,27 +1,24 @@
-sqlite3: &SQLITE
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
+postgresql: &POSTGRESQL
+  adapter: postgresql
+  encoding: unicode
+  min_messages: warning
 
 development:
-  <<: *SQLITE
-  database: db/development.sqlite3
+  <<: *POSTGRESQL
+  database: daymash_development
 
 test:
-  <<: *SQLITE
-  database: db/test.sqlite3
-
-mysql: &MYSQL
-  adapter: mysql
-  encoding: utf8
-  username: deploy
-  password: 
-  socket: /tmp/mysql.sock
-
+  <<: *POSTGRESQL
+  database: daymash_test
+  
+cucumber:
+  <<: *POSTGRESQL
+  database: daymash_test
+  
 staging:
-  <<: *MYSQL
+  <<: *POSTGRESQL
   database: daymash_staging
-
+  
 production:
-  <<: *MYSQL
-  database: daymash_staging
+  <<: *POSTGRESQL
+  database: daymash_production
