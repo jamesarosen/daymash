@@ -25,8 +25,8 @@ h3 { font-size: 1.5em; }
 h4 { font-size: 1.25em; }
 h5, li.calendar { font-size: 1.225em; }
 
-a       { text-decoration: none; border-bottom: 1px dotted;}
-a:hover { border-bottom-style: solid; }
+a                { text-decoration: none; border-bottom: 1px dotted;}
+a:hover, a:focus { border-bottom-style: solid; }
 
 dl          { margin-top: 1em; }
 dl dt       { font-size: 1.225em; }
@@ -134,7 +134,8 @@ form.inline button {
   padding: 0;
 }
 form.inline button span       { border-bottom: 1px dotted; }
-form.inline button:hover span { border-bottom-style: solid; }
+form.inline button:hover span,
+form.inline button:focus span { border-bottom-style: solid; }
 
 /* images, icons, backgrounds */
 li.calendar {
