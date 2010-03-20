@@ -1,12 +1,18 @@
+require 'digest/sha2'
+
 class User < ActiveRecord::Base
   
   include  RpxSupport
   
   validates_presence_of   :email
   validates_uniqueness_of :email
-  validates_format_of     :email,      :with => /^.*@.+\..+$/, :allow_blank => true
+  validates_format_of     :email,         :with => /^.*@.+\..+$/,        :allow_blank => true
+  validates_presence_of   :privacy_token
+  validates_format_of     :privacy_token, :with => /^[A-Za-z0-9]{24,}$/, :allow_blank => true
   has_many :credentials
   has_many :calendars
+  
+  before_validation :generate_privacy_token
   
   def save_with_credential(credential)
     return false if credential.blank?
@@ -52,6 +58,13 @@ class User < ActiveRecord::Base
   
   def calendars_as_ri_cal_calendars  
     IcalRetriever.new.fetch_and_parse_all(self.calendars)
+  end
+  
+  def generate_privacy_token
+    self.privacy_token ||= Digest::SHA2.new.tap do |digest|
+      digest << self.email if self.email.present?
+      digest << Time.now.to_s
+    end.to_s[0..24]
   end
   
 end

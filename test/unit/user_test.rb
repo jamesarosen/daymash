@@ -101,6 +101,8 @@ class UserTest < ActiveSupport::TestCase
     end
     should_allow_values_for :email, 'me@example.com'
     should_not_allow_values_for :email, nil, '', 'a', 'ab'
+    should_allow_values_for :privacy_token, '03jpf392jq8f93jq9832q420938'
+    should_not_allow_values_for :privacy_token, '', '392j'
   end
   
   context 'a User with a display_name' do

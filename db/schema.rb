@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20091022230040) do
     t.string   "email",             :limit => 256, :null => false
     t.string   "display_name",      :limit => 256
     t.string   "persistence_token", :limit => 256
+    t.string   "privacy_token",     :limit => 256, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

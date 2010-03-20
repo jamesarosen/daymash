@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email,              :limit => 256, :null => false
       t.string :display_name,       :limit => 256
       t.string :persistence_token,  :limit => 256
+      t.string :privacy_token,      :limit => 256, :null => false
       t.timestamps
     end
     add_index :users, :email, :unique => true
