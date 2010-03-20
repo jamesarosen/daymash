@@ -21,17 +21,18 @@ nav, h1, h2, h3, h4, h5, h6, legend {
 
 h1 { font-size: 2em; font-weight: bold; }
 h2, legend { font-size: 1.8em; font-weight: bold; }
+h2 span + a { font-size: 0.6em; }
 h3 { font-size: 1.5em; }
 h4 { font-size: 1.25em; }
-h5, li.calendar { font-size: 1.225em; }
+h5 { font-size: 1.225em; }
 
-a                { text-decoration: none; border-bottom: 1px dotted;}
-a:hover, a:focus { border-bottom-style: solid; }
+a                              { text-decoration: none; }
+a:hover, a:focus               { border-bottom: 1px solid; outline: none; }
+header a:hover, header a:focus { border-bottom-width: 2px; }
+form.inline button:hover span,
+form.inline button:focus span  { border-bottom: 1px solid; }
 
-dl          { margin-top: 1em; }
 dl dt       { font-size: 1.225em; }
-dl dt + dd  { margin-top: 0.275em; }
-dl dd + dt  { margin-top: 1em; }
 
 /*
   COLORS
@@ -77,10 +78,14 @@ header {
 }
 header nav ul { display: inline; }
 header nav li, header nav > span { display: inline; padding: 1em; }
+
 #main {
   border-top: 1px solid #1066a0;
   padding: 2em;
 }
+
+  #main > * + * { margin-top: 1em; }
+
 footer {
   clear:both;
   display: block;
@@ -91,10 +96,17 @@ footer {
 
 .calendar { padding-left: 20px; }
 
-h1, h2, h3, h4, h5, h6, legend {
-  padding-top: 1em;
-  padding-bottom: 1em;
+h2, h3, h4, h5, h6, legend { padding-bottom: 0.2em; }
+h2 span, h3 span, h4 span, h5 span, h6 span {
+  display: inline-block;
+  margin-bottom: 0.2em;
 }
+* + h2, * + h3, * + h4, * + h5, * + h6, * + form legend {
+  padding-top: 0.5em;
+}
+
+dl dt + dd  { margin-top: 0.275em; }
+dl dd + dt  { margin-top: 1em; }
 
 form fieldset + fieldset, form li + li { margin-top: 1.5em; }
 
@@ -133,19 +145,21 @@ form.inline button {
   margin: 0;
   padding: 0;
 }
-form.inline button span       { border-bottom: 1px dotted; }
-form.inline button:hover span,
-form.inline button:focus span { border-bottom-style: solid; }
+
+ul.calendars { margin-top: 0.5em; }
+
+li.calendar + li.calendar { margin-top: 1em; }
 
 /* images, icons, backgrounds */
-li.calendar {
+.calendar {
   background-image: url("/images/silk/calendar.png");
   background-repeat: no-repeat;
   background-position: 0 center;
 }
 
-li.calendar + li.calendar { margin-top: 1em; }
 
-li.calendar.add {
+.calendar.add {
   background-image: url("/images/silk/calendar_add.png");
+  background-repeat: no-repeat;
+  background-position: 0 center;
 }

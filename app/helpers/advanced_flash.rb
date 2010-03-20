@@ -14,6 +14,7 @@ module AdvancedFlash
   module Helper
     
     def render_flash
+      return '' if flash.empty?
       content_tag :ul do
         flash.map do |k,v|
           content_tag :li, flash_content(v), :class => k

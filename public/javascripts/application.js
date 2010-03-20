@@ -3,6 +3,8 @@
 
 jQuery(document).ready(function($) {
   DayMash.modalizeSignInAndSignUpLinks();
+  DayMash.makeXShowOnHover('form.inline', 'ul.credentials li');
+  DayMash.makeXShowOnHover('span + a', 'h2,h3,h4,h5,h6');
 });
 
 var DayMash = { 
@@ -12,6 +14,15 @@ var DayMash = {
       $(this).addClass('rpxnow').click(function() {
         return false;
       });
+    });
+  },
+  
+  makeXShowOnHover: function(selector, scope) {
+    $(selector, scope).hide();
+    $(scope).hover(function() {
+      $(selector, this).fadeIn('fast');
+    }, function() {
+      $(selector, this).fadeOut('fast');
     });
   }
   

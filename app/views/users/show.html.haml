@@ -1,6 +1,6 @@
-%h2= t('.title')
-
-= link_to(t('.edit'), edit_user_path(@user))
+%h2
+  %span= t('.title')
+  = link_to(t('.edit'), edit_user_path(@user))
 
 %dl
   %dt= t('activerecord.attributes.user.display_name')
