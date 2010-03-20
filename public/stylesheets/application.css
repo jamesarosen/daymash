@@ -74,8 +74,9 @@ header {
   border-bottom: 1px solid #042464;
   display: block;
   text-align: right;
-  padding: 1em;
+  padding: 1.5em 2em;
 }
+header h1 { float: left; }
 header nav ul { display: inline; }
 header nav li, header nav > span { display: inline; padding: 1em; }
 
