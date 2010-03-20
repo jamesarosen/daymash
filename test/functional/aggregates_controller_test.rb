@@ -31,14 +31,26 @@ class AggregatesControllerTest < ActionController::TestCase
         end
         User.stubs(:find).returns(@cassandra)
         @cassandra.stubs(:aggregate_freebusy_calendar).returns(freebusy)
-        get :show, :user_id => @cassandra.to_param, :format => 'ics'
       end
+      
+      context "without the User's privacy token" do
+        setup do
+          get :show, :user_id => @cassandra.to_param, :format => 'ics', :pt => 'anything'
+        end
+        should_respond_with :not_found
+      end
+      
+      context "with the User's privacy token" do
+        setup do
+          get :show, :user_id => @cassandra.to_param, :format => 'ics', :pt => @cassandra.privacy_token
+        end
     
-      should_respond_with :success
-      should_assign_to(:user) { @cassandra }
-      should_respond_with_content_type :ics
-      should "look up the User's freebusy aggregate" do
-        assert_received(@cassandra, :aggregate_freebusy_calendar)
+        should_respond_with :success
+        should_assign_to(:user) { @cassandra }
+        should_respond_with_content_type :ics
+        should "look up the User's freebusy aggregate" do
+          assert_received(@cassandra, :aggregate_freebusy_calendar)
+        end
       end
     
     end

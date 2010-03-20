@@ -11,8 +11,12 @@ class AggregatesController < ApplicationController
         end
       end
       format.ics do
-        calendar = @user.aggregate_freebusy_calendar
-        render :text => calendar.to_s, :content_type => Mime::ICS
+        if params[:pt] == @user.privacy_token
+          calendar = @user.aggregate_freebusy_calendar
+          render :text => calendar.to_s, :content_type => Mime::ICS
+        else
+          render :nothing => true, :status => :not_found
+        end
       end
     end
   end
