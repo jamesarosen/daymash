@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   
   validates_presence_of   :email
   validates_uniqueness_of :email
-  validates_format_of     :email,      :with => /^.*@.+\..+$/
-  has_many :credentials#,               :autosave => true
+  validates_format_of     :email,      :with => /^.*@.+\..+$/, :allow_blank => true
+  has_many :credentials
   has_many :calendars
   
   def save_with_credential(credential)
