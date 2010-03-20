@@ -14,6 +14,8 @@ module NavigationHelpers
       '/users/current/calendars'
     when /my (?:profile|account)/
       '/users/current'
+    when /create credential/
+      '/users/current/credentials'
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

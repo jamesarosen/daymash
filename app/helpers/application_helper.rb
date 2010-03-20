@@ -19,8 +19,8 @@ module ApplicationHelper
         nb.nav_item :my_profile, user_path(:current)
         nb.nav_item :sign_out
       else
-        nb.nav_item :sign_up, rpx_url
-        nb.nav_item :sign_in, rpx_url
+        nb.nav_item :sign_up, rpx_url(users_url)
+        nb.nav_item :sign_in, rpx_url(sessions_url)
       end
     end
   end
@@ -39,8 +39,8 @@ module ApplicationHelper
 EOS
   end
   
-  def rpx_url
-    "https://daymash.rpxnow.com/openid/v2/signin?token_url=#{URI.encode sessions_url}"
+  def rpx_url(return_to)
+    "https://daymash.rpxnow.com/openid/v2/signin?token_url=#{URI.encode return_to}"
   end
   
 end

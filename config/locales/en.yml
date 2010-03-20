@@ -5,6 +5,17 @@ en:
   activerecord:
     errors:
       cannot_destroy_last_credential: "You cannot remove your only credentail"
+      models:
+        user:
+          attributes:
+            credential:
+              blank: Hmm. Something went wrong with our connection with RPXnow.com. Sorry about that.
+            email:
+              blank: Please enter your email address.
+              invalid: That doesn't look like a valid email address.
+              taken: 'That email address is already taken by another user. If you would like to add a new authentication provider, please first sign in using the other account, then click "My Account," then "Add Provider," and finally sign in via the new provider again.'
+        credential:
+          notfound: 'That credential is not registered. If you would like to sign in via {{provider}}, please first sign in using another provider, then click "My Account," then "Add Provider," and finally sign in via {{provider}}.'
     attributes:
       user:
         display_name: What you'd like us to call you. Say, 'Ishmael'
@@ -44,12 +55,15 @@ en:
       title: My Profile
       edit: Edit
       credentials_header: You can sign in via
+      add_credential: Add Provider
     edit:
       form:
         legend: Edit Profile
         submit: Make It So
   
   credentials:
+    added: "Successfully added {{provider}} credential."
+    add_failed: "Error adding {{provider}} credential {{identifier}}."
     deleted: "Deleted {{provider}} credential. {{undo_link}}"
     undeleted: "Restored {{provider}} credential."
     cannot_delete_last: "Cannot delete last credential. You wouldn't be able to sign in!"

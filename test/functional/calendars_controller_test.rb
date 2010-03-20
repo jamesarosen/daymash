@@ -3,6 +3,7 @@ require 'test_helper'
 class CalendarsControllerTest < ActionController::TestCase
 
   def setup
+    super
     @clarence = Factory(:user, :display_name => 'Clarence Biggs')
   end
 

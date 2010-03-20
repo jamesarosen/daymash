@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
 var DayMash = { 
   
   modalizeSignInAndSignUpLinks: function() {
-    $('.sign_in a,.sign_up a').each(function() {
+    $('a.rpx, .sign_in a,.sign_up a').each(function() {
       $(this).addClass('rpxnow').click(function() {
         return false;
       });

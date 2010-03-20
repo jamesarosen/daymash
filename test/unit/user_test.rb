@@ -6,15 +6,15 @@ class UserTest < ActiveSupport::TestCase
     setup do
       Credential.delete_all
       User.delete_all
-      @user = User.find_or_initialize_with_rpx({
+      @user, @credential = User.build_from_rpx({
         :provider => 'OpenID',
         :identifier => 'http://me.example.com',
         :email => 'me@example.com',
         :display_name => 'ME!'
       })
     end
-    should 'create a new valid user' do
-      assert !@user.new_record?
+    should 'build a new valid user' do
+      assert @user.new_record?
       assert @user.valid?
     end
     should "import the email address" do
@@ -23,10 +23,10 @@ class UserTest < ActiveSupport::TestCase
     should 'import the display name' do
       assert_equal 'ME!', @user.display_name
     end
-    should 'create a Credential' do
-      assert @user.credentials.any?
-      assert_equal 'OpenID', @user.credentials.first.provider
-      assert_equal 'http://me.example.com', @user.credentials.first.identifier
+    should 'build a Credential' do
+      assert @credential.present?
+      assert_equal 'OpenID', @credential.provider
+      assert_equal 'http://me.example.com', @credential.identifier
     end
   end
   
@@ -37,12 +37,12 @@ class UserTest < ActiveSupport::TestCase
       @user = Factory(:user, :display_name => nil, :email => 'old.email@example.org')
       credential = @user.credentials.first
       Credential.expects(:find_by_provider_and_identifier).with(credential.provider, credential.identifier).returns(credential)
-      User.find_or_initialize_with_rpx({
+      User.find_and_update_from_rpx({
         :provider => credential.provider,
         :identifier => credential.identifier,
         :display_name => 'Bob',
         :email => 'new.email@example.org'
-      })
+      }).save!
     end
     should 'not create a new User or Credential' do
       assert_equal [@user], User.all
@@ -53,6 +53,43 @@ class UserTest < ActiveSupport::TestCase
     end
     should 'not overwrite existing information' do
       assert_equal 'old.email@example.org', @user.reload.email
+    end
+  end
+  
+  context 'creating a new User with a Credential' do
+    setup do
+      @user = Factory.build(:user)
+      @credential = Factory.build(:credential, :user => nil)
+    end
+    context 'from a valid User and Credential' do
+      setup { @result = @user.save_with_credential(@credential) }
+      should('return true') { assert @result, @user.errors.inspect }
+      should_change('the number of Users', :by => 1) { User.count }
+      should_change('the number of Credentials', :by => 1) { Credential.count }
+    end
+    context 'from a valid User and an invalid Credential' do
+      setup do
+        @credential.provider = nil
+        @result = @user.save_with_credential(@credential)
+      end
+      should('return false') { assert !@result, @user.errors.inspect }
+      should_not_change('the number of Users') { User.count }
+      should_not_change('the number of Credentials') { Credential.count }
+    end
+    context 'from an invalid User and valid Credential' do
+      setup do
+        @user.email = nil
+        @result = @user.save_with_credential(@credential)
+      end
+      should('return false') { assert !@result, @user.errors.inspect }
+      should_not_change('the number of Users') { User.count }
+      should_not_change('the number of Credentials') { Credential.count }
+    end
+    context 'from a valid User and no Credential' do
+      setup { @result = @user.save_with_credential(nil) }
+      should('return false') { assert !@result, @user.errors.inspect }
+      should_not_change('the number of Users') { User.count }
+      should_not_change('the number of Credentials') { Credential.count }
     end
   end
 

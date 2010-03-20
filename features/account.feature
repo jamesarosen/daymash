@@ -17,6 +17,16 @@ Feature: Accounts
     And I fill in "user_display_name" with "Suzeee"
     And I press "Make It So"
     Then I should see "Signed in as Suzeee"
+    
+  Scenario: add a credential
+    Given RPX will return me to the create credential page and supplies the following:
+      | providerName | identifier              |
+      | Zazzer       | http://zazzer.com/susan |
+    Given I am signed in as Susan
+    And I am on my profile page
+    And I follow "Add Provider"
+    Then I should be on my profile page
+    And I should see "http://zazzer.com/susan" within "li.credential.Zazzer"    
 
   Scenario: can't delete last credential
     Given I am signed in as Susan

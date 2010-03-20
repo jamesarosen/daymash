@@ -51,6 +51,13 @@ ActionController::TestCase.class_eval do
   def setup
     @controller.session ||= HashWithIndifferentAccess.new
   end
+  
+  def rpx_returns(hash)
+    FakeWeb.allow_net_connect = false
+    json_response = { :profile => hash }.to_json
+    FakeWeb.register_uri :post, %r|^https://rpxnow.com/api/v2/auth_info|,
+                                :body => json_response
+  end
 end
 
 # ActionController::IntegrationTest.class_eval do

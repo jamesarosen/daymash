@@ -6,10 +6,10 @@ ActionController::Routing::Routes.draw do |map|
            :conditions => { :method => :get }
 
   map.resources :users,
-                :only => [:show, :edit, :update],
+                :only => [:create, :show, :edit, :update],
                 :member => { :busy => :get } do |user|
     user.resources :calendars, :only => [:index, :new, :create]
-    user.resources :credentials, :only => [:destroy],
+    user.resources :credentials, :only => [:create, :destroy],
                                  :member => { :undestroy => :put }
   end
   

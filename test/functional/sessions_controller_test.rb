@@ -24,24 +24,38 @@ class SessionsControllerTest < ActionController::TestCase
 }
 EOB
 
-  context 'a new user who has just signed in via Facebook' do
+  context 'an existing User with a Facebook account' do
+    
     setup do
-      User.delete_all
-      Credential.delete_all
-      @controller.session.clear
-      FakeWeb.allow_net_connect = false
-      FakeWeb.register_uri(:post, %r|^https://rpxnow.com/api/v2/auth_info|, :body => FACEBOOK_RESPONSE)
-      post :create, :token => 'a token'
+      @user = Factory(:user)
+      @facebook_credential = Factory(:credential, :user => @user, :provider => 'Facebook', :identifier => 'http://www.facebook.com/profile.php?id=914164208')
     end
-    should 'create a new user' do
-      assert_equal 1, User.count
-      u = User.first
-      assert_equal "Yags Hound", u.display_name
+    
+    context 'signing in via Facebook' do
+      setup do
+        rpx_returns :providerName => 'Facebook', :identifier => 'http://www.facebook.com/profile.php?id=914164208'
+        post :create, :token => 'a token'
+      end
+      should 'sign the User in' do
+        assert_equal @user, @controller.current_user
+      end
+      should_not_change('the number of Users') { User.count }
+      should_not_change('the number of Credentials') { Credential.count }
+      should_redirect_to('home') { root_path }
     end
-    should 'sign the user in' do
-      assert @controller.signed_in?
+    
+    context 'trying to sign in via Yupple' do
+      setup do
+        rpx_returns :providerName => 'Yupple', :identifier => 'http://yupple.net/people/843'
+        post :create, :token => 'a token'
+      end
+      should 'not sign the User in' do
+        assert !@controller.signed_in?
+      end
+      should_not_change('the number of Users') { User.count }
+      should_not_change('the number of Credentials') { Credential.count }
     end
-    should_redirect_to('home') { root_path }
+    
   end
   
 end
