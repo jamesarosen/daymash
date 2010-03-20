@@ -6,11 +6,11 @@ ActionController::Routing::Routes.draw do |map|
            :conditions => { :method => :get }
 
   map.resources :users,
-                :only => [:create, :show, :edit, :update],
-                :member => { :busy => :get } do |user|
+                :only => [:create, :show, :edit, :update] do |user|
     user.resources :calendars, :only => [:index, :new, :create]
     user.resources :credentials, :only => [:create, :destroy],
                                  :member => { :undestroy => :put }
+    user.resource  :aggregate, :only => [:show]
   end
   
   map.sign_out  '/sessions/sign_out', :controller => 'sessions', :action => 'destroy', :conditions => { :method => :get }

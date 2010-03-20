@@ -13,7 +13,7 @@ module ApplicationHelper
     nav_bar(:site) do |nb|
       if signed_in?
         if current_user.calendars.any?
-          nb.nav_item :aggregate, busy_user_path(current_user, :format => :ics)
+          nb.nav_item :aggregate, user_aggregate_path(:user_id => :current)
         end
         nb.nav_item :my_calendars, user_calendars_path(:user_id => :current)
         nb.nav_item :my_profile, user_path(:current)

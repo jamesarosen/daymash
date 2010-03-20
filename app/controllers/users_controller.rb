@@ -40,11 +40,6 @@ class UsersController < ApplicationController
     end
   end
   
-  def busy
-    calendar = requested_user.aggregate_freebusy_calendar
-    render :text => calendar.to_s, :content_type => Mime::ICS
-  end
-  
   protected
   
   def saved_credential=(credential)

@@ -1,0 +1,9 @@
+%h2 My Aggregate Calendar
+
+%p
+  Here is the URL for your aggregate:
+
+.calendar.aggregate= link_to(user_aggregate_url(:user_id => @user, :format => :ics), user_aggregate_url(:user_id => @user, :format => :ics))
+
+%p
+  Give that URL to anybody you want to have access to your free-busy schedule.
