@@ -37,7 +37,7 @@ module Authentication
     def require_signed_in
       return true if signed_in?
       flash[:failure] = "Sorry, signed-in users only."
-      render_optional_error_file 401
+      unauthorized
       false
     end
   

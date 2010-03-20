@@ -33,24 +33,28 @@ class ApplicationController < ActionController::Base
     render :template => "/pages/#{error_name}", :status => status
   end
   
-  def not_found(ex)
+  def unauthorized(ex = nil)
+    render_error_page ex, :unauthorized, 401
+  end
+  
+  def not_found(ex = nil)
     render_error_page ex, :not_found, 404
   end
   
-  def method_not_allowed(ex)
+  def method_not_allowed(ex = nil)
     render_error_page ex, :method_not_allowed, 405
   end
   
-  def conflict(ex)
+  def conflict(ex = nil)
     render_error_page ex, :conflict, 409
   end
   
-  def unprocessable_entity(ex)
+  def unprocessable_entity(ex = nil)
     raise ex
     render_error_page ex, :unprocessable_entity, 422
   end
   
-  def not_implemented(ex)
+  def not_implemented(ex = nil)
     render_error_page ex, :not_implemented, 501
   end
   
