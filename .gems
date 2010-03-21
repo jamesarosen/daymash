@@ -1,8 +1,9 @@
+passenger       --version '~> 2.2.4'
 haml            --version '~> 2.2.9'
 formtastic      --version '~> 0.9.7'
 ri_cal          --version '~> 0.8.5'
 xebec           --version '~> 2.3.0'
-rpx_now         --version '~> 0.6.1'7
+rpx_now         --version '~> 0.6.1'
 acts_as_archive --version '~> 0.2.3'
 twitter         --version '~> 0.9.0'
 memcached
