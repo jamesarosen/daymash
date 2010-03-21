@@ -73,6 +73,7 @@ en:
     james_blog_title: James A. Rosen's Blog
     bug: Report a bug
     bug_title: DayMash Issues on GitHub
+    follow_me: Follow {{handle}} on Twitter
   
   common:
     cancel: cancel
