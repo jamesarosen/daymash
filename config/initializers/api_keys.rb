@@ -3,8 +3,8 @@ api_keys = if File.exist?(config_path)
   YAML.load File.new(config_path)
 else
   {}
-end
+end.with_indifferent_access
 
 if defined?(:RPXNow)
-  RPXNow.api_key = Object.const_defined?(:RPX_API_KEY) ? RPX_API_KEY : api_keys[:rpx]
+  RPXNow.api_key = ENV['RPX_API_KEY'] || api_keys[:rpx]
 end
