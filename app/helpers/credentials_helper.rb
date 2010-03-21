@@ -5,7 +5,7 @@ module CredentialsHelper
       has_multiple_credentials = (user.credentials.size > 1)
       user.credentials.map do |c|
         content_tag(:li, :class => "credential #{c.provider}") do
-          content_tag(:span, c.identifier).tap do |content|
+          content_tag(:span, c.provider, :title => c.identifier).tap do |content|
             content << ' ' + delete_credential_form(user, c) if has_multiple_credentials
           end
         end

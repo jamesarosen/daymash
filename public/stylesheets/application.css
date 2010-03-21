@@ -158,7 +158,6 @@ li.calendar + li.calendar { margin-top: 1em; }
   background-position: 0 center;
 }
 
-
 .calendar.add {
   background-image: url("/images/silk/calendar_add.png");
   background-repeat: no-repeat;
