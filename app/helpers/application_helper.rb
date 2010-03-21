@@ -47,8 +47,8 @@ EOS
   # or about @daymash. Caches the sidebar for a while.
   def recent_tweets_sidebar
     Rails.cache.fetch('sidebar.twitter', :expire_in => 1.hour) do
-      by_daymash = Twitter::Search.new.from('daymash').per_page(5).fetch.results
-      to_daymash = Twitter::Search.new('daymash').per_page(5).fetch.results
+      by_daymash = Twitter::Search.new.from('daymash').per_page(5).fetch.results || []
+      to_daymash = Twitter::Search.new('daymash').per_page(5).fetch.results || []
       tweets = (by_daymash + to_daymash).sort_by { |t| Time.parse(t.created_at) }.reverse[0..4]
       content_tag(:ul, :class => 'twitter sidebar') do
         tweets.map do |tweet|
