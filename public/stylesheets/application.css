@@ -95,6 +95,8 @@ footer {
   text-align: center;
 }
 
+  footer span { margin: 0 0.5em; }
+
 .calendar { padding-left: 20px; }
 
 h2, h3, h4, h5, h6, legend { padding-bottom: 0.2em; }
@@ -152,14 +154,26 @@ ul.calendars { margin-top: 0.5em; }
 li.calendar + li.calendar { margin-top: 1em; }
 
 /* images, icons, backgrounds */
-.calendar {
-  background-image: url("/images/silk/calendar.png");
+.calendar, .calendar.add, footer .mail, footer .twitter {
   background-repeat: no-repeat;
   background-position: 0 center;
 }
 
+.calendar {
+  background-image: url("/images/silk/calendar.png");
+}
+
 .calendar.add {
   background-image: url("/images/silk/calendar_add.png");
-  background-repeat: no-repeat;
-  background-position: 0 center;
+}
+
+footer .mail {
+  background-image: url("/images/silk/email.png");
+  padding-left: 20px;
+}
+
+footer .twitter {
+  background-image: url("/images/social.me/twitter.png");
+  min-height: 36px;
+  padding-left: 24px;
 }
