@@ -43,4 +43,21 @@ EOS
     "https://daymash.rpxnow.com/openid/v2/signin?token_url=#{URI.encode return_to}"
   end
   
+  # Generates a sidebar <ul> containing the last five tweets by
+  # or about @daymash. Caches the sidebar for a while.
+  def recent_tweets_sidebar
+    Rails.cache.fetch('sidebar.twitter', :expire_in => 1.hour) do
+      by_daymash = Twitter::Search.new.from('daymash').per_page(5).fetch.results
+      to_daymash = Twitter::Search.new('daymash').per_page(5).fetch.results
+      tweets = (by_daymash + to_daymash).sort_by { |t| Time.parse(t.created_at) }.reverse[0..4]
+      content_tag(:ul, :class => 'twitter sidebar') do
+        tweets.map do |tweet|
+          content_tag(:li, :class => 'tweet') do
+            image_tag(tweet.profile_image_url) + content_tag(:div, tweet.text)
+          end
+        end.join(' ')
+      end
+    end
+  end
+    
 end

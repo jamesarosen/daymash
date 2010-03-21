@@ -3,11 +3,12 @@
 %html
   %head
     %title DayMash
-    = stylesheet_link_tag 'reset', 'application', 'credentials', :cache => false
+    = stylesheet_link_tag 'reset', 'application', 'credentials', 'sidebar', :cache => true
     = javascript_include_tag 'jquery-1.3.2.min', 'application', :cache => false
     = add_html5_dom_elements_to_ie
   %body
     = render :partial => '/layouts/header'
+    = recent_tweets_sidebar
     #main
       = render_flash
       = yield

@@ -1,0 +1,37 @@
+#main { padding-right: 20em; }
+
+/* 20em in #main == 30/1.1 == 27.27em in .sidebar */
+
+.sidebar {
+  border: 2px solid #083c71;
+  float: right;
+  font-size: 1.1em;
+  margin: 4em 4em 0 0 ;
+  width: 22em;
+}
+
+  .sidebar.twitter li {
+    border-bottom: 1px solid #083c71;
+    clear: left;
+    display: block;
+    padding: 0.6em 0;
+    margin: 0 0.6em;
+  }
+
+  .sidebar.twitter li + li {
+    border-top: 1px solid #1066a0;
+  }
+  
+  .sidebar.twitter li:last-child {
+    border-bottom: none;
+  }
+  
+  .sidebar.twitter img {
+    width: 3em;
+    height: 3em;
+    float: left;
+  }
+  
+  .sidebar.twitter img + div {
+    padding-left: 3.5em;
+  }
