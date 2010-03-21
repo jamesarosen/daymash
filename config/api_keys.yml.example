@@ -1,0 +1,8 @@
+twitter:
+  consumer_key: something here
+  consumer_secret: something here
+rpx: something here
+facebook:
+  application_id: 'something here'
+  api_key: something here
+  secret: something here
