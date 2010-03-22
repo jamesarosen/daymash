@@ -48,7 +48,7 @@ html, body { background-color: #035d92; color: #dddddd; }
 h1, h2, h3, h4, h5, h6, legend { color: #dddddd; }
 header { background-color: #083c71; }
 header a { color: #68b8e7; }
-#main a, footer a { color: #91b24f; }
+#main a, .sidebar a, footer a { color: #91b24f; }
 form .inline-errors { color: red; }
 form input, form select, form textarea {
   background-color: #dddddd;

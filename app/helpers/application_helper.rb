@@ -57,7 +57,8 @@ EOS
       content_tag(:ul, :class => 'twitter') do
         tweets.map do |tweet|
           content_tag(:li, :class => 'tweet') do
-            image_tag(tweet.profile_image_url) + content_tag(:div, tweet.text)
+            content = auto_link(tweet.text, :html => { :target => 'twitter', :rel => 'nofollow' })
+            image_tag(tweet.profile_image_url) + content_tag(:div, content)
           end
         end.join(' ')
       end
