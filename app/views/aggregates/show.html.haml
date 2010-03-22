@@ -7,3 +7,8 @@
 
 %p
   Give that URL to anybody you want to have access to your free-busy schedule.
+
+%h3 Your aggregate is composed of the following calendars:
+= calendars_list(@user)
+.add.calendar
+  = link_to t('.add_calendar'), new_user_calendar_path(:user_id => :current)

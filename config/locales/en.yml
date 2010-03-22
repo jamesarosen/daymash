@@ -64,6 +64,11 @@ en:
         legend: Edit Profile
         submit: Make It So
   
+  aggregates:
+      show:
+        add_calendar: Add Calendar
+        none: "You haven't added any calendars yet. {{add_link}}"
+  
   credentials:
     added: "Successfully added {{provider}} credential."
     add_failed: "Error adding {{provider}} credential {{identifier}}."

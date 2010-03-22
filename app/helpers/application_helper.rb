@@ -14,10 +14,7 @@ module ApplicationHelper
   def site_nav_bar
     nav_bar(:site) do |nb|
       if signed_in?
-        if current_user.calendars.any?
-          nb.nav_item :aggregate, user_aggregate_path(:user_id => :current)
-        end
-        nb.nav_item :my_calendars, user_calendars_path(:user_id => :current)
+        nb.nav_item :aggregate, user_aggregate_path(:user_id => :current)
         nb.nav_item :my_profile, user_path(:current)
         nb.nav_item :sign_out
       else

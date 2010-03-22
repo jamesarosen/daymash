@@ -12,6 +12,8 @@ module NavigationHelpers
       '/'
     when /my calendars/
       '/users/current/calendars'
+    when /my aggregate/
+      '/users/current/aggregate'
     when /my (?:profile|account)/
       '/users/current'
     when /create credential/
