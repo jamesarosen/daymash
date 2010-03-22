@@ -47,6 +47,10 @@ class CredentialsControllerTest < ActionController::TestCase
       setup { delete :destroy, :user_id => :current, :id => @openid.to_param }
       should_redirect_to("the user's profile page") { user_path(:current) }
       should_change("the number of the user's credentials", :by => -1) { @pierre.credentials(true).count }
+      should "store the deleted credential's ID in the session for undo purposes" do
+        assert_equal @openid.id, @controller.session[AdvancedFlash::DELETED_CREDENTIAL_SESSION_ID]
+      end
+      should_set_the_flash_to AdvancedFlash::DELETED_CREDENTIAL_FLASH
     end
     
     context 'with a deleted credential' do
