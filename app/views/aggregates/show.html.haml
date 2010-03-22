@@ -3,7 +3,7 @@
 %p
   Here is the URL for your aggregate:
 
-.calendar.aggregate= link_to(user_aggregate_url(:user_id => @user, :format => :ics), user_aggregate_url(:user_id => @user, :format => :ics))
+.calendar.aggregate= aggregate_link(@user)
 
 %p
   Give that URL to anybody you want to have access to your free-busy schedule.
