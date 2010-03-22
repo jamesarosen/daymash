@@ -74,6 +74,15 @@ class AggregatesControllerTest < ActionController::TestCase
       should_set_the_flash_to(/reset|success/i)
     end
     
+    context 'resetting her privacy token by XHR (AJAX)' do
+      setup { xhr :put, :reset_privacy_token, :user_id => :current }
+      should_render_template :reset_privacy_token
+      should_change("the user's privacy token") { @cassandra.reload; @cassandra.privacy_token }
+      should "highlight the aggregate URL" do
+        assert_match /DayMash\.updateAggregateUrl\(.*<a.*\);/, @response.body
+      end
+    end
+    
   end
   
 end

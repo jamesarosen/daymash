@@ -163,6 +163,15 @@ ul.calendars li.calendar {
 ul.calendars li.calendar > *    { vertical-align: top; }
 ul.calendars li.calendar > span { display: inline-block; margin-top: 0.1em; }
 
+.calendar.aggregate {
+  background-position: 0.5em 0.6em;
+  padding: 0.5em 1.6em;
+  border: 2px solid;
+  border-radius: 12px;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+}
+
 /* images, icons, backgrounds */
 .calendar, .calendar.add, footer .mail, footer .twitter {
   background-repeat: no-repeat;

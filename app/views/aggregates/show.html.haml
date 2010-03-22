@@ -8,7 +8,7 @@
 
   %div
     Give that URL to anybody you want to have access to your free-busy schedule.
-    = t('.reset_privacy_token', :reset_link => inline_button_to(t('.reset_link_text'), reset_privacy_token_user_aggregate_path, :put, :class => 'ajaxForm'))
+    = t('.reset_privacy_token', :reset_link => inline_button_to(t('.reset_link_text'), reset_privacy_token_user_aggregate_path, :put, :class => 'ajax'))
 
   %h3 Your aggregate is composed of the following calendars:
   = calendars_list(@user)

@@ -4,8 +4,11 @@
   %head
     %title DayMash
     = stylesheet_link_tag 'reset', 'application', 'credentials', 'sidebar', :cache => true
-    = javascript_include_tag 'jquery-1.3.2.min', 'application', :cache => false
+    = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js', 'jQuery-highlightFade.0.7', 'application', :cache => false
     = add_html5_dom_elements_to_ie
+    - if protect_against_forgery?
+      = javascript_tag "DayMash.auth_token = { name: '#{request_forgery_protection_token}', value: '#{form_authenticity_token}'};"
+    
   %body
     = render :partial => '/layouts/header'
     = render :partial => '/layouts/sidebar'
