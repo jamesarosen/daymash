@@ -67,7 +67,8 @@ en:
   aggregates:
       show:
         add_calendar: Add Calendar
-        none: "You haven't added any calendars yet. {{add_link}}"
+        add_one: Add a calendar
+        none: "You haven't added any calendars, so we can't generate an aggregate. {{add_link}} to get started."
   
   credentials:
     added: "Successfully added {{provider}} credential."

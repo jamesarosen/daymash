@@ -14,7 +14,7 @@ Feature: Calendars
   Scenario: add a calendar
     Given I am signed in as Susan
     And I am on my aggregate page
-    When I follow "Add Calendar"
+    When I follow "Add a calendar"
     And I fill in "URL" with "http://caledars.example.org/me"
     And I fill in "Title" with "My Example Calendar"
     And I press "Feed Me"

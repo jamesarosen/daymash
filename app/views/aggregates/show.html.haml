@@ -1,14 +1,18 @@
 %h2 My Aggregate Calendar
 
-%p
-  Here is the URL for your aggregate:
+-if @user.calendars.any?
+  %p
+    Here is the URL for your aggregate:
 
-.calendar.aggregate= aggregate_link(@user)
+  .calendar.aggregate= aggregate_link(@user)
 
-%p
-  Give that URL to anybody you want to have access to your free-busy schedule.
+  %p
+    Give that URL to anybody you want to have access to your free-busy schedule.
 
-%h3 Your aggregate is composed of the following calendars:
-= calendars_list(@user)
-.add.calendar
-  = link_to t('.add_calendar'), new_user_calendar_path(:user_id => :current)
+  %h3 Your aggregate is composed of the following calendars:
+  = calendars_list(@user)
+  .add.calendar
+    = link_to t('.add_calendar'), new_user_calendar_path(:user_id => :current)
+-else
+  %div
+    = t('.none', :add_link => link_to(t('.add_one'), new_user_calendar_path(:user_id => :current)))

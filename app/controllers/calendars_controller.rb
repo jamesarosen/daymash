@@ -13,7 +13,7 @@ class CalendarsController < ApplicationController
   def create
     @calendar ||= Calendar.new(params[:calendar])
     if current_user.calendars << @calendar
-      redirect_to user_calendars_path(:user_id => :current)
+      redirect_to user_aggregate_path(:user_id => :current)
     else
       render :action => :new
     end
