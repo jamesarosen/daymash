@@ -12,7 +12,7 @@ module CalendarsHelper
   end
   
   def delete_calendar_form(user, calendar)
-    inline_button_to user_calendar_path(user.to_param, calendar), :delete, t('common.delete')
+    inline_button_to t('common.delete'), user_calendar_path(user.to_param, calendar), :delete
   end
   
 end

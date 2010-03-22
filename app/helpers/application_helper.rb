@@ -3,8 +3,10 @@ require 'add_uniq_by_to_array'
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
-  def inline_button_to(path, method, button_text)
-    form_tag(path, :method => method, :class => :inline) +
+  def inline_button_to(button_text, path, method, options = {})
+    klass = 'inline'
+    klass << ' ' << options[:class] if options[:class].present?
+    form_tag(path, :method => method, :class => klass) +
       content_tag(:button, :type => 'submit', :name => 'submit') do
         content_tag(:span, button_text)
       end +

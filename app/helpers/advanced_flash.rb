@@ -34,12 +34,12 @@ module AdvancedFlash
       when DELETED_CREDENTIAL_FLASH
         deleted_credential_id = session.delete(AdvancedFlash::DELETED_CREDENTIAL_SESSION_ID)
         c = Credential::Archive.find_by_user_and_id!(current_user, deleted_credential_id)
-        form = inline_button_to(undestroy_user_credential_path(:current, deleted_credential_id), :put, t('common.undo'))
+        form = inline_button_to(t('common.undo'), undestroy_user_credential_path(:current, deleted_credential_id), :put)
         t("credentials.deleted", :provider => c.provider, :undo_link => form)
       when DELETED_CALENDAR_FLASH
         deleted_calendar_id = session.delete(AdvancedFlash::DELETED_CALENDAR_SESSION_ID)
         c = Calendar::Archive.find_by_user_and_id!(current_user, deleted_calendar_id)
-        form = inline_button_to(undestroy_user_calendar_path(:current, deleted_calendar_id), :put, t('common.undo'))
+        form = inline_button_to(t('common.undo'), undestroy_user_calendar_path(:current, deleted_calendar_id), :put)
         t('calendars.deleted', :title => c.title, :undo_link => form)
       else
         v
