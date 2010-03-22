@@ -50,6 +50,7 @@ end
 ActionController::TestCase.class_eval do
   def setup
     @controller.session ||= HashWithIndifferentAccess.new
+    Rails.cache.write(ApplicationHelper::TWITTER_SIDEBAR_CACHE_KEY, '')
   end
   
   def rpx_returns(hash)
