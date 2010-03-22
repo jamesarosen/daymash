@@ -30,6 +30,7 @@ class UsersControllerTest < ActionController::TestCase
         assert_equal 'me@foobar.com', @controller.current_user.email
       end
       should_redirect_to('home') { root_path }
+      should_set_the_flash_to(/win at life/i)
     end
     
     context 'via a provider that provides an email address already in use' do

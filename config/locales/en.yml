@@ -47,6 +47,7 @@ en:
         submit: Feed Me
         
   users:
+    signed_up: You're all signed up. That means you win at life!
     new:
       form:
         legend: Sign Up
