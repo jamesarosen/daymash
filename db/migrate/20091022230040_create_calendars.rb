@@ -10,6 +10,8 @@ class CreateCalendars < ActiveRecord::Migration
     add_index :calendars, :uri
     add_index :calendars, [:user_id, :title]
     add_index :calendars, [:user_id, :uri], :unique => true
+    
+    ActsAsArchive.update Calendar
   end
 
   def self.down

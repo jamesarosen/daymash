@@ -11,6 +11,16 @@
 
 ActiveRecord::Schema.define(:version => 20091022230040) do
 
+  create_table "archived_calendars", :id => false, :force => true do |t|
+    t.integer  "id"
+    t.string   "uri",        :limit => 256
+    t.string   "title",      :limit => 256
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "deleted_at"
+  end
+
   create_table "archived_credentials", :id => false, :force => true do |t|
     t.integer  "id"
     t.string   "provider",   :limit => 64
