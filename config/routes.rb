@@ -7,7 +7,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users,
                 :only => [:create, :show, :edit, :update] do |user|
-    user.resources :calendars, :only => [:index, :new, :create]
+    user.resources :calendars, :only => [:index, :new, :create, :destroy],
+                               :member => { :undestroy => :put }
     user.resources :credentials, :only => [:create, :destroy],
                                  :member => { :undestroy => :put }
     user.resource  :aggregate, :only => [:show]

@@ -17,7 +17,7 @@ Calendar::Archive.class_eval do
   # @return [Calendar::Archive] a deleted calendar
   # @raise [ActiveRecord::RecordNotFound] if user has no such deleted calendar
   def self.find_by_user_and_id!(user, id)
-    returning(find_by_user_id_and_id(user, id)) do |c|
+    returning(find_by_user_id_and_id(user, id.to_i)) do |c|
       raise ActiveRecord::RecordNotFound.new("User ##{user_id} has no deleted calendar ##{id}") unless c
     end
   end

@@ -38,6 +38,8 @@ en:
     header: Welcome!
   
   calendars:
+    deleted: "Deleted calendar {{title}}. {{undo_link}}"
+    undeleted: "Restored calendar {{title}}."
     index:
       title: My Calendars
       add_calendar: Add Calendar

@@ -99,8 +99,6 @@ footer {
 
   footer span { margin: 0 0.5em; }
 
-.calendar { padding-left: 20px; }
-
 h2, h3, h4, h5, h6, legend { padding-bottom: 0.2em; }
 h2 span, h3 span, h4 span, h5 span, h6 span {
   display: inline-block;
@@ -151,9 +149,19 @@ form.inline button {
   padding: 0;
 }
 
+.calendar { padding-left: 20px; }
 ul.calendars { margin-top: 0.5em; }
 
-li.calendar + li.calendar { margin-top: 1em; }
+li.calendar + li.calendar { margin-top: 0.5em; }
+
+ul.calendars li.calendar {
+  background-position: left 0.3em;
+  background-repeat: no-repeat;
+  min-height: 24px;
+  padding-top: 4px;
+}
+ul.calendars li.calendar > *    { vertical-align: top; }
+ul.calendars li.calendar > span { display: inline-block; margin-top: 0.1em; }
 
 /* images, icons, backgrounds */
 .calendar, .calendar.add, footer .mail, footer .twitter {

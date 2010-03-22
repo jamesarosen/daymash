@@ -4,6 +4,7 @@
 jQuery(document).ready(function($) {
   DayMash.modalizeSignInAndSignUpLinks();
   DayMash.makeXShowOnHover('form.inline', 'ul.credentials li');
+  DayMash.makeXShowOnHover('form.inline', 'ul.calendars li');
   DayMash.makeXShowOnHover('span + a', 'h2,h3,h4,h5,h6');
 });
 
