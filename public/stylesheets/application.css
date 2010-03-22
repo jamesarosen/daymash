@@ -82,6 +82,7 @@ header nav li, header nav > span { display: inline; padding: 1em; }
 
 #main {
   border-top: 1px solid #1066a0;
+  min-height: 20em;
   padding: 2em;
 }
 
