@@ -1,3 +1,5 @@
+require 'add_uniq_by_to_array'
+
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
@@ -51,8 +53,8 @@ EOS
     Rails.cache.fetch(TWITTER_SIDEBAR_CACHE_KEY, :expire_in => 1.hour) do
       by_daymash = Twitter::Search.new.from('daymash').per_page(5).fetch.results || []
       to_daymash = Twitter::Search.new('daymash').per_page(5).fetch.results || []
-      tweets = (by_daymash + to_daymash).sort_by { |t| Time.parse(t.created_at) }.reverse[0..4]
-      content_tag(:ul, :class => 'twitter sidebar') do
+      tweets = (by_daymash + to_daymash).uniq_by(&:id).sort_by { |t| Time.parse(t.created_at) }.reverse[0..4]
+      content_tag(:ul, :class => 'twitter') do
         tweets.map do |tweet|
           content_tag(:li, :class => 'tweet') do
             image_tag(tweet.profile_image_url) + content_tag(:div, tweet.text)

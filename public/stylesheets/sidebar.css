@@ -13,7 +13,7 @@
   width: 22em;
 }
 
-  .sidebar.twitter li {
+  .sidebar .twitter li {
     border-bottom: 1px solid #083c71;
     clear: left;
     display: block;
@@ -21,20 +21,20 @@
     margin: 0 0.6em;
   }
 
-  .sidebar.twitter li + li {
+  .sidebar .twitter li + li {
     border-top: 1px solid #1066a0;
   }
   
-  .sidebar.twitter li:last-child {
+  .sidebar .twitter li:last-child {
     border-bottom: none;
   }
   
-  .sidebar.twitter img {
+  .sidebar .twitter img {
     width: 3em;
     height: 3em;
     float: left;
   }
   
-  .sidebar.twitter img + div {
+  .sidebar .twitter img + div {
     padding-left: 3.5em;
   }
