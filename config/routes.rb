@@ -11,7 +11,8 @@ ActionController::Routing::Routes.draw do |map|
                                :member => { :undestroy => :put }
     user.resources :credentials, :only => [:create, :destroy],
                                  :member => { :undestroy => :put }
-    user.resource  :aggregate, :only => [:show]
+    user.resource  :aggregate, :only => [:show],
+                               :member => { :reset_privacy_token => :put }
   end
   
   map.sign_out  '/sessions/sign_out', :controller => 'sessions', :action => 'destroy', :conditions => { :method => :get }

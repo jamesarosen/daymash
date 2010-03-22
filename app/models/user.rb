@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :credentials
   has_many :calendars
   
-  before_validation :generate_privacy_token
+  before_validation :set_privacy_token_if_needed
   
   def save_with_credential(credential)
     return false if credential.blank?
@@ -54,16 +54,31 @@ class User < ActiveRecord::Base
     end
   end
   
+  # Generates a new privacy token and tries to save the User.
+  #
+  # @return [true, false] whether the update was successful
+  def reset_privacy_token
+    self.privacy_token = generate_privacy_token
+    save
+  end
+  
   protected
   
   def calendars_as_ri_cal_calendars  
     IcalRetriever.new.fetch_and_parse_all(self.calendars)
   end
   
+  def set_privacy_token_if_needed
+    self.privacy_token ||= generate_privacy_token
+  end
+  
   def generate_privacy_token
-    self.privacy_token ||= Digest::SHA2.new.tap do |digest|
-      digest << self.email if self.email.present?
+    Digest::SHA2.new.tap do |digest|
+      digest << "This is one heck of a random secret string, isn't it?"
       digest << Time.now.to_s
+      digest << self.email if self.email.present?
+      digest << self.display_name if self.display_name.present?
+      digest << self.privacy_token if self.privacy_token.present?
     end.to_s[0..24]
   end
   

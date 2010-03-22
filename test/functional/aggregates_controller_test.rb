@@ -67,6 +67,13 @@ class AggregatesControllerTest < ActionController::TestCase
       should_respond_with :success
     end
     
+    context 'resetting her privacy token' do
+      setup { put :reset_privacy_token, :user_id => :current }
+      should_redirect_to("the aggregate page") { user_aggregate_path(:user_id => :current) }
+      should_change("the user's privacy token") { @cassandra.reload; @cassandra.privacy_token }
+      should_set_the_flash_to(/reset|success/i)
+    end
+    
   end
   
 end

@@ -6,8 +6,9 @@
 
   .calendar.aggregate= aggregate_link(@user)
 
-  %p
+  %div
     Give that URL to anybody you want to have access to your free-busy schedule.
+    = t('.reset_privacy_token', :reset_link => inline_button_to(reset_privacy_token_user_aggregate_path, :put, t('.reset_link_text')))
 
   %h3 Your aggregate is composed of the following calendars:
   = calendars_list(@user)

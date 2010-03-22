@@ -65,10 +65,15 @@ en:
         submit: Make It So
   
   aggregates:
-      show:
-        add_calendar: Add Calendar
-        add_one: Add a calendar
-        none: "You haven't added any calendars, so we can't generate an aggregate. {{add_link}} to get started."
+    privacy_token:
+      updated: Privacy token reset. Be sure to give your friends the new URL.
+      error_updating: There was a problem resetting your privacy token.
+    show:
+      reset_privacy_token: "The 'pt=...' part of your aggregate URL is your 'privacy token.' If you think somebody has access to your aggregate who shouldn't, you can {{reset_link}}. If you do, you'll have to send the new URL to everybody you want to see the aggregate."
+      reset_link_text: reset it
+      add_calendar: Add Calendar
+      add_one: Add a calendar
+      none: "You haven't added any calendars, so we can't generate an aggregate. {{add_link}} to get started."
   
   credentials:
     added: "Successfully added {{provider}} credential."
