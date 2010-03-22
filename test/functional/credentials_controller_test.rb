@@ -49,6 +49,15 @@ class CredentialsControllerTest < ActionController::TestCase
       should_change("the number of the user's credentials", :by => -1) { @pierre.credentials(true).count }
     end
     
+    context 'with a deleted credential' do
+      setup { @openid.destroy }
+      context "un-deleting that credential" do
+        setup { put :undestroy, :user_id => :current, :id => @openid.to_param }
+        should_redirect_to("the user's profile page") { user_path(:current) }
+        should_change("the number of the user's credentials", :by => 1) { @pierre.credentials(true).count }
+      end
+    end
+    
     context "with only one credential" do
       
       setup { @facebook.destroy }
