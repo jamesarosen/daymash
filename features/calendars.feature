@@ -2,6 +2,9 @@ Feature: Calendars
   In order to meet up with her friends more easily
   Susan maintains an aggregate calendar on DayMash.
   
+  Background:
+    Given a mock connection to Twitter
+  
   Scenario: view my calendars
     Given I am signed in as Susan
     When I go to the home page

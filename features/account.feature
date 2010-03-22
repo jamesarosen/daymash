@@ -2,6 +2,9 @@ Feature: Accounts
   In order to provide a have personalized experience
   Susan can view and edit her profile
   
+  Background:
+    Given a mock connection to Twitter
+  
   Scenario: view profile
     Given I am signed in as Susan via Facebook
     And I am on the home page
@@ -26,7 +29,7 @@ Feature: Accounts
     And I am on my profile page
     And I follow "Add Provider"
     Then I should be on my profile page
-    And I should see "http://zazzer.com/susan" within "li.credential.Zazzer"    
+    And I should see "Zazzer" within "li.credential.Zazzer"    
 
   Scenario: can't delete last credential
     Given I am signed in as Susan
