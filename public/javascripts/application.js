@@ -183,7 +183,7 @@
       }
       $(selector).each(function() {
         var closeButton = $('<a href="#" class="close" onClick="$(this).parent().slideUp(); return false;">╳</a>').click(function() {
-          $(this).parent().slideUp(function() { $(this).remove() });
+          $(this).parent().slideUp(function() { $(this).remove(); });
           return false;
         });
         $(this).append(closeButton);
@@ -204,6 +204,10 @@
       $('.calendar.aggregate')
         .highlightFade({color:'#ddd',speed:2000,iterator:'exponential'})
         .html(newContent);
+    },
+    
+    deleteCredential: function(id) {
+      $('#' + id).fadeIn(function() { $(this).remove(); });
     }
   
   };

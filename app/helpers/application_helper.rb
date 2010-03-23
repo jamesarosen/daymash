@@ -26,6 +26,10 @@ module ApplicationHelper
     end
   end
   
+  def jquery_include_location
+    Object.const_defined?(:JQUERY_LOCATION) ? JQUERY_LOCATION : 'jquery-1.3.2.min'
+  end
+  
   def rpx_scripts
     return <<-EOS
 <script type="text/javascript">

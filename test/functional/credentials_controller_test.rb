@@ -53,6 +53,15 @@ class CredentialsControllerTest < ActionController::TestCase
       should_set_the_flash_to AdvancedFlash::DELETED_CREDENTIAL_FLASH
     end
     
+    context 'deleting a credential via AJAX' do
+      setup { xhr :delete, :destroy, :user_id => :current, :id => @openid.to_param }
+      should_render_template :destroy
+      should_change("the number of the user's credentials", :by => -1) { @pierre.credentials(true).count }
+      should "remove the relevant DOM element" do
+        assert_match /DayMash\.deleteCredential\('#{@openid.to_param}'\);/, @response.body
+      end
+    end
+    
     context 'with a deleted credential' do
       setup { @openid.destroy }
       context "un-deleting that credential" do

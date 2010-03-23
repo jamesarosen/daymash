@@ -4,7 +4,7 @@ module CredentialsHelper
     content_tag(:ul, :class => 'credentials') do
       has_multiple_credentials = (user.credentials.size > 1)
       user.credentials.map do |c|
-        content_tag(:li, :class => "credential #{c.provider}") do
+        content_tag(:li, :class => "credential #{c.provider}", :id => c.to_param) do
           content_tag(:span, c.provider, :title => c.identifier).tap do |content|
             content << ' ' + delete_credential_form(user, c) if has_multiple_credentials
           end
@@ -14,7 +14,7 @@ module CredentialsHelper
   end
   
   def delete_credential_form(user, credential)
-    inline_button_to t('common.delete'), user_credential_path(:current, credential), :delete
+    inline_button_to t('common.delete'), user_credential_path(:current, credential), :delete, :class => 'ajax'
   end
   
 end

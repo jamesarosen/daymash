@@ -21,7 +21,10 @@ class CredentialsController < ApplicationController
     if credential.destroy
       add_deleted_credential_flash credential
     end
-    redirect_to user_path(params[:user_id])
+    respond_to do |format|
+      format.html { redirect_to user_path(params[:user_id]) }
+      format.js { render :layout => false }
+    end
   end
   
   def undestroy
