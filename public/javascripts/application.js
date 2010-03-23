@@ -173,6 +173,16 @@
       $('body').addClass('js');
     },
     
+    // when called by any element within a Flash item,
+    // hides that flash item.
+    //
+    // Returns false to prevent any links from being followed,
+    // but does not explicitly stop the action.
+    hideMyFlashItem: function() {
+      $(this).parents('#flash li').slideUp(function() { $(this).remove(); });
+      return false;
+    },
+    
     // Add 'X' buttons to Flash <li>s.
     // If +selector+ is given, add a close button to
     // it. Otherwise, add close buttons to all
@@ -182,10 +192,7 @@
         selector = '#flash li';
       }
       $(selector).each(function() {
-        var closeButton = $('<a href="#" class="close" onClick="$(this).parent().slideUp(); return false;">╳</a>').click(function() {
-          $(this).parent().slideUp(function() { $(this).remove(); });
-          return false;
-        });
+        var closeButton = $('<a href="#" class="close" onClick="$(this).parent().slideUp(); return false;">╳</a>').click(DayMash.hideMyFlashItem);
         $(this).append(closeButton);
       });
     },
