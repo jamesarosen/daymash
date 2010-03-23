@@ -23,14 +23,20 @@ class CalendarsController < ApplicationController
     if calendar.destroy
       add_deleted_calendar_flash calendar
     end
-    redirect_to user_calendars_path(params[:user_id])
+    respond_to do |format|
+      format.html { redirect_to user_aggregate_path(params[:user_id]) }
+      format.js { render :layout => false }
+    end
   end
   
   def undestroy
-    calendar = Calendar::Archive.find_by_user_and_id!(requested_user(:user_id), params[:id])
-    calendar.restore
-    flash[:notice] = t("calendars.undeleted", :title => calendar.title)
-    redirect_to user_calendars_path(params[:user_id])
+    old_calendar = Calendar::Archive.find_by_user_and_id!(requested_user(:user_id), params[:id])
+    @calendar = old_calendar.restore
+    flash[:notice] = t("calendars.undeleted", :title => @calendar.title)
+    respond_to do |format|
+      format.html { redirect_to user_aggregate_path(params[:user_id]) }
+      format.js { render :layout => false }
+    end
   end
   
   protected

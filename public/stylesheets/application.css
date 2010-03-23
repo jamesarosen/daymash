@@ -214,6 +214,8 @@ ul.calendars li.calendar > span { display: inline-block; margin-top: 0.1em; }
   background-image: url("/images/silk/calendar.png");
 }
 
+body.js #flash .calendar { background-image: none; }
+
 .calendar.add {
   background-image: url("/images/silk/calendar_add.png");
 }

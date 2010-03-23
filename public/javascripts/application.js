@@ -234,6 +234,18 @@
     
     deleteCredential: function(id) {
       $('#' + id).fadeOut(function() { $(this).remove(); });
+    },
+    
+    insertCalendar: function(html) {
+      var li = $(html);
+      DayMash.makeXShowOnHover('form.inline', li);
+      DayMash.ajaxifyLinks(li);
+      li.appendTo('ul.calendars')
+        .highlightFade(DayMash.highlightFadeOptions);
+    },
+    
+    deleteCalendar: function(id) {
+      $('#' + id).fadeOut(function() { $(this).remove(); });
     }
   
   };
