@@ -47,10 +47,15 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 end
 
+ApplicationHelper.class_eval do
+  def fetch_recent_tweets
+    []
+  end
+end
+
 ActionController::TestCase.class_eval do
   def setup
     @controller.session ||= HashWithIndifferentAccess.new
-    Rails.cache.write(ApplicationHelper::TWITTER_SIDEBAR_CACHE_KEY, '')
   end
   
   def rpx_returns(hash)
