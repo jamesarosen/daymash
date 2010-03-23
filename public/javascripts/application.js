@@ -112,6 +112,8 @@
 */
 
   jQuery(document).ready(function($) {
+    DayMash.enableJSStyles();
+    DayMash.enableCloseButtonsOnFlash();
     DayMash.modalizeSignInAndSignUpLinks();
     DayMash.addAuthenticityTokenIfNecessary();
     DayMash.ajaxifyLinks();
@@ -163,6 +165,38 @@
         $(selector, this).fadeIn('fast');
       }, function() {
         $(selector, this).fadeOut('fast');
+      });
+    },
+    
+    // add the .js class to <body> to enable JS-specific styles
+    enableJSStyles: function() {
+      $('body').addClass('js');
+    },
+    
+    // Add 'X' buttons to Flash <li>s.
+    // If +selector+ is given, add a close button to
+    // it. Otherwise, add close buttons to all
+    // elements matching "#flash li".
+    enableCloseButtonsOnFlash: function(selector) {
+      if (typeof(selector) === 'undefined') {
+        selector = '#flash li';
+      }
+      $(selector).each(function() {
+        var closeButton = $('<a href="#" class="close" onClick="$(this).parent().slideUp(); return false;">╳</a>').click(function() {
+          $(this).parent().slideUp(function() { $(this).remove() });
+          return false;
+        });
+        $(this).append(closeButton);
+      });
+    },
+    
+    displayFlash: function(flash) {
+      if ($('#flash').length == 0) { $('<ul id="flash" />').prependTo('#main'); }
+      $.each(flash, function(key, message) {
+        var li = $('<li class="' + key + '">' + message + '</li>');
+        li.hide();
+        DayMash.enableCloseButtonsOnFlash(li);
+        li.appendTo('#flash').slideDown('default');
       });
     },
   

@@ -80,6 +80,38 @@ header h1 { float: left; }
 header nav ul { display: inline; }
 header nav li, header nav > span { display: inline; padding: 1em; }
 
+body.js #flash {
+  background: #035d92;
+  font-size: 1.1em;
+  margin: 0 15%;
+  position: absolute;
+  top: 0;
+  width: 70%;
+  z-index: 99;
+}
+
+  body.js #flash + * { margin-top: 0; }
+
+  body.js #flash li {
+    border: 3px solid;
+    display: block;
+    padding: 0.4em
+  }
+  
+    #body.js #flash li span { margin-right: 2em; border-right: 1px dotted orange;}
+  
+    #flash li .close { display: none; }
+    body.js #flash li .close {
+      display: inline-block;
+      float: right;
+    }
+    body.js #flash li .close:hover, body.js #flash li .close:focus {
+      border: 0;
+      color: #ddd;
+    }
+  
+  body.js #flash li + li { border-top: 0; }
+
 #main {
   border-top: 1px solid #1066a0;
   min-height: 20em;

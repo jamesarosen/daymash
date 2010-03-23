@@ -20,16 +20,26 @@ module AdvancedFlash
   
   module Helper
     
-    def render_flash
+    def flash_to_html
       return '' if flash.empty?
-      content_tag :ul do
+      content_tag :ul, :id => 'flash' do
         flash.map do |k,v|
-          content_tag :li, flash_content(v), :class => k
+          content_tag(:li, flash_content(v), :class => k)
         end.join(' ')
       end
     end
     
+    def flash_to_json
+      returning(flash.each { |k,v| flash[k] = flash_content(v) }.to_json) do
+        flash.clear
+      end
+    end
+    
     def flash_content(v)
+      content_tag(:span, flash_text(v))
+    end
+    
+    def flash_text(v)
       case v
       when DELETED_CREDENTIAL_FLASH
         deleted_credential_id = session.delete(AdvancedFlash::DELETED_CREDENTIAL_SESSION_ID)
