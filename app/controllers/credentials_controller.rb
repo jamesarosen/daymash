@@ -28,10 +28,13 @@ class CredentialsController < ApplicationController
   end
   
   def undestroy
-    credential = Credential::Archive.find_by_user_and_id!(requested_user(:user_id), params[:id])
-    credential.restore
-    flash[:notice] = t("credentials.undeleted", :provider => credential.provider)
-    redirect_to user_path(params[:user_id])
+    old_credential = Credential::Archive.find_by_user_and_id!(requested_user(:user_id), params[:id])
+    @credential = old_credential.restore
+    flash[:notice] = t("credentials.undeleted", :provider => @credential.provider)
+    respond_to do |format|
+      format.html { redirect_to user_path(params[:user_id]) }
+      format.js { render :layout => false }
+    end
   end
   
   protected

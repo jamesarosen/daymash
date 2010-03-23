@@ -129,13 +129,18 @@
 */
 
   var DayMash = {
+    
+    highlightFadeOptions: { color:'#ddd', speed:2000, iterator:'exponential' },
   
-    ajaxifyLinks: function() {
-      $('form.ajax').submitWithAjax();
-      $('a.get').getWithAjax();
-      $('a.post').postWithAjax();
-      $('a.put').putWithAjax();
-      $('a.delete').deleteWithAjax();
+    ajaxifyLinks: function(within) {
+      if (typeof(within) === 'undefined') {
+        within = 'body';
+      }
+      $('form.ajax', within).submitWithAjax();
+      $('a.get', within).getWithAjax();
+      $('a.post', within).postWithAjax();
+      $('a.put', within).putWithAjax();
+      $('a.delete', within).deleteWithAjax();
     },
     
     addAuthenticityTokenIfNecessary: function() {
@@ -202,11 +207,12 @@
       $.each(flash, function(key, message) {
         var li = $('<li class="' + key + '">' + message + '</li>');
         li.hide();
+        DayMash.ajaxifyLinks(li);
         // enable close via the 'X' button:
         DayMash.addCloseButtonsToFlash(li);
-        // also enable close on any AJAXy buttons in the new Flash item:
-        $('.ajax button,a.ajax', li).each(function() {
-          $(this).click(DayMash.hideMyFlashItem);
+        // also close a Flash item if an AJAXy form is submitted within it:
+        $('form.ajax', li).each(function() {
+          $(this).submit(DayMash.hideMyFlashItem);
         });
         li.appendTo('#flash').slideDown('default');
       });
@@ -214,12 +220,20 @@
   
     updateAggregateUrl: function(newContent) {
       $('.calendar.aggregate')
-        .highlightFade({color:'#ddd',speed:2000,iterator:'exponential'})
+        .highlightFade(DayMash.highlightFadeOptions)
         .html(newContent);
     },
     
+    insertCredential: function(html) {
+      var li = $(html);
+      DayMash.makeXShowOnHover('form.inline', li);
+      DayMash.ajaxifyLinks(li);
+      li.appendTo('ul.credentials')
+        .highlightFade(DayMash.highlightFadeOptions);
+    },
+    
     deleteCredential: function(id) {
-      $('#' + id).fadeIn(function() { $(this).remove(); });
+      $('#' + id).fadeOut(function() { $(this).remove(); });
     }
   
   };

@@ -64,10 +64,20 @@ class CredentialsControllerTest < ActionController::TestCase
     
     context 'with a deleted credential' do
       setup { @openid.destroy }
+      
       context "un-deleting that credential" do
         setup { put :undestroy, :user_id => :current, :id => @openid.to_param }
         should_redirect_to("the user's profile page") { user_path(:current) }
         should_change("the number of the user's credentials", :by => 1) { @pierre.credentials(true).count }
+      end
+      
+      context 'un-deleting that credential via AJAX' do
+        setup { xhr :put, :undestroy, :user_id => :current, :id => @openid.to_param }
+        should_render_template :undestroy
+        should_change("the number of the user's credentials", :by => 1) { @pierre.credentials(true).count }
+        should "insert the new Credential in the DOM" do
+          assert_match /DayMash\.insertCredential\(/, @response.body
+        end
       end
     end
     
