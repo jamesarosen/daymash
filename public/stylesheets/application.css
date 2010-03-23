@@ -95,10 +95,10 @@ body.js #flash {
   body.js #flash li {
     border: 3px solid;
     display: block;
-    padding: 0.4em
+    padding: 0.4em;
   }
   
-    #body.js #flash li span { margin-right: 2em; border-right: 1px dotted orange;}
+    #body.js #flash li span { margin-right: 2em; }
   
     #flash li .close { display: none; }
     body.js #flash li .close {
