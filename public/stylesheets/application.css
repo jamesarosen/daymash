@@ -34,6 +34,8 @@ form.inline button:focus span  { border-bottom: 1px solid; }
 
 dl dt       { font-size: 1.225em; }
 
+p, div.p { line-height: 1.5em; }
+
 /*
   COLORS
   
@@ -171,7 +173,7 @@ form label { margin-bottom: 0.25em; }
 
 form .inline-errors, form .inline-hints { margin-top: 0.25em; }
 
-form.inline { display: inline; }
+form.inline, form.inline div, form.inline input, form.inline span { display: inline; }
 form.inline button {
   background: inherit;
   border: none;
