@@ -44,6 +44,21 @@ EOS
     "https://daymash.rpxnow.com/openid/v2/signin?token_url=#{URI.encode return_to}"
   end
   
+  def google_analytics_scripts
+    return <<-EOS
+<script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+  try {
+    var pageTracker = _gat._getTracker("UA-7255350-2");
+    pageTracker._trackPageview();
+  } catch(err) {}
+</script>
+EOS
+  end
+  
   TWITTER_SIDEBAR_CACHE_KEY = 'sidebar.twitter'
   
   # Generates a sidebar <ul> containing the last five tweets by
