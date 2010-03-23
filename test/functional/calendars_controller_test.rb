@@ -18,6 +18,15 @@ class CalendarsControllerTest < ActionController::TestCase
   context 'a signed-in user' do
     setup { @controller.stubs(:current_user).returns(@clarence) }
     
+    context 'adding a calendar' do
+      setup { post :create, :user_id => :current, :calendar => Factory.attributes_for(:calendar) }
+      should_redirect_to("the user's aggregate page") { user_aggregate_path(:current) }
+      should_change("the number of the user's calendars", :by => 1) { @clarence.calendars(true).count }
+      should 'create a valid calendar' do
+        assert assigns(:calendar).errors.blank?, assigns(:calendar).errors.inspect
+      end
+    end
+    
     context 'deleting a calendar' do
       setup { delete :destroy, :user_id => :current, :id => @soccer.to_param }
       should_redirect_to("the user's aggregate page") { user_aggregate_path(:current) }

@@ -20,6 +20,10 @@ Factory.sequence :openid_url do |n|
   "http://user#{'%03d' % n}.example.org"
 end
 
+Factory.sequence :calendar_url do |n|
+  "http://sports.yahoo.com/quidditch/flyers#{'%03d' % n}.ics"
+end
+
 Factory.define :user do |user|
   user.display_name { |_| Factory.next(:name) }
   user.email        { |_| Factory.next(:email) }
@@ -34,6 +38,6 @@ end
 
 Factory.define :calendar do |calendar|
   calendar.title 'Quidditch Schedule'
-  calendar.uri   'http://sports.yahoo.com/quidditch/flyers.ics'
+  calendar.uri   { Factory.next(:calendar_url) }
   calendar.user  { |_| User.first || Factory(:user) }
 end
