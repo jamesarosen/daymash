@@ -113,7 +113,7 @@
 
   jQuery(document).ready(function($) {
     DayMash.enableJSStyles();
-    DayMash.enableCloseButtonsOnFlash();
+    DayMash.addCloseButtonsToFlash();
     DayMash.modalizeSignInAndSignUpLinks();
     DayMash.addAuthenticityTokenIfNecessary();
     DayMash.ajaxifyLinks();
@@ -187,7 +187,7 @@
     // If +selector+ is given, add a close button to
     // it. Otherwise, add close buttons to all
     // elements matching "#flash li".
-    enableCloseButtonsOnFlash: function(selector) {
+    addCloseButtonsToFlash: function(selector) {
       if (typeof(selector) === 'undefined') {
         selector = '#flash li';
       }
@@ -202,7 +202,12 @@
       $.each(flash, function(key, message) {
         var li = $('<li class="' + key + '">' + message + '</li>');
         li.hide();
-        DayMash.enableCloseButtonsOnFlash(li);
+        // enable close via the 'X' button:
+        DayMash.addCloseButtonsToFlash(li);
+        // also enable close on any AJAXy buttons in the new Flash item:
+        $('.ajax button,a.ajax', li).each(function() {
+          $(this).click(DayMash.hideMyFlashItem);
+        });
         li.appendTo('#flash').slideDown('default');
       });
     },
