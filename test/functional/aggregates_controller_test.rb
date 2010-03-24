@@ -37,7 +37,7 @@ class AggregatesControllerTest < ActionController::TestCase
         setup do
           get :show, :user_id => @cassandra.to_param, :format => 'ics', :pt => 'anything'
         end
-        should_respond_with :not_found
+        should_respond_with :unauthorized
       end
       
       context "with the User's privacy token" do
