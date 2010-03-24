@@ -8,11 +8,31 @@ class CalendarsControllerTest < ActionController::TestCase
     @soccer = Factory(:calendar, :user => @clarence, :title => 'Soccer')
   end
 
-  context "a signed-out visitor trying to view a User's list of Calendars" do
-    setup { get :index, :user_id => @clarence.to_param }
-    should_respond_with :unauthorized
-    should_not_assign_to :user
-    should_not_assign_to :calendars
+  context "a signed-out visitor" do
+    
+    context "trying to view a User's list of Calendars" do
+      setup { get :index, :user_id => @clarence.to_param }
+      should_respond_with :unauthorized
+      should_not_assign_to :user
+      should_not_assign_to :calendars
+    end
+    
+    context "trying to add a Calendar to a User's account" do
+      setup { post :create, :user_id => @clarence.to_param, :calendar => Factory.attributes_for(:calendar) }
+      should_respond_with :unauthorized
+      should_not_assign_to :user
+      should_not_assign_to :calendars
+      should_not_change("the number of the User's Calendars") { @clarence.calendars(true).count }
+    end
+    
+    context "trying to delete a Calendar from a User's account" do
+      setup { delete :destroy, :user_id => @clarence.to_param, :id => @soccer.to_param }
+      should_respond_with :unauthorized
+      should_not_assign_to :user
+      should_not_assign_to :calendars
+      should_not_change("the number of the User's Calendars") { @clarence.calendars(true).count }
+    end
+    
   end
   
   context 'a signed-in user' do
