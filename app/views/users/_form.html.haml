@@ -8,4 +8,4 @@
     %div
       = form.submit submit
       - unless user.new_record?
-        = link_to t('common.cancel'), user_path(:current)
+        = link_to t('common.cancel'), user_path(@user)

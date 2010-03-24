@@ -11,13 +11,13 @@ module NavigationHelpers
     when /the home\s?page/
       '/'
     when /my calendars/
-      '/users/current/calendars'
+      "/users/#{current_user.to_param}/calendars"
     when /my aggregate/
-      '/users/current/aggregate'
+      "/users/#{current_user.to_param}/aggregate"
     when /my (?:profile|account)/
-      '/users/current'
+      "/users/#{current_user.to_param}"
     when /create credential/
-      '/users/current/credentials'
+      "/users/#{current_user.to_param}/credentials"
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

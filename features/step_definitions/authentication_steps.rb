@@ -27,6 +27,10 @@ module AuthenticationHelpers
     User.find_by_display_name(name) || Factory(:user, :display_name => name)
   end
   
+  def current_user
+    @current_user
+  end
+  
   def sign_in_as user
     return if @current_user == user
     @current_user = user

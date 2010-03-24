@@ -19,11 +19,7 @@ class ApplicationController < ActionController::Base
   protected
   
   def requested_user(param = :id)
-    @user ||= if params[param].to_s == 'current'
-      current_user
-    else
-      User.find(params[param])
-    end
+    @user ||= User.find(params[param])
   end
   
   # ERROR HANDLERS:

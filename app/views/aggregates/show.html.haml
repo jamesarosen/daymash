@@ -13,7 +13,7 @@
   %h3 Your aggregate is composed of the following calendars:
   = calendars_list(@user)
   .add.calendar
-    = link_to t('.add_calendar'), new_user_calendar_path(:user_id => :current)
+    = link_to t('.add_calendar'), new_user_calendar_path(@user)
 -else
   %div
-    = t('.none', :add_link => link_to(t('.add_one'), new_user_calendar_path(:user_id => :current)))
+    = t('.none', :add_link => link_to(t('.add_one'), new_user_calendar_path(@user)))

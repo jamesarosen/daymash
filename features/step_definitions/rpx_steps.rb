@@ -1,3 +1,11 @@
+CredentialsController.class_eval do
+  append_before_filter do |controller|
+    if controller.params[:user_id].to_s == 'current'
+      controller.params[:user_id] = controller.current_user.to_param
+    end
+  end
+end
+
 Given /^RPX will return me to the (.+) page and supplies the following:$/ do |page, table|
   FakeWeb.allow_net_connect = false
   

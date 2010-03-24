@@ -11,12 +11,12 @@ module CalendarsHelper
   def calendar_li(user, calendar)
     content_tag :li, :class => 'calendar', :id => calendar.to_param do
       content_tag(:span, calendar.title, :title => calendar.uri) +
-        delete_calendar_form(:current, calendar)
+        delete_calendar_form(user, calendar)
     end
   end
   
   def delete_calendar_form(user, calendar)
-    inline_button_to t('common.delete'), user_calendar_path(user.to_param, calendar), :delete, :class => 'ajax'
+    inline_button_to t('common.delete'), user_calendar_path(user, calendar), :delete, :class => 'ajax'
   end
   
 end

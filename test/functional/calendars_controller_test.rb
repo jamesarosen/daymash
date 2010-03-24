@@ -39,8 +39,8 @@ class CalendarsControllerTest < ActionController::TestCase
     setup { @controller.stubs(:current_user).returns(@clarence) }
     
     context 'adding a calendar' do
-      setup { post :create, :user_id => :current, :calendar => Factory.attributes_for(:calendar) }
-      should_redirect_to("the user's aggregate page") { user_aggregate_path(:current) }
+      setup { post :create, :user_id => @clarence, :calendar => Factory.attributes_for(:calendar) }
+      should_redirect_to("the user's aggregate page") { user_aggregate_path(@clarence) }
       should_change("the number of the user's calendars", :by => 1) { @clarence.calendars(true).count }
       should 'create a valid calendar' do
         assert assigns(:calendar).errors.blank?, assigns(:calendar).errors.inspect
@@ -48,8 +48,8 @@ class CalendarsControllerTest < ActionController::TestCase
     end
     
     context 'deleting a calendar' do
-      setup { delete :destroy, :user_id => :current, :id => @soccer.to_param }
-      should_redirect_to("the user's aggregate page") { user_aggregate_path(:current) }
+      setup { delete :destroy, :user_id => @clarence, :id => @soccer.to_param }
+      should_redirect_to("the user's aggregate page") { user_aggregate_path(@clarence) }
       should_change("the number of the user's calendars", :by => -1) { @clarence.calendars(true).count }
       should "store the deleted credential's ID in the session for undo purposes" do
         assert_equal @soccer.id, @controller.session[AdvancedFlash::DELETED_CALENDAR_SESSION_ID]
@@ -58,7 +58,7 @@ class CalendarsControllerTest < ActionController::TestCase
     end
     
     context 'deleting a calendar via AJAX' do
-      setup { xhr :delete, :destroy, :user_id => :current, :id => @soccer.to_param }
+      setup { xhr :delete, :destroy, :user_id => @clarence, :id => @soccer.to_param }
       should_render_template :destroy
       should_change("the number of the user's calendars", :by => -1) { @clarence.calendars(true).count }
       should "remove the relevant DOM element" do
@@ -70,13 +70,13 @@ class CalendarsControllerTest < ActionController::TestCase
       setup { @soccer.destroy }
       
       context "un-deleting that calendar" do
-        setup { put :undestroy, :user_id => :current, :id => @soccer.to_param }
-        should_redirect_to("the user's aggregate page") { user_aggregate_path(:current) }
+        setup { put :undestroy, :user_id => @clarence, :id => @soccer.to_param }
+        should_redirect_to("the user's aggregate page") { user_aggregate_path(@clarence) }
         should_change("the number of the user's calendars", :by => 1) { @clarence.calendars(true).count }
       end
       
       context 'undeleting that calendar via AJAX' do
-        setup { xhr :put, :undestroy, :user_id => :current, :id => @soccer.to_param }
+        setup { xhr :put, :undestroy, :user_id => @clarence, :id => @soccer.to_param }
         should_render_template :undestroy
         should_change("the number of the user's calendars", :by => 1) { @clarence.calendars(true).count }
         should "insert the new Calendar in the DOM" do

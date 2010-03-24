@@ -61,21 +61,21 @@ class AggregatesControllerTest < ActionController::TestCase
     setup { @controller.stubs(:current_user).returns(@cassandra) }
     
     context 'viewing information about her aggregate' do
-      setup { get :show, :user_id => :current }
+      setup { get :show, :user_id => @cassandra }
       should_assign_to(:user) { @cassandra }
       should_render_template :show
       should_respond_with :success
     end
     
     context 'resetting her privacy token' do
-      setup { put :reset_privacy_token, :user_id => :current }
-      should_redirect_to("the aggregate page") { user_aggregate_path(:user_id => :current) }
+      setup { put :reset_privacy_token, :user_id => @cassandra }
+      should_redirect_to("the aggregate page") { user_aggregate_path(:user_id => @cassandra) }
       should_change("the user's privacy token") { @cassandra.reload; @cassandra.privacy_token }
       should_set_the_flash_to(/reset|success/i)
     end
     
     context 'resetting her privacy token by XHR (AJAX)' do
-      setup { xhr :put, :reset_privacy_token, :user_id => :current }
+      setup { xhr :put, :reset_privacy_token, :user_id => @cassandra }
       should_render_template :reset_privacy_token
       should_change("the user's privacy token") { @cassandra.reload; @cassandra.privacy_token }
       should "highlight the aggregate URL" do

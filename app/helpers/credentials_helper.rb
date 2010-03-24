@@ -18,7 +18,7 @@ module CredentialsHelper
   end
   
   def delete_credential_form(user, credential)
-    inline_button_to t('common.delete'), user_credential_path(:current, credential), :delete, :class => 'ajax'
+    inline_button_to t('common.delete'), user_credential_path(user, credential), :delete, :class => 'ajax'
   end
   
 end

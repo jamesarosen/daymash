@@ -21,7 +21,7 @@ class AggregatesController < ApplicationController
       flash[:error] = t('aggregates.privacy_token.error_updating')
     end
     respond_to do |format|
-      format.html { redirect_to user_aggregate_path(:user_id => params[:user_id]) }
+      format.html { redirect_to user_aggregate_path(@user) }
       format.js   { render :layout => false }
     end
   end

@@ -16,8 +16,8 @@ module ApplicationHelper
   def site_nav_bar
     nav_bar(:site) do |nb|
       if signed_in?
-        nb.nav_item :aggregate, user_aggregate_path(:user_id => :current)
-        nb.nav_item :my_profile, user_path(:current)
+        nb.nav_item :aggregate, user_aggregate_path(current_user)
+        nb.nav_item :my_profile, user_path(current_user)
         nb.nav_item :sign_out
       else
         nb.nav_item :sign_up, rpx_url(users_url)

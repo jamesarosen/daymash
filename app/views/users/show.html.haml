@@ -12,4 +12,4 @@
 %h3= t('.credentials_header')
 = credentials_list(@user)
 %p.add.credential
-  = link_to(t('.add_credential'), rpx_url(user_credentials_url(:user_id => :current)), :class => 'rpx')
+  = link_to(t('.add_credential'), rpx_url(user_credentials_url(@user)), :class => 'rpx')

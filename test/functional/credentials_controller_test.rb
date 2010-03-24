@@ -34,9 +34,9 @@ class CredentialsControllerTest < ActionController::TestCase
     context 'adding a credential' do
       setup do
         rpx_returns :providerName => 'Sukoda', :identifier => 'http://sukoda.com/12459'
-        post :create, :user_id => :current, :token => 'anything'
+        post :create, :user_id => @pierre, :token => 'anything'
       end
-      should_redirect_to("the user's profile page") { user_path(:current) }
+      should_redirect_to("the user's profile page") { user_path(@pierre) }
       should_change("the number of the user's credentials", :by => 1) { @pierre.credentials(true).count }
     end
     
@@ -45,15 +45,15 @@ class CredentialsControllerTest < ActionController::TestCase
         other_credential = @other_user.credentials.first
         rpx_returns({ :providerName => other_credential.provider,
                       :identifier => other_credential.identifier })
-        post :create, :user_id => :current, :token => 'anything'
+        post :create, :user_id => @pierre, :token => 'anything'
       end
-      should_redirect_to("the user's profile page") { user_path(:current) }
+      should_redirect_to("the user's profile page") { user_path(@pierre) }
       should_not_change("the number of the user's credentials") { @pierre.credentials(true).count }
     end
     
     context "deleting a credential" do
-      setup { delete :destroy, :user_id => :current, :id => @openid.to_param }
-      should_redirect_to("the user's profile page") { user_path(:current) }
+      setup { delete :destroy, :user_id => @pierre, :id => @openid.to_param }
+      should_redirect_to("the user's profile page") { user_path(@pierre) }
       should_change("the number of the user's credentials", :by => -1) { @pierre.credentials(true).count }
       should "store the deleted credential's ID in the session for undo purposes" do
         assert_equal @openid.id, @controller.session[AdvancedFlash::DELETED_CREDENTIAL_SESSION_ID]
@@ -62,7 +62,7 @@ class CredentialsControllerTest < ActionController::TestCase
     end
     
     context 'deleting a credential via AJAX' do
-      setup { xhr :delete, :destroy, :user_id => :current, :id => @openid.to_param }
+      setup { xhr :delete, :destroy, :user_id => @pierre, :id => @openid.to_param }
       should_render_template :destroy
       should_change("the number of the user's credentials", :by => -1) { @pierre.credentials(true).count }
       should "remove the relevant DOM element" do
@@ -74,13 +74,13 @@ class CredentialsControllerTest < ActionController::TestCase
       setup { @openid.destroy }
       
       context "un-deleting that credential" do
-        setup { put :undestroy, :user_id => :current, :id => @openid.to_param }
-        should_redirect_to("the user's profile page") { user_path(:current) }
+        setup { put :undestroy, :user_id => @pierre, :id => @openid.to_param }
+        should_redirect_to("the user's profile page") { user_path(@pierre) }
         should_change("the number of the user's credentials", :by => 1) { @pierre.credentials(true).count }
       end
       
       context 'un-deleting that credential via AJAX' do
-        setup { xhr :put, :undestroy, :user_id => :current, :id => @openid.to_param }
+        setup { xhr :put, :undestroy, :user_id => @pierre, :id => @openid.to_param }
         should_render_template :undestroy
         should_change("the number of the user's credentials", :by => 1) { @pierre.credentials(true).count }
         should "insert the new Credential in the DOM" do
@@ -94,8 +94,8 @@ class CredentialsControllerTest < ActionController::TestCase
       setup { @facebook.destroy }
       
       context "trying to delete his last credential" do
-        setup { delete :destroy, :user_id => :current, :id => @openid.to_param }
-        should_redirect_to("the user's profile page") { user_path(:current) }
+        setup { delete :destroy, :user_id => @pierre, :id => @openid.to_param }
+        should_redirect_to("the user's profile page") { user_path(@pierre) }
         should_set_the_flash_to(/cannot (?:delete|destroy|remove)/i)
         should_not_change("the nubmer of the user's credentials") { @pierre.credentials(true).count }
       end

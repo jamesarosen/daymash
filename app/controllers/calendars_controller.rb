@@ -13,7 +13,7 @@ class CalendarsController < ApplicationController
   def create
     @calendar ||= Calendar.new(params[:calendar])
     if current_user.calendars << @calendar
-      redirect_to user_aggregate_path(:user_id => :current)
+      redirect_to user_aggregate_path(current_user)
     else
       render :action => :new
     end
@@ -24,7 +24,7 @@ class CalendarsController < ApplicationController
       add_deleted_calendar_flash calendar
     end
     respond_to do |format|
-      format.html { redirect_to user_aggregate_path(params[:user_id]) }
+      format.html { redirect_to user_aggregate_path(current_user) }
       format.js { render :layout => false }
     end
   end
