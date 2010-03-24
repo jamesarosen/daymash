@@ -70,7 +70,7 @@ EOS
   def recent_tweets_sidebar
     tweets = fetch_recent_tweets
     return '' if tweets.empty?
-    Rails.cache.fetch(TWITTER_SIDEBAR_CACHE_KEY, :expire_in => 1.hour) do
+    Rails.cache.fetch(TWITTER_SIDEBAR_CACHE_KEY, :expires_in => 1.hour) do
       content_tag(:aside, :class => 'sidebar') do
         content_tag(:ul, :class => 'twitter') do
           tweets.map do |tweet|
