@@ -17,6 +17,14 @@ class CredentialsControllerTest < ActionController::TestCase
       should_respond_with :unauthorized
     end
     
+    context "trying to add a credential to a user" do
+      setup do
+        rpx_returns :providerName => 'Clayly', :identifier => 'http://moe.clayly.net'
+        post :create, :user_id => @pierre.to_param, :token => 'a token'
+      end
+      should_respond_with :unauthorized
+    end
+    
   end
   
   context 'a signed-in user' do
