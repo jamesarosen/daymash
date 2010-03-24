@@ -2,6 +2,14 @@ class AggregatesController < ApplicationController
   
   append_before_filter :authorize_show, :only => :show
   
+  # cache aggregate.ics for no more than 1 day:
+  caches_action :show, :expires_in => 1.day,
+                       :if => lambda { |c| c.request.format.ics? }
+  
+  # cache aggregate.html without layout:
+  caches_action :show, :layout => false,
+                       :if => lambda { |c| c.request.format.html? }
+  
   def show
     @user = requested_user(:user_id)
     respond_to do |format|
@@ -32,7 +40,7 @@ class AggregatesController < ApplicationController
   # Otherwise, allowed iff requested user is current user.
   def authorize_show
     user = requested_user(:user_id)
-    if request.format == Mime::ICS
+    if request.format.ics?
       unauthorized("Invalid privacy token.") unless params[:pt] == user.privacy_token
     else
       unauthorized unless user == current_user

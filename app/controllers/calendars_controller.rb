@@ -1,6 +1,8 @@
 class CalendarsController < ApplicationController
   
   append_before_filter :require_signed_in
+  caches_action :index, :layout => false
+  cache_sweeper :calendar_sweeper, :only => [:crate, :destroy, :undestroy]
   
   def index
     @user = current_user
