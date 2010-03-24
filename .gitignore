@@ -4,8 +4,8 @@ config/api_keys.yml
 config/database.yml
 config/initializers/api_keys.yml
 config/virtual_hosts/development.conf
-public/javascripts/cache/
-public/stylesheets/cache/
+public/javascripts/all.js
+public/stylesheets/all.css
 test/fixtures
 tmp
 .DS_Store

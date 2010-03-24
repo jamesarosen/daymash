@@ -25,7 +25,7 @@ JQUERY_LOCATION = 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.
 # config.cache_store = :mem_cache_store
 
 # Enable serving of images, stylesheets, and javascripts from an asset server
-# config.action_controller.asset_host = "http://assets.example.com"
+# config.action_controller.asset_host = "http://daymash.s3.amazonaws.com"
 
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
