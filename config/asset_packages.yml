@@ -1,0 +1,11 @@
+--- 
+javascripts:
+- base:
+  - jQuery-highlightFade.0.7
+  - application
+stylesheets:
+- base:  
+  - reset
+  - application
+  - credentials
+  - sidebar
