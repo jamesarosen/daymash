@@ -6,3 +6,7 @@ facebook:
   application_id: 'something here'
   api_key: something here
   secret: something here
+amazon:
+  s3:
+    access_key_id: something here
+    secret_access_key: something here
