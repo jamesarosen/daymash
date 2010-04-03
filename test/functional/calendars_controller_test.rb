@@ -4,8 +4,10 @@ class CalendarsControllerTest < ActionController::TestCase
 
   def setup
     super
-    @clarence = Factory(:user, :display_name => 'Clarence Biggs')
-    @soccer = Factory(:calendar, :user => @clarence, :title => 'Soccer')
+    Timecop.travel(1.week.ago) do
+      @clarence = Factory(:user, :display_name => 'Clarence Biggs')
+      @soccer = Factory(:calendar, :user => @clarence, :title => 'Soccer')
+    end
   end
 
   context "a signed-out visitor" do
@@ -45,6 +47,7 @@ class CalendarsControllerTest < ActionController::TestCase
       should 'create a valid calendar' do
         assert assigns(:calendar).errors.blank?, assigns(:calendar).errors.inspect
       end
+      should_change("the User's ETag") { @clarence.reload.updated_at }
     end
     
     context 'deleting a calendar' do
@@ -55,6 +58,7 @@ class CalendarsControllerTest < ActionController::TestCase
         assert_equal @soccer.id, @controller.session[AdvancedFlash::DELETED_CALENDAR_SESSION_ID]
       end
       should_set_the_flash_to AdvancedFlash::DELETED_CALENDAR_FLASH
+      should_change("the User's ETag") { @clarence.reload.updated_at }
     end
     
     context 'deleting a calendar via AJAX' do
@@ -64,15 +68,17 @@ class CalendarsControllerTest < ActionController::TestCase
       should "remove the relevant DOM element" do
         assert_match /DayMash\.deleteCalendar\('#{@soccer.to_param}'\);/, @response.body
       end
+      should_change("the User's ETag") { @clarence.reload.updated_at }
     end
     
     context 'with a deleted calendar' do
-      setup { @soccer.destroy }
+      setup { Timecop.travel(5.days.ago) { @soccer.destroy } }
       
       context "un-deleting that calendar" do
         setup { put :undestroy, :user_id => @clarence, :id => @soccer.to_param }
         should_redirect_to("the user's aggregate page") { user_aggregate_path(@clarence) }
         should_change("the number of the user's calendars", :by => 1) { @clarence.calendars(true).count }
+        should_change("the User's ETag") { @clarence.reload.updated_at }
       end
       
       context 'undeleting that calendar via AJAX' do
@@ -82,6 +88,7 @@ class CalendarsControllerTest < ActionController::TestCase
         should "insert the new Calendar in the DOM" do
           assert_match /DayMash\.insertCalendar\(/, @response.body
         end
+        should_change("the User's ETag") { @clarence.reload.updated_at }
       end
     end
     

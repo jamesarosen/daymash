@@ -6,6 +6,13 @@ class Calendar < ActiveRecord::Base
   validates_format_of :uri, :with => /^https?:\/\/.+\..+/
   validates_uniqueness_of :uri, :title, :scope => :user_id
   
+  after_save { |calendar| calendar.user.touch }
+  after_destroy { |calendar| calendar.user.touch }
+  
+  def self.after_restore(calendar)
+    calendar.user.touch
+  end
+  
 end
 
 Calendar::Archive.class_eval do
@@ -24,6 +31,6 @@ Calendar::Archive.class_eval do
   
   def restore
     Calendar.restore_all(['id = ?', id])
-    Calendar.find(id)
+    Calendar.find(id).tap { |c| Calendar.after_restore(c) }
   end
 end

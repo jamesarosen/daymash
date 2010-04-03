@@ -12,11 +12,13 @@ class AggregatesController < ApplicationController
   
   def show
     @user = requested_user(:user_id)
-    respond_to do |format|
-      format.html
-      format.ics do
-        calendar = @user.aggregate_freebusy_calendar
-        render :text => calendar.to_s, :content_type => Mime::ICS
+    if stale?(:last_modified => @user.updated_at.utc, :etag => @user)
+      respond_to do |format|
+        format.html
+        format.ics do
+          calendar = @user.aggregate_freebusy_calendar
+          render :text => calendar.to_s, :content_type => Mime::ICS
+        end
       end
     end
   end
