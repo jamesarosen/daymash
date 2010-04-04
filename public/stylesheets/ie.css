@@ -1,0 +1,16 @@
+header {
+  min-height: 2em;
+  padding: 0.5em 2em;
+}
+
+  header h1 { float: left; padding: 0.5em 0; }
+
+  header .current_user { border: 1px solid green; }
+  header nav { border: 1px solid purple; }
+  header nav ul { border: 1px solid orange; }
+  header nav ul li { border: 1px solid black; }
+  header nav ul li, header nav ul li a { padding: 0; }
+  
+  header .current_user, header nav ul li { top: 2em; }
+  
+  header nav ul { margin-top: 1em; }

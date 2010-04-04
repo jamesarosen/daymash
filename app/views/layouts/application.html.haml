@@ -7,6 +7,8 @@
     = javascript_include_tag jquery_include_location
     = javascript_include_merged :base
     = add_html5_dom_elements_to_ie
+    /[if IE]
+      = stylesheet_link_tag 'ie'
     - if protect_against_forgery?
       = javascript_tag "DayMash.auth_token = { name: '#{request_forgery_protection_token}', value: '#{form_authenticity_token}'};"
     
