@@ -78,9 +78,14 @@ header {
   text-align: right;
   padding: 1.5em 2em;
 }
-header h1 { float: left; }
-header nav ul { display: inline; }
-header nav li, header nav > span { display: inline; padding: 1em; }
+
+  header h1 { float: left; }
+
+  header nav ul { display: inline; }
+  
+  header nav li, header nav > span { display: inline; }
+  
+  header .current_user, header nav li { margin: 0 0.8em; }
 
 body.js #flash {
   background: #035d92;

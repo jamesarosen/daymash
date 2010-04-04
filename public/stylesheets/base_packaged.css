@@ -26,7 +26,8 @@ form input:focus, form select:focus, form textarea:focus {border-color: #91b24f;
  header {border-top: 1px solid #042464; border-bottom: 1px solid #042464; display: block; text-align: right; padding: 1.5em 2em}
 header h1 {float: left}
 header nav ul {display: inline}
-header nav li, header nav > span {display: inline; padding: 1em}
+header nav li, header nav > span {display: inline}
+header .current_user, header nav li {margin: 0 0.8em}
 body.js #flash {background: #035d92; font-size: 1.1em; margin: 0 15%; position: absolute; top: 0; width: 70%; z-index: 99}
 body.js #flash + * {margin-top: 0}
 body.js #flash li {border: 3px solid; display: block; padding: 0.4em}
