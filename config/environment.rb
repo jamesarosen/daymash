@@ -32,7 +32,7 @@ Rails::Initializer.run do |config|
                        :version => '~> 0.8.5'
   
   config.gem 'xebec', :source => 'http://rubygems.org',
-                      :version => '~> 2.3.0'
+                      :version => '~> 2.5.2'
                       
   config.gem 'rpx_now', :source => 'http://rubygems.org',
                         :version => '~> 0.6.17'
