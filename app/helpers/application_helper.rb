@@ -64,33 +64,11 @@ EOS
 EOS
   end
   
-  TWITTER_SIDEBAR_CACHE_KEY = 'sidebar.twitter'
-  
   def sidebar(title = nil, &block)
     content_for :sidebar, (content_tag(:aside, :class => 'sidebar') {
       (title.present? ? content_tag(:h2, title) : '') +
       (block_given? ? capture(&block) : '')
     })
-  end
-  
-  # Generates a sidebar <ul> containing the last five tweets by
-  # or about @daymash. Caches the sidebar for a while.
-  def recent_tweets_sidebar
-    Rails.cache.fetch(TWITTER_SIDEBAR_CACHE_KEY, :expires_in => 1.hour) do
-      tweets = fetch_recent_tweets
-      if tweets.any?
-        content_tag(:aside, :class => 'sidebar') do
-          content_tag(:ul, :class => 'twitter') do
-            tweets.map do |tweet|
-              content_tag(:li, :class => 'tweet') do
-                content = auto_link(tweet.text, :html => { :target => 'twitter', :rel => 'nofollow' })
-                image_tag(tweet.profile_image_url) + content_tag(:div, content)
-              end
-            end.join(' ')
-          end
-        end
-      end
-    end
   end
   
   def fetch_recent_tweets

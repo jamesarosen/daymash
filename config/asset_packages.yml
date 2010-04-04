@@ -2,6 +2,7 @@
 javascripts:
 - base:
   - jQuery-highlightFade.0.7
+  - jQuery.tweet
   - application
 stylesheets:
 - base:  

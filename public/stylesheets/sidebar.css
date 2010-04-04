@@ -1,3 +1,22 @@
+<aside class="sidebar tweets">
+  <ul class="tweet_list">
+    <li class="tweet_first tweet_odd">
+      <a class="tweet_avatar" href="http://twitter.com/jamesarosen">
+        <img src="http://a1.twimg.com/profile_images/252464008/Picture_1_normal.png" alt="jamesarosen's avatar" title="jamesarosen's avatar" border="0" height="3em" width="3em">
+      </a>
+      <a href="http://twitter.com/jamesarosen/statuses/11348667908" title="view tweet on twitter">
+        about 3 days ago
+      </a>
+      <span class="tweet_text">
+        <a href="http://twitter.com/rem">@rem</a> I've tried inserting your HTML5 shim in a site, but IE still doesn't seem to honor CSS styles with HTML5 elements. <a href="http://daymash.com">http://daymash.com</a>
+      </span>
+    </li>
+    <li class="tweet_even"><a class="tweet_avatar" href="http://twitter.com/jamesarosen"><img src="http://a1.twimg.com/profile_images/252464008/Picture_1_normal.png" alt="jamesarosen's avatar" title="jamesarosen's avatar" border="0" height="3em" width="3em"></a><a href="http://twitter.com/jamesarosen/statuses/11310055795" title="view tweet on twitter">about 4 days ago</a> <span class="tweet_text"><a href="http://twitter.com/checkmycolours">@checkmycolours</a> <a href="http://daymash.com.">http://daymash.com.</a> The link colors in the top navigation bar aren't getting picked up.</span></li></ul></aside>
+
+    <aside class="sidebar"><ul class="twitter"><li class="tweet"><img alt="Picture_1_normal" src="http://a1.twimg.com/profile_images/252464008/Picture_1_normal.png"><div>@rem I've tried inserting your HTML5 shim in a site, but IE still doesn't seem to honor CSS styles with HTML5 elements. <a href="http://daymash.com" rel="nofollow" target="twitter">http://daymash.com</a></div></li> <li class="tweet"><img alt="Picture_1_normal" src="http://a1.twimg.com/profile_images/252464008/Picture_1_normal.png"><div>@checkmycolours <a href="http://daymash.com" rel="nofollow" target="twitter">http://daymash.com</a>. The link colors in the top navigation bar aren't getting picked up.</div></li></ul></aside>
+
+
+
 #main { padding-right: 20em; }
 
 /* 20em in #main == 30/1.1 == 27.27em in .sidebar */
@@ -17,7 +36,7 @@
 
   .sidebar + .sidebar { margin-top: 2em; }
 
-  .sidebar .twitter li {
+  .sidebar .tweet_list li {
     border-bottom: 1px solid #083c71;
     clear: left;
     display: block;
@@ -25,22 +44,32 @@
     min-height: 3em;
   }
 
-  .sidebar .twitter li + li {
+  .sidebar .tweet_list li + li {
     border-top: 1px solid #1066a0;
     padding-top: 0.6em;
   }
   
-  .sidebar .twitter li:last-child {
+  .sidebar .tweet_list li:last-child {
     border-bottom: none;
     padding-bottom: 0;
   }
   
-  .sidebar .twitter img {
-    width: 3em;
-    height: 3em;
+  .sidebar .tweet_avatar {
+    display: block;
     float: left;
   }
   
-  .sidebar .twitter img + div {
+  .sidebar a.tweet_avatar:hover, .sidebar a.tweet_avatar:focus {
+    border-bottom: none;
+  }
+  
+  .sidebar .tweet_list img {
+    width: 3em;
+    height: 3em;
+  }
+  
+  .sidebar .tweet_list .tweet_time,
+  .sidebar .tweet_list .tweet_text {
+    display: block;
     padding-left: 3.5em;
   }
