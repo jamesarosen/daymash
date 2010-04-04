@@ -65,6 +65,13 @@ EOS
   
   TWITTER_SIDEBAR_CACHE_KEY = 'sidebar.twitter'
   
+  def sidebar(title = nil, &block)
+    content_for :sidebar, (content_tag(:aside, :class => 'sidebar') {
+      (title.present? ? content_tag(:h2, title) : '') +
+      (block_given? ? capture(&block) : '')
+    })
+  end
+  
   # Generates a sidebar <ul> containing the last five tweets by
   # or about @daymash. Caches the sidebar for a while.
   def recent_tweets_sidebar
