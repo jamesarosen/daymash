@@ -33,9 +33,16 @@ en:
       my_profile: My Profile
       my_calendars: My Calendars
       aggregate: My Aggregate
+      how_it_works: How it Works
     
-  welcome:
-    header: Welcome!
+  pages:
+    how_it_works:
+      title: How it Works
+    welcome:
+      header: Welcome!
+    
+  how_it_works:
+    title: 'How it Works'
   
   calendars:
     deleted: "Deleted calendar {{title}}. {{undo_link}}"

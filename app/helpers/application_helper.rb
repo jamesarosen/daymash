@@ -20,6 +20,7 @@ module ApplicationHelper
         nb.nav_item :my_profile, user_path(current_user)
         nb.nav_item :sign_out
       else
+        nb.nav_item :how_it_works, page_path(:how_it_works)
         nb.nav_item :sign_up, rpx_url(users_url)
         nb.nav_item :sign_in, rpx_url(sessions_url)
       end
