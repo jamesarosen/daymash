@@ -1,6 +1,0 @@
-%header
-  %h1= 'DayMash'
-  - if signed_in?
-    %span{ :class => 'current_user' }
-      = t('navbar.site.signed_in_as', :current_user => current_user)
-  = site_nav_bar

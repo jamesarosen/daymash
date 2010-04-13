@@ -1,8 +1,0 @@
-%h2= t '.title'
-%ul{:class => 'calendars'}
-  - @user.calendars.each do |calendar|
-    %li{:class => 'calendar'}
-      %span{:title => calendar.uri}= calendar.title
-      = inline_button_to user_calendar_path(@user, calendar), :delete, t('common.delete')
-.add.calendar
-  = link_to t('.add_calendar'), new_user_calendar_path(@user)

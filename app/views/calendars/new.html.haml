@@ -1,9 +1,0 @@
-- semantic_form_for [current_user, @calendar] do |form|
-  %fieldset
-    %legend= t('.form.legend')
-    - form.inputs do
-      = form.input :uri, :as => 'url'
-      = form.input :title
-  %fieldset
-    %div
-      = form.submit t('.form.submit')
