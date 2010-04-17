@@ -48,8 +48,8 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 end
 
-ApplicationHelper.class_eval do
-  def fetch_recent_tweets
+TwitterHelper.class_eval do
+  def recent_tweets
     []
   end
 end
