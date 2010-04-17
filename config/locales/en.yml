@@ -36,6 +36,8 @@ en:
       how_it_works: How it Works
     
   pages:
+    credits:
+      title: Credits
     how_it_works:
       title: How it Works
     welcome:
@@ -88,13 +90,14 @@ en:
     deleted: "Deleted {{provider}} credential. {{undo_link}}"
     undeleted: "Restored {{provider}} credential."
     cannot_delete_last: "Cannot delete last credential. You wouldn't be able to sign in!"
-      
+  
   footer:
     authors: DayMash was created by {{james}}.
     james_blog_title: James A. Rosen's Blog
     bug: Report a bug
     bug_title: DayMash Issues on GitHub
     follow_me: Follow {{handle}} on Twitter
+    credits: Credits
   
   common:
     cancel: cancel

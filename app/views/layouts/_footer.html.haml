@@ -6,3 +6,5 @@
       = link_to(t('footer.bug'), 'mailto:help@daymash.com', :title => t('footer.bug_title')) + '.'
     %span.twitter
       = t('footer.follow_me', :handle => link_to('@DayMash', 'http://twitter.com/daymash'))
+    %span.credits
+      = link_to t('footer.credits'), page_path(:credits)
