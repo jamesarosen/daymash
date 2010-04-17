@@ -2,6 +2,9 @@ require 'rpx_now'
 
 class SessionsController < ApplicationController
   
+  include RpxHelper
+  hide_action :rpx_scripts, :rpx_url
+  
   protect_from_forgery :except => [:create]
   
   def create
@@ -11,7 +14,10 @@ class SessionsController < ApplicationController
       self.current_user = user
     else
       self.current_user = nil
-      flash[:error] = I18n.t('activerecord.errors.models.credential.notfound', :provider => data[:provider])
+      flash[:error] = I18n.t('activerecord.errors.models.credential.notfound',
+                                :provider => data[:provider],
+                                :sign_in_path => rpx_url(sessions_url),
+                                :sign_up_path => rpx_url(users_url))
     end
     redirect_to root_path
   end

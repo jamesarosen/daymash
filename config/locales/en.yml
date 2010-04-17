@@ -15,11 +15,11 @@ en:
               invalid: That doesn't look like a valid email address.
               taken: 'That email address is already taken by another user. If you would like to add a new authentication provider, please first sign in using the other account, then click "My Account," then "Add Provider," and finally sign in via the new provider again.'
         credential:
-          notfound: 'That credential is not registered. If you would like to sign in via {{provider}}, please first sign in using another provider, then click "My Account," then "Add Provider," and finally sign in via {{provider}}.'
+          notfound: "That credential is not registered. If you haven't signed up yet, you can <a href='{{sign_up_path}}' title='Sign Up'>sign up</a> now. If you're already registered but would like to sign in via {{provider}}, please first <a href='{{sign_in_path}}' title='Sign In'>sign in</a> using another provider, then click 'My Account,' then 'Add Provider,' and finally sign in via {{provider}}."
     attributes:
       user:
-        display_name: What you'd like us to call you. Say, 'Ishmael'
-        password_confirmation: Password once again, with feeling
+        display_name: "What you'd like us to call you. Say, 'Ishmael'"
+        password_confirmation: "Password once again, with feeling"
         email: Email Address
       calendar:
         uri: URL
@@ -41,10 +41,7 @@ en:
     how_it_works:
       title: How it Works
     welcome:
-      header: Welcome!
-    
-  how_it_works:
-    title: 'How it Works'
+      tagline: "For when you're too busy to tell people when you're busy."
   
   calendars:
     deleted: "Deleted calendar {{title}}. {{undo_link}}"
