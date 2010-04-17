@@ -56,7 +56,14 @@ end
 
 ActionController::TestCase.class_eval do
   def setup
+    super
     @controller.session ||= HashWithIndifferentAccess.new
+  end
+  
+  def teardown
+    Mocha::Mockery.instance.teardown
+    [Calendar, Credential, User].each { |mc| mc.delete_all }
+    super
   end
   
   def rpx_returns(hash)
