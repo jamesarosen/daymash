@@ -20,7 +20,7 @@ class AggregatesControllerTest < ActionController::TestCase
       setup do
         @coffee_date = ((30.minutes.from_now)..(1.hour.from_now))
         @vacation    = ((2.days.from_now)..(2.weeks.from_now))
-        freebusy = RiCal.Calendar do |cal|
+        @freebusy = RiCal.Calendar do |cal|
           [@coffee_date, @vacation].each do |event|
             cal.event do |e|
               e.description = 'Busy'
@@ -30,7 +30,7 @@ class AggregatesControllerTest < ActionController::TestCase
           end
         end
         User.stubs(:find).returns(@cassandra)
-        @cassandra.stubs(:aggregate_freebusy_calendar).returns(freebusy)
+        @cassandra.stubs(:aggregate_freebusy_calendar).returns(@freebusy)
       end
       
       context "without the User's privacy token" do
@@ -48,8 +48,9 @@ class AggregatesControllerTest < ActionController::TestCase
         should_respond_with :success
         should_assign_to(:user) { @cassandra }
         should_respond_with_content_type :ics
-        should "look up the User's freebusy aggregate" do
-          assert_received(@cassandra, :aggregate_freebusy_calendar)
+        should "render up the User's freebusy aggregate" do
+          assert_equal @freebusy.to_s, @response.body
+          # assert_received(@cassandra, :aggregate_freebusy_calendar)
         end
       end
     
