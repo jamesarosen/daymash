@@ -13,8 +13,6 @@ config.gem 'memcached'
 require 'memcached'
 config.cache_store = :mem_cache_store, Memcached::Rails.new
 
-JQUERY_LOCATION = 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'
-
 # See everything in the log (default is :info)
 # config.log_level = :debug
 

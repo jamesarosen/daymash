@@ -2,7 +2,7 @@
  @font-face {font-family: Museo; font-weight: 500; src: url('/fonts/Museo500-Regular.otf')}
 body {font-size: 12px; font-family: Arial, "Helvetica Neue", Geneva, sans-serif; line-height: 160%}
 header, #main, footer {font-size: 1.5em}
-nav, h1, h2, h3, h4, h5, h6, legend {font-family: Museo, Sylfaen, Cambria, "Times New Roman", serif; text-shadow: 1px 1px 1px #000}
+nav, h1, h2, h3, h4, h5, h6, legend, .current_user {font-family: Museo, Sylfaen, Cambria, "Times New Roman", serif; text-shadow: 1px 1px 1px #000}
 h1 {font-size: 2em; font-weight: bold}
 h2, legend {font-size: 1.8em; font-weight: bold}
 h2 span + a {font-size: 0.6em}
@@ -15,6 +15,8 @@ header a:hover, header a:focus {border-bottom-width: 2px}
 form.inline button:hover span, form.inline button:focus span {border-bottom: 1px solid}
 dl dt {font-size: 1.225em}
 p, div.p {line-height: 1.5em}
+.welcome.logo {text-align: center}
+.welcome.logo img {width: 22em}
  html, body {background-color: #035d92; color: #dddddd}
 h1, h2, h3, h4, h5, h6, legend {color: #dddddd}
 header {background-color: #083c71}
@@ -23,11 +25,16 @@ header a {color: #68b8e7}
 form .inline-errors {color: red}
 form input, form select, form textarea {background-color: #dddddd; border-color: #083c71; background: -moz-linear-gradient(top, #ddd, #777 0px, #ddd 3px); background: -webkit-gradient(linear, left top, left 3, from(#777), to(#ddd)); box-shadow: rgba(0, 0, 0, 0.1) 4px 4px 4px; -moz-box-shadow: rgba(0, 0, 0, 0.1) 4px 4px 4px; -webkit-box-shadow: rgba(0, 0, 0, 0.1) 4px 4px 4px}
 form input:focus, form select:focus, form textarea:focus {border-color: #91b24f; background: -moz-linear-gradient(top, #ddd, #555 0px, #ddd 5px); background: -webkit-gradient(linear, left top, left 3, from(#555), to(#ddd)); box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 4px; -moz-box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 4px; -webkit-box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 4px}
- header {border-top: 1px solid #042464; border-bottom: 1px solid #042464; display: block; text-align: right; padding: 1.5em 2em}
-header h1 {float: left}
-header nav ul {display: inline}
-header nav li, header nav > span {display: inline}
-header .current_user, header nav li {margin: 0 0.8em}
+ header {border-top: 1px solid #042464; border-bottom: 1px solid #042464; display: block; text-align: right; padding: 0.5em 4%; width: 92%}
+header > div.tr {display: table-row; width: 100%; padding: 0}
+header > div > * {display: table-cell; width: 33.33%; padding: 0; margin: 0}
+header h1 {text-align: left}
+header h1 > * {vertical-align: middle}
+header h1 img {height: 2em}
+header .current_user {text-align: center}
+header nav {text-align: right}
+header nav ul li, header nav > span {display: inline}
+header nav ul li {margin: 0 0.8em}
 body.js #flash {background: #035d92; font-size: 1.1em; margin: 0 15%; position: absolute; top: 0; width: 70%; z-index: 99}
 body.js #flash + * {margin-top: 0}
 body.js #flash li {border: 3px solid; display: block; padding: 0.4em}
@@ -82,13 +89,12 @@ ul.credentials .credential.Flickr {background-image: url("/images/social.me/flic
 ul.credentials .credential.Blogger {background-image: url("/images/social.me/blogger.png")}
 ul.credentials .credential.Wordpress {background-image: url("/images/social.me/wordpress.png")}
 ul.credentials .credential.MySpace {background-image: url("/images/social.me/myspace.png")}
-<aside class="sidebar tweets"> <ul class="tweet_list"> <li class="tweet_first tweet_odd"> <a class="tweet_avatar" href="http://twitter.com/jamesarosen"> <img src="http://a1.twimg.com/profile_images/252464008/Picture_1_normal.png" alt="jamesarosen's avatar" title="jamesarosen's avatar" border="0" height="3em" width="3em"> </a> <a href="http://twitter.com/jamesarosen/statuses/11348667908" title="view tweet on twitter"> about 3 days ago </a> <span class="tweet_text"> <a href="http://twitter.com/rem">@rem</a> I've tried inserting your HTML5 shim in a site, but IE still doesn't seem to honor CSS styles with HTML5 elements. <a href="http://daymash.com">http://daymash.com</a> </span> </li> <li class="tweet_even"><a class="tweet_avatar" href="http://twitter.com/jamesarosen"><img src="http://a1.twimg.com/profile_images/252464008/Picture_1_normal.png" alt="jamesarosen's avatar" title="jamesarosen's avatar" border="0" height="3em" width="3em"></a><a href="http://twitter.com/jamesarosen/statuses/11310055795" title="view tweet on twitter">about 4 days ago</a> <span class="tweet_text"><a href="http://twitter.com/checkmycolours">@checkmycolours</a> <a href="http://daymash.com.">http://daymash.com.</a> The link colors in the top navigation bar aren't getting picked up.</span></li></ul></aside> <aside class="sidebar"><ul class="twitter"><li class="tweet"><img alt="Picture_1_normal" src="http://a1.twimg.com/profile_images/252464008/Picture_1_normal.png"><div>@rem I've tried inserting your HTML5 shim in a site, but IE still doesn't seem to honor CSS styles with HTML5 elements. <a href="http://daymash.com" rel="nofollow" target="twitter">http://daymash.com</a></div></li> <li class="tweet"><img alt="Picture_1_normal" src="http://a1.twimg.com/profile_images/252464008/Picture_1_normal.png"><div>@checkmycolours <a href="http://daymash.com" rel="nofollow" target="twitter">http://daymash.com</a>. The link colors in the top navigation bar aren't getting picked up.</div></li></ul></aside> #main {padding-right: 20em}
+#main {padding-right: 20em}
  .sidebar {border: 3px solid #083c71; border-radius: 12px; -moz-border-radius: 12px; -webkit-border-radius: 12px; clear: right; float: right; font-size: 1.1em; margin: 4em 4em 0 0 ; padding: 0.6em; width: 22em}
 .sidebar + .sidebar {margin-top: 2em}
 .sidebar .tweet_list li {border-bottom: 1px solid #083c71; clear: left; display: block; padding-bottom: 0.6em; min-height: 3em}
-.sidebar .tweet_list li + li {border-top: 1px solid #1066a0; padding-top: 0.6em}
-.sidebar .tweet_list li:last-child {border-bottom: none; padding-bottom: 0}
-.sidebar .tweet_avatar {display: block; float: left}
-.sidebar a.tweet_avatar:hover, .sidebar a.tweet_avatar:focus {border-bottom: none}
-.sidebar .tweet_list img {width: 3em; height: 3em}
-.sidebar .tweet_list .tweet_time, .sidebar .tweet_list .tweet_text {display: block; padding-left: 3.5em}
+.sidebar .twitter li + li {border-top: 1px solid #1066a0; padding-top: 0.6em}
+.sidebar .twitter li:last-child {border-bottom: none; padding-bottom: 0}
+.sidebar .twitter a:hover, .sidebar .twitter a:focus {border-bottom: none}
+.sidebar .twitter img {display: block; float: left; width: 3em; height: 3em}
+.sidebar .twitter div {display: block; padding-left: 3.5em}
