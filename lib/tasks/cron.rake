@@ -17,5 +17,13 @@ namespace :db do
   end
 end
 
+namespace :twitter do
+  desc 'load recent tweets by and about DayMash into Rails.cache'
+  task :cache_recent_tweets => :environment do
+    o = Object.new.tap { |o| o.extend TwitterHelper }
+    o.recent_tweets(true) # force recache of recent tweets
+  end
+end
+
 desc 'The cron task is run daily by Heroku'
-task :cron => ['db:calendars:delete_old', 'db:credentials:delete_old']
+task :cron => ['db:calendars:delete_old', 'db:credentials:delete_old', 'twitter:cache_recent_tweets']

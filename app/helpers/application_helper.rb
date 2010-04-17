@@ -70,15 +70,5 @@ EOS
       (block_given? ? capture(&block) : '')
     })
   end
-  
-  def fetch_recent_tweets
-    begin
-      by_daymash = Twitter::Search.new.from('daymash').per_page(5).fetch.results || []
-      to_daymash = Twitter::Search.new('daymash').per_page(5).fetch.results || []
-      (by_daymash + to_daymash).uniq_by(&:id).sort_by { |t| Time.parse(t.created_at) }.reverse[0..4]
-    rescue Crack::ParseError, SocketError
-      []
-    end
-  end
     
 end

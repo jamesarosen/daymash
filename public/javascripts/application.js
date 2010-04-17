@@ -120,7 +120,6 @@
     DayMash.makeXShowOnHover('form.inline', 'ul.credentials li');
     DayMash.makeXShowOnHover('form.inline', 'ul.calendars li');
     DayMash.makeXShowOnHover('span + a', 'h2,h3,h4,h5,h6');
-    DayMash.loadTweets();
   });
 
 /*
@@ -247,17 +246,6 @@
     
     deleteCalendar: function(id) {
       $('#' + id).fadeOut(function() { $(this).remove(); });
-    },
-    
-    loadTweets: function() {
-      $(".tweets").tweet({
-        username: 'daymash',
-        avatar_size: '3em',
-        count: 3,
-        query: "daymash",
-        loading_text: "<img src='/images/spinner.gif' alt='Web 2.0 Spinner' />"
-      });
-      
     }
   
   };
