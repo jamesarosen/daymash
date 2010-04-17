@@ -14,7 +14,7 @@ body  {
 
 header, #main, footer { font-size: 1.5em; }
 
-nav, h1, h2, h3, h4, h5, h6, legend {
+nav, h1, h2, h3, h4, h5, h6, legend, .current_user {
   font-family: Museo, Sylfaen, Cambria, "Times New Roman", serif;
   text-shadow: 1px 1px 1px #000;
 }
@@ -35,6 +35,9 @@ form.inline button:focus span  { border-bottom: 1px solid; }
 dl dt       { font-size: 1.225em; }
 
 p, div.p { line-height: 1.5em; }
+
+.welcome.logo { text-align: center; }
+.welcome.logo img { width: 22em; }
 
 /*
   COLORS
@@ -76,16 +79,22 @@ header {
   border-bottom: 1px solid #042464;
   display: block;
   text-align: right;
-  padding: 1.5em 2em;
+  padding: 0.5em 4%;
+  width: 92%;
 }
 
-  header h1 { float: left; }
+  header > div.tr { display: table-row; width: 100%; padding: 0; }
+    header > div > * { display: table-cell; width: 33.33%; padding: 0; margin: 0; }
+  
+  header h1 { text-align: left; }
+    header h1 > * { vertical-align: middle; }
+    header h1 img { height: 2em; }
 
-  header nav ul { display: inline; }
+  header .current_user { text-align: center; }
   
-  header nav li, header nav > span { display: inline; }
-  
-  header .current_user, header nav li { margin: 0 0.8em; }
+  header nav { text-align: right; }
+    header nav ul li, header nav > span { display: inline; }
+    header nav ul li { margin: 0 0.8em; }
 
 body.js #flash {
   background: #035d92;
