@@ -42,6 +42,7 @@ en:
       title: How it Works
     welcome:
       tagline: "For when you're too busy to tell people when you're busy."
+      more: Learn more.
   
   calendars:
     deleted: "Deleted calendar {{title}}. {{undo_link}}"

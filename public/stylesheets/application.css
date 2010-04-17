@@ -36,8 +36,8 @@ dl dt       { font-size: 1.225em; }
 
 p, div.p { line-height: 1.5em; }
 
-.welcome.logo { text-align: center; }
-.welcome.logo img { width: 22em; }
+.welcome { text-align: center; }
+.welcome .logo img { width: 22em; }
 
 /*
   COLORS

@@ -1,2 +1,7 @@
-.welcome.logo
-  = image_tag 'squeezed_sun.png', :title => 'Squeezed Sun', :alt => 'Squeezed Sun'
+.welcome
+  .logo
+    = image_tag 'squeezed_sun.png', :title => 'Squeezed Sun', :alt => 'Squeezed Sun'
+  %p
+    = t '.tagline'
+  %p
+    = link_to t('.more'), page_path(:how_it_works)
