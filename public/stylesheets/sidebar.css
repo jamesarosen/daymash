@@ -9,7 +9,7 @@
 
   .sidebar + .sidebar { margin-top: 2em; }
   
-  .sidebar ul { padding: 0; list-style-type: none; }
+  .sidebar ul { margin: 0; padding: 0; list-style-type: none; }
 
   .sidebar .twitter li {
     border-bottom: 1px solid #083c71;
