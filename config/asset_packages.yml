@@ -4,8 +4,7 @@ javascripts:
   - jQuery-highlightFade.0.7
   - application
 stylesheets:
-- merged:  
-  - reset
+- merged:
   - application
   - credentials
   - sidebar
