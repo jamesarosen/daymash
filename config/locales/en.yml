@@ -40,6 +40,13 @@ en:
       title: Credits
     how_it_works:
       title: How it Works
+      intro_1: "One Tuesday morning, Sally asks her college buddy Vipin whether he would be interested in working on a new project with her."
+      intro_2: "\"I'd love to,\" Vipin responds. \"Let's talk over coffee. When are you free?\""
+      intro_3: "Sally enthusiastically describes how she's been using Google Calendar to organize her life: \"I actually have all my calendars online &mdash; you can see them yourself. There's my social calendar and my work calendar, and kickball, and...\""
+      intro_4: "\"Let me stop you there,\" interrupts Vipin. \"Have you heard about DayMash? You can group all your calendars together in one place and share them with friends.\""
+      step_1: "Sally signs up for DayMash, logging in using her Facebook account."
+      step_2: "Sally tells DayMash about each of her calendars: her Google calendar, her work calendar, her kickball team's calendar, and her son Kevin's soccer calendar. She even adds the calendar for the tantric sex class her husband signed up for as an anniversary present because she knows that DayMash hides the details of her calendars &mdash; all anybody sees is that she's \"Busy.\""
+      step_3: "Sally posts her DayMash aggregate to her Facebook page so everyone who knows her can see when she's busy and when she's free."
     welcome:
       tagline: "For when you're too busy to tell people when you're busy."
       more: Learn more.

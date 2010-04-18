@@ -221,10 +221,11 @@ form.inline { line-height: inherit; }
   }
     form.inline button span { margin: 0; padding: 0; }
 
-p, div.p { line-height: 1.4em; }
+p { line-height: 1.5em; }
 dd { margin-left: 0; }
 dl dd + dt { margin-top: 1em; }
-ul, ol, li { list-style-type: none; padding: 0; }
+ul, ul li { list-style-type: none; padding: 0; }
+ol li + li { margin-top: 1.5em; }
 
 .calendar { padding-left: 20px; }
 ul.calendars { margin-top: 0.5em; }
