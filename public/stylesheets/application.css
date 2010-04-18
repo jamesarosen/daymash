@@ -185,7 +185,7 @@ form.inline button {
   padding: 0;
 }
 
-p, div.p { line-height: 1.4aggreem; }
+p, div.p { line-height: 1.4em; }
 dd { margin-left: 0; }
 dl dd + dt { margin-top: 1em; }
 ul, ol, li { list-style-type: none; padding: 0; }
