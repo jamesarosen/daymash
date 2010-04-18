@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
     rescue_from klass, :with => method
   end
   
+  before_filter { |cont| f = cont.send(:flash); f.now['foo'] = 'bar' }
+  
   protected
   
   def requested_user(param = :id)

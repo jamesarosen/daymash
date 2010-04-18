@@ -4,19 +4,22 @@
   %head
     %title DayMash
     = stylesheet_link_tag *css_assets
+    = stylesheet_link_tag 'blueprint/print', :media => 'print'
     = javascript_include_tag *js_assets
-    = add_html5_dom_elements_to_ie
     /[if IE]
-      = stylesheet_link_tag 'ie'
+      = stylesheet_link_tag 'blueprint/ie', :media => 'print, projection'
+    = add_html5_dom_elements_to_ie
     - if protect_against_forgery?
       = javascript_tag "DayMash.auth_token = { name: '#{request_forgery_protection_token}', value: '#{form_authenticity_token}'};"
     
   %body
-    = render :partial => '/layouts/header'
-    = render :partial => '/layouts/sidebar'
-    #main
-      = flash_to_html
-      = yield
-    = render :partial => '/layouts/footer'
-    = rpx_scripts
-    = google_analytics_scripts
+    .container
+      = render :partial => '/layouts/header'
+      #main.span-24.last
+        #content.span-17.append-1
+          = flash_to_html
+          = yield
+        = render :partial => '/layouts/sidebar'
+      = render :partial => '/layouts/footer'
+      = rpx_scripts
+      = google_analytics_scripts

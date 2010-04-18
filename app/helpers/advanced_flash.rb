@@ -22,7 +22,7 @@ module AdvancedFlash
     
     def flash_to_html
       return '' if flash.empty?
-      content_tag :ul, :id => 'flash' do
+      content_tag :ul, :id => 'flash', :class => 'span-20 last' do
         flash.map do |k,v|
           content_tag(:li, flash_content(v), :class => k)
         end.join(' ')

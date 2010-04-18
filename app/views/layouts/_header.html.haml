@@ -1,9 +1,9 @@
-%header
-  .tr
-    %h1
-      = image_tag 'live_sun.png', :alt => 'Half Live Sun', :title => 'Half Live Sun'
-      %span= DayMash
+%header.span-24.last
+  %h1.span-8.prepend-1.append-1
+    = image_tag 'live_sun.png', :alt => 'Half Live Sun', :title => 'Half Live Sun'
+    %span= DayMash
+  .span-13.last.append-1
     - if signed_in?
-      %span{ :class => 'current_user' }
+      .current_user
         = t('navbar.site.signed_in_as', :current_user => current_user)
     = site_nav_bar

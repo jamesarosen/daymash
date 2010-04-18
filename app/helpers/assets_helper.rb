@@ -12,9 +12,9 @@ module AssetsHelper
   
   def css_assets
     if Rails.env.production?
-      ['merged_packaged']
+      ['merged_packaged', {:media => 'screen, projection'}]
     else
-      ['reset', 'application', 'credentials', 'sidebar']
+      ['blueprint/screen', 'application', 'credentials', 'sidebar', {:media => 'screen, projection'}]
     end
   end
   

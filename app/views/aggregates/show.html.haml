@@ -1,12 +1,12 @@
 %h2 My Aggregate Calendar
 
 -if @user.calendars.any?
-  %p
+  .p
     Here is the URL for your aggregate:
 
   .calendar.aggregate= aggregate_link(@user)
 
-  %div.p
+  .p
     Give that URL to anybody you want to have access to your free-busy schedule.
     = t('.reset_privacy_token', :reset_link => inline_button_to(t('.reset_link_text'), reset_privacy_token_user_aggregate_path, :put, :class => 'ajax'))
 
