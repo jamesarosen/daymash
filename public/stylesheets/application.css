@@ -37,32 +37,50 @@ form.inline button:focus span  { text-decoration: underline; }
   dark blue:   #083c71
   medium blue: #035d92
   light blue:  #68b8e7
+  plum:        #903d52
   grey:        #dddddd
 */
 
-html, body { background-color: #035d92; color: #dddddd; }
-h1, h2, h3, h4, h5, h6, legend { color: #dddddd; }
+html, body { background-color: #f6f6f6; color: #035d92; }
+header, h1 { color: #ddd; }
+h2, h3, h4, h5, h6, legend { color: #035d92; }
 header { background-color: #083c71; }
 header a, header a:hover, header a:focus { color: #68b8e7; }
-#content a, .sidebar a, footer a { color: #91b24f; }
+a,       .sidebar a,       footer a,       form.inline button,
+a:hover, .sidebar a:hover, footer a:hover, form.inline button:hover,
+a:focus, .sidebar a:focus, footer a:focus, form.inline button:focus { color: #903d52; }
+
+body.js #flash li { background: #035d92; color: #dddddd; border-color: #083c71; }
+body.js #flash li a { color: #dddddd; }
+body.js #flash li a:hover, body.js #flash li a:focus { color: #083c71; }
+
 form .inline-errors { color: red; }
-form input, form select, form textarea {
-  background-color: #dddddd;
-  border-color: #083c71;
-  background: -moz-linear-gradient(top, #ddd, #777 0px, #ddd 3px);
-  background: -webkit-gradient(linear, left top, left 3, from(#777), to(#ddd));
-  box-shadow:         rgba(0, 0, 0, 0.1) 4px 4px 4px;
-  -moz-box-shadow:    rgba(0, 0, 0, 0.1) 4px 4px 4px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 4px 4px 4px;
+
+form input, form select, form textarea,
+form input[type=text], form input[type=password],
+form input.text, form input.title, form textarea, form select,
+form input:focus, form select:focus, form textarea:focus,
+form input[type=text]:focus, form input[type=password]:focus,
+form input.text:focus, form input.title:focus {
+  border: 2px solid #083c71;
+  background: #f6f6f6;
+  color: #083c71;
 }
-form input:focus, form select:focus, form textarea:focus {
-  border-color: #91b24f;
-  background: -moz-linear-gradient(top, #ddd, #555 0px, #ddd 5px);
-  background: -webkit-gradient(linear, left top, left 3, from(#555), to(#ddd));
-  box-shadow:         rgba(0, 0, 0, 0.3) 4px 4px 4px;
-  -moz-box-shadow:    rgba(0, 0, 0, 0.3) 4px 4px 4px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 4px;
+form input, form select, form textarea,
+form input[type=text], form input[type=password],
+form input.text, form input.title, form textarea, form select {
+  background: -moz-linear-gradient(top, #f6f6f6, #777 0px, #f6f6f6 3px);
+  background: -webkit-gradient(linear, left top, left 3, from(#777), to(#f6f6f6));
 }
+form input:focus, form select:focus, form textarea:focus,
+form input[type=text]:focus, form input[type=password]:focus,
+form input.text:focus, form input.title:focus {
+  background: -moz-linear-gradient(top, #f6f6f6, #555 0px, #f6f6f6 5px);
+  background: -webkit-gradient(linear, left top, left 3, from(#555), to(#f6f6f6));
+}
+form input.submit, form input[type=submit] { background: #f6f6f6; }
+
+input[type=text]:focus, input[type=password]:focus, input.text:focus, input.title:focus, textarea:focus, select:focus { border: inherit; }
 
 /* LAYOUT */
 
@@ -101,6 +119,7 @@ body.js #flash {
   body.js #flash li {
     border: 3px solid;
     display: block;
+    margin: 0;
     padding: 0.4em;
   }
   
@@ -120,7 +139,6 @@ body.js #flash {
     }
     body.js #flash li .close:hover, body.js #flash li .close:focus {
       text-decoration: none;
-      color: #ddd;
     }
   
     body.js #flash li + li { border-top: 0; }
@@ -131,8 +149,7 @@ body.js #flash {
   padding: 1.5em 0;
 }
 
-  #content > * + *,
-  #content form legend + fieldset { margin-top: 1em; }
+  #content > * + * { margin-top: 1.5em; }
 
 footer {
   clear:both;
@@ -148,7 +165,12 @@ h2 span, h3 span, h4 span, h5 span, h6 span {
   display: inline-block;
 }
 
-form fieldset + fieldset, form li + li { margin-top: 1.5em; }
+form legend + fieldset { margin-top: 1.5em; }
+form fieldset { border: 0; margin: 0; padding: 0; }
+  form fieldset + fieldset { margin-top: 1.5em; }
+  form fieldset ol { margin: 0; }
+
+form li + li { margin-top: 1.5em; }
 
 form div.fieldWithErrors + div.fieldWithErrors { margin-top: 0; }
 
@@ -181,7 +203,6 @@ form.inline { line-height: inherit; }
 form.inline button {
   background: inherit;
   border: none;
-  color: #91b24f;
   display: inline;
   font-size: 0.9em;
   margin: 0;

@@ -6,6 +6,6 @@
       = form.input :display_name, :required => false
   %fieldset
     %div
-      = form.submit submit
+      = form.submit submit, :class => 'submit'
       - unless user.new_record?
         = link_to t('common.cancel'), user_path(@user)
