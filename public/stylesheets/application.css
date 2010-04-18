@@ -19,6 +19,9 @@ nav, h1, h2, h3, h4, h5, h6, legend, .current_user {
   text-shadow: 1px 1px 1px #000;
 }
 
+h2 span { padding-bottom: 0.2em; }
+h2 span + a { font-size: 0.6em; }
+
 a                              { text-decoration: none; }
 a:hover, a:focus               { text-decoration: underline; outline: none; }
 form.inline button:hover span,
